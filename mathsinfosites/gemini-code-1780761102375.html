@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ગણિતના તમામ સૂત્રો - All Maths Formulas</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --bg-light: #f4f6f7;
+            --text-dark: #2c3e50;
+            --card-border: #34495e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a252f, var(--primary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header p { margin: 0.5rem 0 0 0; opacity: 0.8; }
+
+        /* Main Layout */
+        .wrapper {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background: #fff;
+            padding: 1.5rem;
+            border-right: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            height: fit-content;
+        }
+
+        nav h3 { margin-top: 0; color: var(--accent); border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin-bottom: 0.8rem; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+        nav ul li a:hover { background: #eaedf0; color: var(--accent); }
+
+        /* Main Content Content */
+        main {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            margin-top: 2.5rem;
+            font-size: 1.5rem;
+        }
+        .section-title:first-of-type { margin-top: 0; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
+        }
+
+        .card h4 { margin: 0 0 0.8rem 0; color: var(--primary); font-size: 1.2rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.3rem; }
+        
+        .formula-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .formula-item:last-child { border-bottom: none; }
+        
+        .label { font-size: 0.95rem; font-weight: 500; }
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: #c0392b;
+            background: #fdf2e9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; }
+            nav { width: auto; position: static; border-right: none; border-bottom: 1px solid #e0e0e0; }
+            nav ul { display: flex; flex-wrap: wrap; gap: 10px; }
+            nav ul li { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ગણિતના તમામ મહત્વપૂર્ણ સૂત્રો</h1>
+        <p>All Maths Formulas in Gujarati - Quick Revision Guide</p>
+    </header>
+
+    <div class="wrapper">
+        <nav>
+            <h3>પ્રકરણોની યાદી</h3>
+            <ul>
+                <li><a href="#numbers">૧. સંખ્યા પદ્ધતિ</a></li>
+                <li><a href="#algebra">૨. બીજગણિત (Algebra)</a></li>
+                <li><a href="#trigo">૩. ત્રિકોણમિતિ</a></li>
+                <li><a href="#geometry2d">૪. ભૂમિતિ (2D Shapes)</a></li>
+                <li><a href="#geometry3d">૫. ઘનફળ-પૃષ્ઠફળ (3D)</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            
+            <h2 id="numbers" class="section-title">૧. સંખ્યા પદ્ધતિ (Number System)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>મૂળભૂત નિયમો</h4>
+                    <div class="formula-item"><span class="label">ભાજ્ય (Dividend)</span> <span class="formula">ભાજક × ભાગફળ + શેષ</span></div>
+                    <div class="formula-item"><span class="label">પ્રથમ n પ્રાકૃતિક સંખ્યાનો સરવાળો</span> <span class="formula">n(n+1) / 2</span></div>
+                    <div class="formula-item"><span class="label">પ્રથમ n એકી સંખ્યાનો સરવાળો</span> <span class="formula">n²</span></div>
+                    <div class="formula-item"><span class="label">પ્રથમ n બેકી સંખ્યાનો સરવાળો</span> <span class="formula">n(n+1)</span></div>
+                </div>
+                <div class="card">
+                    <h4>લસાઅ અને ગુસાઅ (LCM & HCF)</h4>
+                    <div class="formula-item"><span class="label">બે સંખ્યાઓનો ગુણાકાર</span> <span class="formula">લસાઅ × ગુસાઅ</span></div>
+                    <div class="formula-item"><span class="label">અપૂર્ણાંકનો ગુસાઅ</span> <span class="formula">અંશનો ગુસાઅ / છેદનો લસાઅ</span></div>
+                    <div class="formula-item"><span class="label">અપૂર્ણાંકનો લસાઅ</span> <span class="formula">અંશનો લસાઅ / છેદનો ગુસાઅ</span></div>
+                </div>
+            </div>
+
+            <h2 id="algebra" class="section-title">૨. બીજગણિત (Algebra)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>નિત્યસમ (Algebraic Identities)</h4>
+                    <div class="formula-item"><span class="label">(a + b)²</span> <span class="formula">a² + 2ab + b²</span></div>
+                    <div class="formula-item"><span class="label">(a - b)²</span> <span class="formula">a² - 2ab + b²</span></div>
+                    <div class="formula-item"><span class="label">a² - b²</span> <span class="formula">(a - b)(a + b)</span></div>
+                    <div class="formula-item"><span class="label">(a + b)³</span> <span class="formula">a³ + b³ + 3ab(a+b)</span></div>
+                </div>
+                <div class="card">
+                    <h4>ઘાત અને ઘાતાંકના નિયમો</h4>
+                    <div class="formula-item"><span class="label">aᵐ × aⁿ</span> <span class="formula">a^(m+n)</span></div>
+                    <div class="formula-item"><span class="label">aᵐ ÷ aⁿ</span> <span class="formula">a^(m-n)</span></div>
+                    <div class="formula-item"><span class="label">(aᵐ)ⁿ</span> <span class="formula">a^(m×n)</span></div>
+                    <div class="formula-item"><span class="label">a⁰</span> <span class="formula">1</span></div>
+                </div>
+            </div>
+
+            <h2 id="trigo" class="section-title">૩. ત્રિકોણમિતિ (Trigonometry)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>મૂળભૂત ગુણોત્તરો (કાટકોણ ત્રિકોણ માટે)</h4>
+                    <div class="formula-item"><span class="label">sin θ</span> <span class="formula">સામેની બાજુ / કર્ણ</span></div>
+                    <div class="formula-item"><span class="label">cos θ</span> <span class="formula">પાસેની બાજુ / કર્ણ</span></div>
+                    <div class="formula-item"><span class="label">tan θ</span> <span class="formula">સામેની બાજુ / પાસેની બાજુ</span></div>
+                    <div class="formula-item"><span class="label">cot θ</span> <span class="formula">1 / tan θ</span></div>
+                </div>
+                <div class="card">
+                    <h4>ત્રિકોણમિતિય નિત્યસમ</h4>
+                    <div class="formula-item"><span class="label">sin²θ + cos²θ</span> <span class="formula">1</span></div>
+                    <div class="formula-item"><span class="label">1 + tan²θ</span> <span class="formula">sec²θ</span></div>
+                    <div class="formula-item"><span class="label">1 + cot²θ</span> <span class="formula">cosec²θ</span></div>
+                </div>
+            </div>
+
+            <h2 id="geometry2d" class="section-title">૪. પરિમિતિ અને ક્ષેત્રફળ (2D Geometry)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>ચોરસ અને લંબચોરસ</h4>
+                    <div class="formula-item"><span class="label">ચોરસનું ક્ષેત્રફળ</span> <span class="formula">l²</span></div>
+                    <div class="formula-item"><span class="label">ચોરસની પરિમિતિ</span> <span class="formula">4l</span></div>
+                    <div class="formula-item"><span class="label">લંબચોરસનું ક્ષેત્રફળ</span> <span class="formula">l × b</span></div>
+                    <div class="formula-item"><span class="label">લંબચોરસની પરિમિતિ</span> <span class="formula">2(l + b)</span></div>
+                </div>
+                <div class="card">
+                    <h4>ત્રિકોણ અને વર્તુળ</h4>
+                    <div class="formula-item"><span class="label">ત્રિકોણનું ક્ષેત્રફળ</span> <span class="formula">½ × પાયો × વેધ</span></div>
+                    <div class="formula-item"><span class="label">વર્તુળનું ક્ષેત્રફળ</span> <span class="formula">πr²</span></div>
+                    <div class="formula-item"><span class="label">વર્તુળનો પરિધ</span> <span class="formula">2πr</span></div>
+                </div>
+            </div>
+
+            <h2 id="geometry3d" class="section-title">૫. પૃષ્ઠફળ અને ઘનફળ (3D Geometry)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>સમઘન અને લંબઘન</h4>
+                    <div class="formula-item"><span class="label">સમઘનનું ઘનફળ</span> <span class="formula">l³</span></div>
+                    <div class="formula-item"><span class="label">સમઘનનું કુલ પૃષ્ઠફળ</span> <span class="formula">6l²</span></div>
+                    <div class="formula-item"><span class="label">લંબઘનનું ઘનફળ</span> <span class="formula">l × b × h</span></div>
+                    <div class="formula-item"><span class="label">લંબઘનનું કુલ પૃષ્ઠફળ</span> <span class="formula">2(lb + bh + hl)</span></div>
+                </div>
+                <div class="card">
+                    <h4>નળાકાર અને શંકુ</h4>
+                    <div class="formula-item"><span class="label">નળાકારનું ઘનફળ</span> <span class="formula">πr²h</span></div>
+                    <div class="formula-item"><span class="label">નળાકારની વક્રસપાટી</span> <span class="formula">2πrh</span></div>
+                    <div class="formula-item"><span class="label">શંકુનું ઘનફળ</span> <span class="formula">⅓ πr²h</span></div>
+                    <div class="formula-item"><span class="label">શંકુની વક્રસપાટી</span> <span class="formula">πrl</span></div>
+                </div>
+                <div class="card">
+                    <h4>ગોલક (Sphere)</h4>
+                    <div class="formula-item"><span class="label">ગોલકનું ઘનફળ</span> <span class="formula">⁴/₃ πr³</span></div>
+                    <div class="formula-item"><span class="label">ગોલકનું પૃષ્ઠફળ</span> <span class="formula">4πr²</span></div>
+                    <div class="formula-item"><span class="label">અર્ધગોલકનું ઘનફળ</span> <span class="formula">²/₃ πr³</span></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2026 ગણિત જ્ઞાન કેન્દ્ર | તમામ પરીક્ષાઓ માટે ઉપયોગી ડિજિટલ બુક</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>પરીક્ષા લક્ષી સંપૂર્ણ ગણિત અને રીઝનીંગ સૂત્રો | Master Formula Hub</title>
+    <style>
+        :root {
+            --dark-blue: #1e293b;
+            --police-blue: #0f172a;
+            --accent-orange: #f97316;
+            --bg-gray: #f8fafc;
+            --text-dark: #334155;
+            --success-green: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--police-blue), var(--dark-blue));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        header h1 { margin: 0; font-size: 2.4rem; font-weight: 700; letter-spacing: 1px; }
+        header p { margin: 0.6rem 0 0 0; opacity: 0.9; font-size: 1.1rem; }
+
+        .layout {
+            display: flex;
+            flex: 1;
+            max-width: 1500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Sidebar Styling */
+        nav {
+            width: 320px;
+            background: white;
+            padding: 1.5rem;
+            border-right: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+
+        nav h3 {
+            margin-top: 0;
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-section { margin-bottom: 1.5rem; }
+        .nav-section h4 { margin: 0.5rem 0; color: var(--dark-blue); font-size: 1rem; }
+
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin-bottom: 0.4rem; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        nav ul li a:hover { background: #f1f5f9; color: var(--accent-orange); padding-left: 0.8rem; }
+
+        /* Main Content Styling */
+        main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .section-header {
+            background: var(--dark-blue);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            margin-top: 3rem;
+            font-size: 1.6rem;
+            border-left: 6px solid var(--accent-orange);
+        }
+        .section-header:first-of-type { margin-top: 0; }
+
+        .chapter-title {
+            color: var(--police-blue);
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h5 { margin: 0 0 0.8rem 0; color: var(--accent-orange); font-size: 1.1rem; }
+
+        .formula-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+        .item:last-child { border-bottom: none; }
+
+        .concept { font-size: 0.95rem; font-weight: 500; padding-right: 10px; }
+        .code {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            color: #b91c1c;
+            background: #fef2f2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        
+        .note {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        footer {
+            background: var(--police-blue);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 992px) {
+            .layout { flex-direction: column; }
+            nav { width: auto; height: auto; position: static; border-right: none; border-bottom: 2px solid #e2e8f0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Wireless PSI / Technical Cadre - Complete Master Formula Bank</h1>
+        <p>Quantitative Aptitude (30 Marks) & Reasoning (60 Marks) | ધોરણ ૧ થી ૧૦ સંપૂર્ણ કવરેજ</p>
+    </header>
+
+    <div class="layout">
+        <nav>
+            <h3>વિષય સૂચિ</h3>
+            <div class="nav-section">
+                <h4>📊 Quantitative Aptitude</h4>
+                <ul>
+                    <li><a href="#q1">૧. સંખ્યા પદ્ધતિ</a></li>
+                    <li><a href="#q2">૨. લ.સા.અ. અને ગુ.સા.અ.</a></li>
+                    <li><a href="#q3">૩. ટકાવારી અને ભાગીદારી</a></li>
+                    <li><a href="#q4">૪. નફો-ખોટ</a></li>
+                    <li><a href="#q5">૫. સાદુ અને ચક્રવૃદ્ધિ વ્યાજ</a></li>
+                    <li><a href="#q6">૬. ગુણોત્તર અને પ્રમાણ</a></li>
+                    <li><a href="#q7">૭. સમય, કાર્ય અને વેતન</a></li>
+                    <li><a href="#q8">૮. સમય, ઝડપ અને અંતર</a></li>
+                    <li><a href="#q9">૯. મધ્યક, મધ્યસ્થ, બહુલક</a></li>
+                    <li><a href="#q10">૧૦. કૌંસ અને વિસ્તરણ</a></li>
+                    <li><a href="#q11">૧૧. વર્ગ-મૂળ, ઘન-મૂળ, ઘાતાંક</a></li>
+                    <li><a href="#q12">૧૨. બહુપદીઓ અને અવયવીકરણ</a></li>
+                    <li><a href="#q13">૧૩. સુરેખ અને દ્વિઘાત સમીકરણ</a></li>
+                    <li><a href="#q14">૧૪. ક્ષેત્રફળ અને ઘનફળ (સંપૂર્ણ)</a></li>
+                    <li><a href="#q15">૧૫. યામભૂમિતિ અને ત્રિકોણમિતિ</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <h4>🧠 Reasoning Ability</h4>
+                <ul>
+                    <li><a href="#r1">૧. કોડિંગ-ડીકોડિંગ</a></li>
+                    <li><a href="#r2">૨. લોહીના સંબંધો</a></li>
+                    <li><a href="#r3">૩. ઉંમર અને ઊંચાઈ</a></li>
+                    <li><a href="#r4">૪. દિશા જ્ઞાન</a></li>
+                    <li><a href="#r5">૫. ઘડિયાળ અને કેલેન્ડર</a></li>
+                    <li><a href="#r6">૬. વેન ડાયાગ્રામ</a></li>
+                    <li><a href="#r7">૭. ક્રમ અને સ્થાન</a></li>
+                    <li><a href="#r8">૮. સમાંતર શ્રેણી</a></li>
+                    <li><a href="#r13">૯. સંભાવના (Probability)</a></li>
+                    <li><a href="#r14">૧૦. ડેટા ઈન્ટરપ્રિટેશન (DI)</a></li>
+                    <li><a href="#r-other">૧૧. તાર્કિક ક્ષમતા અને વિશ્લેષણ</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            
+            <h2 class="section-header">ભાગ ૧: Quantitative Aptitude (૩૦ ગુણ)</h2>
+
+            <h3 id="q1" class="chapter-title">૧. સંખ્યા પદ્ધતિ (Number System)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>મૂળભૂત સૂત્રો નિયમો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">ભાગાકાર નિયમ:</span> <span class="code">ભાજ્ય = (ભાજક × ભાગફળ) + શેષ</span></div>
+                        <div class="item"><span class="concept">પ્રથમ n પ્રાકૃતિક સંખ્યા સરવાળો:</span> <span class="code">n(n+1) / 2</span></div>
+                        <div class="item"><span class="concept">પ્રથમ n એકી સંખ્યા સરવાળો:</span> <span class="code">n²</span></div>
+                        <div class="item"><span class="concept">પ્રથમ n બેકી સંખ્યા સરવાળો:</span> <span class="code">n(n+1)</span></div>
+                        <div class="item"><span class="concept">પ્રથમ n સંખ્યાઓના વર્ગોનો સરવાળો:</span> <span class="code">[n(n+1)(2n+1)] / 6</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>વિભાજ્યતાની ચાવીઓ (Shortcuts)</h5>
+                    <p style="font-size:0.9rem; margin:0;">
+                        <b>૩ ની ચાવી:</b> અંકોનો સરવાળો ૩ થી ભાગી શકાય.<br>
+                        <b>૪ ની ચાવી:</b> છેલ્લા બે અંકો ૪ થી ભાગી શકાય.<br>
+                        <b>૧૧ ની ચાવી:</b> એકી સ્થાનોનો સરવાળો - બેકી સ્થાનોનો સરવાળો = 0 અથવા ૧૧ નો ગુણક.
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="q2" class="chapter-title">૨. લ.સા.અ. અને ગુ.સા.અ. (LCM & HCF)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સંબંધ અને અપૂર્ણાંક</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">મુખ્ય નિયમ:</span> <span class="code">સંખ્યા A × સંખ્યા B = LCM × HCF</span></div>
+                        <div class="item"><span class="concept">અપૂર્ણાંકનો ગુ.સા.અ:</span> <span class="code">અંશનો ગુ.સા.અ / છેદનો લ.સા.અ</span></div>
+                        <div class="item"><span class="concept">અપૂર્ણાંકનો લ.સા.અ:</span> <span class="code">અંશનો લ.સા.અ / છેદનો ગુ.સા.અ</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q3" class="chapter-title">૩. ટકાવારી અને ભાગીદારી (Percentage & Partnership)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ટકાવારી (Percentage) શોર્ટકટ્સ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">A ની આવક B કરતા x% વધુ હોય તો B ની ઓછી આવક:</span> <span class="code">[x / (100+x)] × 100%</span></div>
+                        <div class="item"><span class="concept">ક્રમિક ટકાવારી ફેરફાર (Successive %):</span> <span class="code">x + y + (xy / 100)</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>ભાગીદારી (Partnership)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">નફાની વહેંચણી ગુણોત્તર:</span> <span class="code">નફો = રોકાણ × સમય</span></div>
+                        <div class="item"><span class="concept">P₁ : P₂ =</span> <span class="code">I₁T₁ : I₂T₂</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q4" class="chapter-title">૪. નફો-ખોટ (Profit & Loss)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>મૂળભૂત અને એડવાન્સ સૂત્રો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">નફો % =</span> <span class="code">(નફો / મૂળ કિંમત) × 100</span></div>
+                        <div class="item"><span class="concept">ખોટ % =</span> <span class="code">(ખોટ / મૂળ કિંમત) × 100</span></div>
+                        <div class="item"><span class="concept">વેચાણ કિંમત (નફા વખતે):</span> <span class="code">મૂ.કિં × [(100 + નફો%) / 100]</span></div>
+                        <div class="item"><span class="concept">ચોખ્ખો વળતર (Discount):</span> <span class="code">છાપેલી કિંમત - વેચાણ કિંમત</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q5" class="chapter-title">૫. સાદુ વ્યાજ અને ચક્રવૃદ્ધિ વ્યાજ (SI & CI)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સાદુ વ્યાજ (Simple Interest)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">વ્યાજ (I) =</span> <span class="code">(P × R × N) / 100</span></div>
+                        <div class="item"><span class="concept">રાશ (Amount) =</span> <span class="code">P + I</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>ચક્રવૃદ્ધિ વ્યાજ (Compound Interest)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">વ્યાજમુદલ (A) =</span> <span class="code">P × (1 + R/100)^N</span></div>
+                        <div class="item"><span class="concept">૨ વર્ષ માટે CI અને SI નો તફાવત:</span> <span class="code">D = P × (R / 100)²</span></div>
+                        <div class="item"><span class="concept">૩ વર્ષ માટે CI અને SI નો તફાવત:</span> <span class="code">D = P(R/100)² × (3 + R/100)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q6" class="chapter-title">૬. ગુણોત્તર અને પ્રમાણ (Ratio & Proportion)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ગુણોત્તરના પ્રકારો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">મધ્યમ પ્રમાણપદ (Mean Proportion) of a, b:</span> <span class="code">√(a × b)</span></div>
+                        <div class="item"><span class="concept">તૃતીય પ્રમાણપદ (Third Proportion):</span> <span class="code">b² / a</span></div>
+                        <div class="item"><span class="concept">ચતુર્થ પ્રમાણપદ (Fourth Proportion) of a,b,c:</span> <span class="code">(b × c) / a</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q7" class="chapter-title">૭. સમય અને કાર્ય, વેતન અને સાંકળનો નિયમ (Time & Work)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સમય અને કાર્ય શોર્ટકટ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">A ને x દિવસ, B ને y દિવસ લાગે, સાથે:</span> <span class="code">(x × y) / (x + y)</span></div>
+                        <div class="item"><span class="concept">કાર્યક્ષમતા (Efficiency):</span> <span class="code">૧ / સમય</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>સાંકળનો નિયમ (Chain Rule)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">મહત્વપૂર્ણ માસ્ટર સૂત્ર:</span> <span class="code">(M₁ × D₁ × H₁) / W₁ = (M₂ × D₂ × H₂) / W₂</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; margin-top:5px; color:#64748b;">M=માણસો, D=દિવસો, H=કલાક, W=કાર્ય/વેતન</p>
+                </div>
+            </div>
+
+            <h3 id="q8" class="chapter-title">૮. સમય, ઝડપ અને અંતર (Time, Speed & Distance)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>મૂળભૂત અને ટ્રેન સબંધી</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">ઝડપ (Speed) =</span> <span class="code">અંતર / સમય</span></div>
+                        <div class="item"><span class="concept">કિમી/કલાક થી મીટર/સેકન્ડ ફેરવવા:</span> <span class="code">ગુણ્યા ૫/૧૮</span></div>
+                        <div class="item"><span class="concept">મીટર/સેકન્ડ થી કિમી/કલાક ફેરવવા:</span> <span class="code">ગુણ્યા ૧૮/૫</span></div>
+                        <div class="item"><span class="concept">સરેરાશ ઝડપ (સમાન અંતર માટે):</span> <span class="code">2xy / (x + y)</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>નદી અને હોડી (Boat & Stream)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">પ્રવાહની દિશામાં ઝડપ (Downstream):</span> <span class="code">u + v</span></div>
+                        <div class="item"><span class="concept">પ્રવાહની વિરુદ્ધ દિશામાં (Upstream):</span> <span class="code">u - v</span></div>
+                    </div>
+                    <p style="font-size:0.8rem; color:#64748b; margin:4px 0 0 0;">(u = હોડીની શાંત પાણીમાં ઝડપ, v = પ્રવાહની ઝડપ)</p>
+                </div>
+            </div>
+
+            <h3 id="q9" class="chapter-title">૯. મધ્યક, મધ્યસ્થ અને બહુલક (Mean, Median, Mode)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>આંકડાશાસ્ત્રના સૂત્રો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">મધ્યક (Mean - X̄) =</span> <span class="code">અવલોકનોનો સરવાળો / કુલ સંખ્યા</span></div>
+                        <div class="item"><span class="concept">ત્રણેય વચ્ચેનો સંબંધ (સૌથી Imp):</span> <span class="code">Z = 3M - 2X̄</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; margin-top:5px; color:#64748b;">Z = બહુલક, M = મધ્યસ્થ, X̄ = મધ્યક</p>
+                </div>
+            </div>
+
+            <h3 id="q10" class="chapter-title">૧૦. કૌંસ અને વિસ્તરણ (Brackets & Expansions)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સાદુરૂપ (Simplification) નિયમ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">ક્રમનો નિયમ:</span> <span class="code">VBODMAS</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; line-height:1.4;">
+                        V = Vinculum (રેખા કૌંસ)<br> B = Brackets (કૌંસ: (), {}, [])<br> O = Of (ના/ની/નું ગુણાકાર)<br>
+                        D = Division (ભાગાકાર)<br> M = Multiplication (ગુણાકાર)<br> A = Addition (સરવાળો)<br> S = Subtraction (બાદબાકી)
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="q11" class="chapter-title">૧૧. વર્ગ-મૂળ, ઘન-મૂળ અને ઘાતાંક</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ઘાતાંકના નિયમો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">aᵐ × aⁿ =</span> <span class="code">a^(m+n)</span></div>
+                        <div class="item"><span class="concept">aᵐ ÷ aⁿ =</span> <span class="code">a^(m-n)</span></div>
+                        <div class="item"><span class="concept">(aᵐ)ⁿ =</span> <span class="code">a^(m×n)</span></div>
+                        <div class="item"><span class="concept">a⁻ᵐ =</span> <span class="code">1 / aᵐ</span></div>
+                        <div class="item"><span class="concept">a⁰ =</span> <span class="code">1</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q12" class="chapter-title">૧૨. બહુપદીઓ અને અવયવીકરણ (Polynomials & Identities)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>મહત્વના નિત્યસમ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">(a + b)² =</span> <span class="code">a² + 2ab + b²</span></div>
+                        <div class="item"><span class="concept">(a - b)² =</span> <span class="code">a² - 2ab + b²</span></div>
+                        <div class="item"><span class="concept">a² - b² =</span> <span class="code">(a - b)(a + b)</span></div>
+                        <div class="item"><span class="concept">(a + b + c)² =</span> <span class="code">a²+b²+c²+2ab+2bc+2ca</span></div>
+                        <div class="item"><span class="concept">a³ + b³ =</span> <span class="code">(a+b)(a²-ab+b²)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q13" class="chapter-title">૧૩. સુરેખ અને દ્વિઘાત સમીકરણ (Equations)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>દ્વિઘાત સમીકરણ: ax² + bx + c = 0</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">વિવેચક (Discriminant) D =</span> <span class="code">b² - 4ac</span></div>
+                        <div class="item"><span class="concept">બીજ (Roots) શોધવાનું સૂત્ર:</span> <span class="code">x = (-b ± √D) / 2a</span></div>
+                        <div class="item"><span class="concept">બીજનો સરવાળો (α + β) =</span> <span class="code">-b / a</span></div>
+                        <div class="item"><span class="concept">બીજનો ગુણાકાર (α × β) =</span> <span class="code">c / a</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q14" class="chapter-title">૧૪. ક્ષેત્રફળ, પૃષ્ઠફળ અને ઘનફળ (Mensuration Complete)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>2D આકારો (ક્ષેત્રફળ અને પરિમિતિ)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">ચોરસ ક્ષેત્રફળ / પરિમિતિ:</span> <span class="code">l² / 4l</span></div>
+                        <div class="item"><span class="concept">લંબચોરસ ક્ષેત્રફળ / પરિમિતિ:</span> <span class="code">(l×b) / 2(l+b)</span></div>
+                        <div class="item"><span class="concept">વર્તુળનું ક્ષેત્રફળ / પરિધ:</span> <span class="code">πr² / 2πr</span></div>
+                        <div class="item"><span class="concept">ત્રિકોણનું ક્ષેત્રફળ:</span> <span class="code">½ × પાયો × વેધ</span></div>
+                        <div class="item"><span class="concept">સમબાજુ ત્રિકોણ ક્ષેત્રફળ:</span> <span class="code">(√3/4) × l²</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>3D આકારો (પૃષ્ઠફળ અને ઘનફળ)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">સમઘન ઘનફળ / પૃષ્ઠફળ:</span> <span class="code">l³ / 6l²</span></div>
+                        <div class="item"><span class="concept">લંબઘન ઘનફળ / પૃષ્ઠફળ:</span> <span class="code">lbh / 2(lb+bh+hl)</span></div>
+                        <div class="item"><span class="concept">નળાકાર ઘનફળ / વક્રસપાટી:</span> <span class="code">πr²h / 2πrh</span></div>
+                        <div class="item"><span class="concept">શંકુનું ઘનફળ / વક્રસપાટી:</span> <span class="code">⅓ πr²h / πrl</span></div>
+                        <div class="item"><span class="concept">ગોલકનું ઘનફળ / પૃષ્ઠફળ:</span> <span class="code">⁴/₃ πr³ / 4πr²</span></div>
+                        <div class="item"><span class="concept">અર્ધગોલક ઘનફળ / કુલ પૃષ્ઠફળ:</span> <span class="code">²/₃ πr³ / 3πr²</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="q15" class="chapter-title">૧૫. યામભૂમિતિ અને ત્રિકોણમિતિ (Coordinate & Trigonometry)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>યામભૂમિતિ (Coordinate Geometry)</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">બે બિંદુઓ વચ્ચેનું અંતર:</span> <span class="code">√[(x₂-x₁)² + (y₂-y₁)²]</span></div>
+                        <div class="item"><span class="concept">મધ્યબિંદુના યામ:</span> <span class="code">((x₁+x₂)/2 , (y₁+y₂)/2)</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>ત્રિકોણમિતિ નિત્યસમ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">sin²θ + cos²θ =</span> <span class="code">1</span></div>
+                        <div class="item"><span class="concept">1 + tan²θ =</span> <span class="code">sec²θ</span></div>
+                        <div class="item"><span class="concept">1 + cot²θ =</span> <span class="code">cosec²θ</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h2 class="section-header">ભાગ ૨: Reasoning Ability (૬૦ ગુણ)</h2>
+
+            <h3 id="r1" class="chapter-title">૧. કોડિંગ-ડીકોડિંગ (Coding-Decoding)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>A to Z સ્થાન કોડ ટ્રીક</h5>
+                    <p style="font-size:0.95rem; margin:0; line-height:1.5;">
+                        યાદ રાખો શબ્દ: <span class="code">E-J-O-T-Y</span> (સ્થાન અનુક્રમે: 5, 10, 15, 20, 25)<br>
+                        <b>વિરુદ્ધ અક્ષરો શોધવા (Reverse Letters):</b> કોઈપણ અક્ષર અને તેની સામેના વિરુદ્ધ અક્ષરના ક્રમનો સરવાળો હંમેશા <b>27</b> થાય. (જેમ કે A=1, Z=26 -> 1+26=27)
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="r2" class="chapter-title">૨. લોહીનો સંબંધ (Blood Relation)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ફેમિલી ટ્રી સંજ્ઞાઓ (Family Tree Shortcuts)</h5>
+                    <p style="font-size:0.95rem; margin:0;">
+                        🔵 <b>ચોરસ / પ્લસ (+):</b> પુરુષ (Male) માટે<br>
+                        🔴 <b>ગોળ / માઈનસ (-):</b> સ્ત્રી (Female) માટે<br>
+                        ↔️ <b>બે માથાવાળો તીર:</b> પતિ-પત્નીના સંબંધ માટે<br>
+                        ⬇️ <b>ઊભી લીટી:</b> માતા-પિતા અને સંતાનની પેઢી દર્શાવવા
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="r3" class="chapter-title">૩. ઉંમર અને ઊંચાઈ સંબંધિત (Age & Height Problems)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ઉંમરના પ્રશ્નો માટે લોજિક</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">જો હાલની ઉંમર X હોય, તો t વર્ષ પહેલા:</span> <span class="code">X - t</span></div>
+                        <div class="item"><span class="concept">t વર્ષ પછીની ઉંમર:</span> <span class="code">X + t</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">નોંધ: બે વ્યક્તિઓની ઉંમરનો તફાવત સમય સાથે ક્યારેય બદલાતો નથી.</p>
+                </div>
+            </div>
+
+            <h3 id="r4" class="chapter-title">૪. દિશા જ્ઞાન (Direction Sense Test)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>દિશાઓનો નકશો અને અંતર</h5>
+                    <p style="font-size:0.9rem; margin:0; line-height:1.5;">
+                        મુખ્ય ચાર દિશાઓ: <b>ઉત્તર (North), દક્ષિણ (South), પૂર્વ (East), પશ્ચિમ (West)</b>.<br>
+                        પેટા દિશાઓ ઘડિયાળના કાંટાની દિશામાં: <b>ઈશાન, અગ્નિ, નૈઋત્ય, વાયવ્ય</b>.<br>
+                        <b>ન્યૂનતમ અંતર માટે:</b> પાયથાગોરસ પ્રમેય કર્ણ² = પાયો² + વેધ² નો ઉપયોગ કરવો.
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="r5" class="chapter-title">૫. ઘડિયાળ અને કેલેન્ડર (Clock & Calendar)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>ઘડિયાળ (Clock) શોર્ટકટ સૂત્રો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">કલાક અને મિનિટ કાંટા વચ્ચેનો ખૂણો:</span> <span class="code">θ = |(30×H) - (11/2×M)|</span></div>
+                        <div class="item"><span class="concept">અરીસામાં પ્રતિબિંબ સમય (Mirror Image):</span> <span class="code">૧૧:૬૦ માંથી આપેલ સમય બાદ કરવો</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5>કેલેન્ડર (Calendar) વધારાના દિવસો (Odd Days)</h5>
+                    <p style="font-size:0.9rem; margin:0;">
+                        સામાન્ય વર્ષ = ૩૬૫ દિવસ = <b>૧ વધારાનો દિવસ</b><br>
+                        લીપ વર્ષ = ૩૬૬ દિવસ = <b>૨ વધારાના દિવસો</b><br>
+                        ૧૦૦ વર્ષમાં વધારાના દિવસ = <b>૫</b> | ૨૦૦ વર્ષમાં = <b>૩</b> | ૪૦૦ વર્ષમાં = <b>૦</b>
+                    </p>
+                </div>
+            </div>
+
+            <h3 id="r7" class="chapter-title">૭. ક્રમ અને સ્થાન (Ranking & Ordering)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સ્થાન નિર્ધારણ શોર્ટકટ</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">હરોળમાં કુલ વ્યક્તિઓની સંખ્યા:</span> <span class="code">કુલ = ડાબેથી સ્થાન + જમણેથી સ્થાન - ૧</span></div>
+                        <div class="item"><span class="concept">કોઈ એક બાજુથી સ્થાન શોધવું:</span> <span class="code">સ્થાન = (કુલ - બીજી બાજુનું સ્થાન) + ૧</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="r8" class="chapter-title">૮. સમાંતર શ્રેણી (Arithmetic Progression)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>શ્રેણીના સૂત્રો</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">n મુ પદ શોધવા (Tₙ):</span> <span class="code">a + (n - 1)d</span></div>
+                        <div class="item"><span class="concept">n પદોનો સરવાળો (Sₙ):</span> <span class="code">(n / 2) × [2a + (n - 1)d]</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:#64748b; margin:4px 0 0 0;">(a = પ્રથમ પદ, d = સામાન્ય તફાવત, n = પદોની સંખ્યા)</p>
+                </div>
+            </div>
+
+            <h3 id="r13" class="chapter-title">૧૩. સંભાવના (Probability)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>સંભાવના સિદ્ધાંત</h5>
+                    <div class="formula-box">
+                        <div class="item"><span class="concept">ઘટના A ની સંભાવના P(A) =</span> <span class="code">શક્ય પરિણામો / કુલ પરિણામો</span></div>
+                        <div class="item"><span class="concept">સિક્કા માટે કુલ પરિણામો (n સિક્કા):</span> <span class="code">2ⁿ</span></div>
+                        <div class="item"><span class="concept">પાસા માટે કુલ પરિણામો (n પાસા):</span> <span class="code">6ⁿ</span></div>
+                    </div>
+                    <div class="note">યાદ રાખો: સંભાવનાની કિંમત હંમેશા ૦ અને ૧ ની વચ્ચે જ હોય (0 ≤ P(A) ≤ 1).</div>
+                </div>
+            </div>
+
+            <h3 id="r-other" class="chapter-title">બાકીના તાર્કિક પ્રકરણો અને વિશ્લેષણ (Chapter 9 to 20)</h3>
+            <div class="grid">
+                <div class="card">
+                    <h5>માહિતીનું અર્થઘટન (Data Interpretation - DI)</h5>
+                    <p style="font-size:0.9rem; margin:0; line-height:1.5;">
+                        પાઈ-ચાર્ટ (Pie Chart) ગણતરી માટે મહત્વનો સંબંધ:<br>
+                        <span class="code">૧૦૦% = ૩૬૦°</span> અને <span class="code">૧% = ૩.૬°</span><br>
+                        DI ના પ્રશ્નો ઉકેલવા માટે ટકાવારી, સરેરાશ અને ગુણોત્તરના પ્રકરણ મજબૂત હોવા જરૂરી છે.
+                    </p>
+                </div>
+                <div class="card">
+                    <h5>વિધાન અને અનુમાન / ગાણિતિક મોડેલીંગ</h5>
+                    <p style="font-size:0.9rem; margin:0; line-height:1.4;">
+                        ૧. <b>તાર્કિક વિશ્લેષણ:</b> આપેલા વિધાનને હંમેશા ૧૦૦% સત્ય માનીને જ તારણ ચેક કરવું.<br>
+                        ૨. <b>ગાણિતિક પ્રક્રિયા (Mathematical Operations):</b> આપેલા ચિહ્નો (+ ને બદલે -, × ને બદલે ÷) બદલ્યા પછી <b>BODMAS</b> નિયમનો કડક અમલ કરવો.
+                    </p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2026 ટેકનિકલ પોલીસ ભરતી માર્ગદર્શક | સ્માર્ટ રિવિઝન વેબ પોર્ટલ</p>
+    </footer>
+
+</body>
+</html>

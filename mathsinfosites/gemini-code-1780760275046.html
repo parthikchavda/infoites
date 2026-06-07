@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ભૂમિતિ સૂત્રો - ક્ષેત્રફળ અને ઘનફળ</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #16a085;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .formula-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .formula-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .formula-list li:last-child {
+            border-bottom: none;
+        }
+
+        .math {
+            font-weight: bold;
+            color: #c0392b;
+            background: #fdf2e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ગણિત ભૂમિતિ સૂત્રો</h1>
+        <p>ક્ષેત્રફળ (Area) અને ઘનફળ (Volume) ની સંપૂર્ણ યાદી</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">૧. દ્વિ-પરિમાણીય આકારો (2D Shapes) - ક્ષેત્રફળ અને પરિમિતિ</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <h3>ચોરસ (Square)</h3>
+                <ul class="formula-list">
+                    <li>પરિમિતિ: <span class="math">4 × l</span></li>
+                    <li>ક્ષેત્રફળ: <span class="math">l²</span></li>
+                    <li>વિકર્ણ: <span class="math">√2 × l</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>લંબચોરસ (Rectangle)</h3>
+                <ul class="formula-list">
+                    <li>પરિમિતિ: <span class="math">2 × (l + b)</span></li>
+                    <li>ક્ષેત્રફળ: <span class="math">l × b</span></li>
+                    <li>વિકર્ણ: <span class="math">√(l² + b²)</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ત્રિકોણ (Triangle)</h3>
+                <ul class="formula-list">
+                    <li>સામાન્ય ક્ષેત્રફળ: <span class="math">½ × પાયો × વેધ</span></li>
+                    <li>સમબાજુ ક્ષેત્રફળ: <span class="math">(√3/4) × l²</span></li>
+                    <li>હેરોનનું સૂત્ર: <span class="math">√[s(s-a)(s-b)(s-c)]</span></li>
+                    <li>જ્યાં અર્ધપરિમિતિ: <span class="math">s = (a+b+c)/2</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>વર્તુળ (Circle)</h3>
+                <ul class="formula-list">
+                    <li>પરિધ (Circumference): <span class="math">2 × π × r</span></li>
+                    <li>ક્ષેત્રફળ: <span class="math">π × r²</span></li>
+                    <li>અર્ધવર્તુળની પરિમિતિ: <span class="math">π × r + 2r</span></li>
+                    <li>અર્ધવર્તુળનું ક્ષેત્રફળ: <span class="math">½ × π × r²</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ચતુષ્કોણ (Quadrilaterals)</h3>
+                <ul class="formula-list">
+                    <li>સમાંતરબાજુનું ક્ષેત્રફળ: <span class="math">પાયો × ઊંચાઈ (b × h)</span></li>
+                    <li>સમબાજુનું ક્ષેત્રફળ: <span class="math">½ × d₁ × d₂</span></li>
+                    <li>સમલંબનું ક્ષેત્રફળ: <span class="math">½ × (a + b) × h</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">૨. ત્રિ-પરિમાણીય આકારો (3D Shapes) - પૃષ્ઠફળ અને ઘનફળ</h2>
+        <div class="grid">
+
+            <div class="card">
+                <h3>સમઘન (Cube)</h3>
+                <ul class="formula-list">
+                    <li>કુલ પૃષ્ઠફળ: <span class="math">6 × l²</span></li>
+                    <li>પાર્શ્વ પૃષ્ઠફળ: <span class="math">4 × l²</span></li>
+                    <li>ઘનફળ (Volume): <span class="math">l³</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>લંબઘન (Cuboid)</h3>
+                <ul class="formula-list">
+                    <li>કુલ પૃષ્ઠફળ: <span class="math">2(lb + bh + hl)</span></li>
+                    <li>ઘનફળ (Volume): <span class="math">l × b × h</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>નળાકાર (Cylinder)</h3>
+                <ul class="formula-list">
+                    <li>વક્રસપાટીનું ક્ષેત્રફળ: <span class="math">2 × π × r × h</span></li>
+                    <li>કુલ સપાટીનું ક્ષેત્રફળ: <span class="math">2πr(r + h)</span></li>
+                    <li>ઘનફળ (Volume): <span class="math">π × r² × h</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>શંકુ (Cone)</h3>
+                <ul class="formula-list">
+                    <li>ત્રાંસી ઊંચાઈ (l): <span class="math">√(r² + h²)</span></li>
+                    <li>વક્રસપાટીનું ક્ષેત્રફળ: <span class="math">π × r × l</span></li>
+                    <li>કુલ સપાટીનું ક્ષેત્રફળ: <span class="math">πr(r + l)</span></li>
+                    <li>ઘનફળ (Volume): <span class="math">⅓ × π × r² × h</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ગોલક અને અર્ધગોલક (Sphere)</h3>
+                <ul class="formula-list">
+                    <li>ગોલકનું પૃષ્ઠફળ: <span class="math">4 × π × r²</span></li>
+                    <li>ગોલકનું ઘનફળ: <span class="math">⁴/₃ × π × r³</span></li>
+                    <li>અર્ધગોલક વક્રસપાટી: <span class="math">2 × π × r²</span></li>
+                    <li>અર્ધગોલક કુલ સપાટી: <span class="math">3 × π × r²</span></li>
+                    <li>અર્ધગોલકનું ઘનફળ: <span class="math">²/₃ × π × r³</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 શૈક્ષણિક વેબ પોર્ટલ | ગણિત સરળ ભાષામાં</p>
+    </footer>
+
+</body>
+</html>
