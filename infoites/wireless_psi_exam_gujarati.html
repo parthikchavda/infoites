@@ -1,0 +1,408 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{padding:1rem 0;max-width:700px}
+.search-bar{display:flex;gap:8px;margin-bottom:1.5rem}
+.search-bar input{flex:1;padding:8px 12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem}
+.tab{padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .2s}
+.tab.active{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info);font-weight:500}
+.section{display:none}
+.section.show{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem}
+.card-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;padding:2px 8px;border-radius:var(--border-radius-md);font-size:11px;font-weight:500}
+.b-blue{background:var(--color-background-info);color:var(--color-text-info)}
+.b-green{background:var(--color-background-success);color:var(--color-text-success)}
+.b-amber{background:var(--color-background-warning);color:var(--color-text-warning)}
+.b-red{background:var(--color-background-danger);color:var(--color-text-danger)}
+.row{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:6px 8px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;font-size:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+td{padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.item{display:flex;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);align-items:flex-start}
+.item:last-child{border-bottom:none}
+.label{min-width:130px;font-size:12px;font-weight:500;color:var(--color-text-secondary)}
+.val{font-size:13px;color:var(--color-text-primary)}
+h3{font-size:14px;font-weight:500;color:var(--color-text-secondary);margin:1rem 0 .5rem;text-transform:none}
+.note{font-size:12px;color:var(--color-text-secondary);margin-top:6px;line-height:1.5}
+</style>
+<h2 class="sr-only">Wireless PSI Exam Reference – Gujarati</h2>
+<div class="wrap">
+<div class="search-bar">
+  <input type="text" id="srch" placeholder="શોધો... (USB, Bluetooth, 5G, Cyber...)" oninput="doSearch(this.value)">
+</div>
+<div class="tabs" id="tabs">
+  <button class="tab active" onclick="show('gen',this)">📶 મોબાઇલ નેટવર્ક</button>
+  <button class="tab" onclick="show('wire',this)">🔌 વાયરલેસ ટેક</button>
+  <button class="tab" onclick="show('usb',this)">🔗 USB / Ports</button>
+  <button class="tab" onclick="show('mem',this)">💾 RAM / ROM / Storage</button>
+  <button class="tab" onclick="show('cam',this)">📷 Camera ટેક</button>
+  <button class="tab" onclick="show('web',this)">🌐 Web ટેકનોલોજી</button>
+  <button class="tab" onclick="show('cyber',this)">🛡️ Cyber Crime</button>
+  <button class="tab" onclick="show('attack',this)">⚠️ Cyber Attacks</button>
+  <button class="tab" onclick="show('law',this)">📜 IT કાયદો</button>
+</div>
+
+<!-- MOBILE NETWORK -->
+<div class="section show" id="gen">
+<div class="card">
+<div class="card-title">📶 મોબાઇલ નેટવર્ક જનરેશન (1G → 6G)</div>
+<table>
+<tr><th>Generation</th><th>Full Form</th><th>વર્ષ</th><th>સ્પીડ</th><th>ટેકનોલોજી</th></tr>
+<tr><td><span class="badge b-amber">1G</span></td><td>First Generation</td><td>1980</td><td>2.4 Kbps</td><td>Analog, ફક્ત Voice Call</td></tr>
+<tr><td><span class="badge b-amber">2G</span></td><td>Second Generation</td><td>1991</td><td>64 Kbps</td><td>GSM, CDMA, SMS, MMS</td></tr>
+<tr><td><span class="badge b-blue">2.5G</span></td><td>GPRS</td><td>1999</td><td>114 Kbps</td><td>General Packet Radio Service</td></tr>
+<tr><td><span class="badge b-blue">2.75G</span></td><td>EDGE</td><td>2003</td><td>384 Kbps</td><td>Enhanced Data for GSM Evolution</td></tr>
+<tr><td><span class="badge b-blue">3G</span></td><td>Third Generation</td><td>2001</td><td>2 Mbps</td><td>WCDMA, UMTS, Video Call</td></tr>
+<tr><td><span class="badge b-blue">3.5G</span></td><td>HSPA</td><td>2005</td><td>14 Mbps</td><td>High Speed Packet Access</td></tr>
+<tr><td><span class="badge b-green">4G</span></td><td>Fourth Generation</td><td>2009</td><td>100 Mbps</td><td>LTE, VoLTE, HD Video</td></tr>
+<tr><td><span class="badge b-green">4.5G</span></td><td>LTE Advanced</td><td>2013</td><td>1 Gbps</td><td>Carrier Aggregation</td></tr>
+<tr><td><span class="badge b-green">5G</span></td><td>Fifth Generation</td><td>2019</td><td>20 Gbps</td><td>NR, mmWave, IoT, AI</td></tr>
+<tr><td><span class="badge b-red">6G</span></td><td>Sixth Generation</td><td>~2030</td><td>1 Tbps</td><td>THz Band, AI Native (આવનારી)</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">📡 GSM / CDMA ટેક્નિકલ ટર્મ્સ</div>
+<div class="item"><span class="label">GSM</span><span class="val">Global System for Mobile Communications</span></div>
+<div class="item"><span class="label">CDMA</span><span class="val">Code Division Multiple Access</span></div>
+<div class="item"><span class="label">LTE</span><span class="val">Long Term Evolution (4G)</span></div>
+<div class="item"><span class="label">VoLTE</span><span class="val">Voice over LTE – HD voice call</span></div>
+<div class="item"><span class="label">IMEI</span><span class="val">International Mobile Equipment Identity – 15 digit unique no.</span></div>
+<div class="item"><span class="label">SIM</span><span class="val">Subscriber Identity Module</span></div>
+<div class="item"><span class="label">eSIM</span><span class="val">Embedded SIM – Physical SIM વગર</span></div>
+<div class="item"><span class="label">APN</span><span class="val">Access Point Name – Internet connection setting</span></div>
+<div class="item"><span class="label">SSID</span><span class="val">Service Set Identifier – WiFi નામ</span></div>
+<div class="item"><span class="label">BSSID</span><span class="val">Basic SSID – WiFi MAC address</span></div>
+</div>
+</div>
+
+<!-- WIRELESS TECH -->
+<div class="section" id="wire">
+<div class="card">
+<div class="card-title">📡 WiFi Standards (IEEE 802.11)</div>
+<table>
+<tr><th>Standard</th><th>નામ</th><th>વર્ષ</th><th>સ્પીડ</th><th>Band</th></tr>
+<tr><td>802.11b</td><td>WiFi 1</td><td>1999</td><td>11 Mbps</td><td>2.4 GHz</td></tr>
+<tr><td>802.11a</td><td>WiFi 2</td><td>1999</td><td>54 Mbps</td><td>5 GHz</td></tr>
+<tr><td>802.11g</td><td>WiFi 3</td><td>2003</td><td>54 Mbps</td><td>2.4 GHz</td></tr>
+<tr><td>802.11n</td><td>WiFi 4</td><td>2009</td><td>600 Mbps</td><td>2.4/5 GHz</td></tr>
+<tr><td>802.11ac</td><td>WiFi 5</td><td>2013</td><td>3.5 Gbps</td><td>5 GHz</td></tr>
+<tr><td>802.11ax</td><td>WiFi 6</td><td>2019</td><td>9.6 Gbps</td><td>2.4/5 GHz</td></tr>
+<tr><td>802.11ax</td><td><span class="badge b-green">WiFi 6E</span></td><td>2021</td><td>9.6 Gbps</td><td>6 GHz Band</td></tr>
+<tr><td>802.11be</td><td><span class="badge b-blue">WiFi 7</span></td><td>2024</td><td>46 Gbps</td><td>2.4/5/6 GHz</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">🔵 Bluetooth Versions</div>
+<table>
+<tr><th>Version</th><th>વર્ષ</th><th>સ્પીડ</th><th>Range</th><th>ખાસ</th></tr>
+<tr><td>BT 1.0</td><td>1999</td><td>1 Mbps</td><td>10m</td><td>Basic</td></tr>
+<tr><td>BT 2.0 + EDR</td><td>2004</td><td>3 Mbps</td><td>10m</td><td>EDR=Enhanced Data Rate</td></tr>
+<tr><td>BT 3.0 + HS</td><td>2009</td><td>24 Mbps</td><td>10m</td><td>High Speed</td></tr>
+<tr><td>BT 4.0 (BLE)</td><td>2010</td><td>1 Mbps</td><td>60m</td><td>Low Energy, IoT</td></tr>
+<tr><td>BT 4.2</td><td>2014</td><td>1 Mbps</td><td>60m</td><td>Privacy સુધારો</td></tr>
+<tr><td>BT 5.0</td><td>2016</td><td>2 Mbps</td><td>240m</td><td>4x Range, 2x Speed</td></tr>
+<tr><td>BT 5.1</td><td>2019</td><td>2 Mbps</td><td>240m</td><td>Direction Finding</td></tr>
+<tr><td>BT 5.3</td><td>2021</td><td>2 Mbps</td><td>240m</td><td>Energy Efficiency</td></tr>
+<tr><td><span class="badge b-green">BT 6.0</span></td><td>2024</td><td>2 Mbps</td><td>240m</td><td>Channel Sounding, AI</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">📲 અન્ય વાયરલેસ ટેકનોલોજી</div>
+<div class="item"><span class="label">NFC</span><span class="val">Near Field Communication – 10cm range, Payment, Tag reading</span></div>
+<div class="item"><span class="label">RFID</span><span class="val">Radio Frequency Identification – Barcode replace, Inventory</span></div>
+<div class="item"><span class="label">IR / IrDA</span><span class="val">Infrared / Infrared Data Association – TV Remote</span></div>
+<div class="item"><span class="label">Zigbee</span><span class="val">IEEE 802.15.4 – Smart Home, Low power IoT</span></div>
+<div class="item"><span class="label">Z-Wave</span><span class="val">Home Automation Protocol – 800-900 MHz</span></div>
+<div class="item"><span class="label">LoRa / LoRaWAN</span><span class="val">Long Range Low Power – IoT, Smart City</span></div>
+<div class="item"><span class="label">WiMAX</span><span class="val">Worldwide Interoperability for Microwave Access – 802.16</span></div>
+<div class="item"><span class="label">Li-Fi</span><span class="val">Light Fidelity – LED light through internet, 100 Gbps</span></div>
+<div class="item"><span class="label">UWB</span><span class="val">Ultra Wide Band – Precise Location, iPhone/Samsung</span></div>
+</div>
+</div>
+
+<!-- USB -->
+<div class="section" id="usb">
+<div class="card">
+<div class="card-title">🔌 USB Versions</div>
+<table>
+<tr><th>Version</th><th>વર્ષ</th><th>સ્પીડ</th><th>Connector</th></tr>
+<tr><td>USB 1.0</td><td>1996</td><td>1.5 / 12 Mbps</td><td>Type-A, B</td></tr>
+<tr><td>USB 2.0</td><td>2000</td><td>480 Mbps (Hi-Speed)</td><td>A, B, Mini, Micro</td></tr>
+<tr><td>USB 3.0</td><td>2008</td><td>5 Gbps</td><td>Type-A (Blue)</td></tr>
+<tr><td>USB 3.1 Gen1</td><td>2013</td><td>5 Gbps</td><td>A / C</td></tr>
+<tr><td>USB 3.1 Gen2</td><td>2013</td><td>10 Gbps</td><td>Type-C</td></tr>
+<tr><td>USB 3.2 Gen2x2</td><td>2017</td><td>20 Gbps</td><td>Type-C</td></tr>
+<tr><td><span class="badge b-green">USB 4.0</span></td><td>2019</td><td>40 Gbps</td><td>Type-C</td></tr>
+<tr><td><span class="badge b-blue">USB 4 v2.0</span></td><td>2022</td><td>80 Gbps</td><td>Type-C</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">🔌 USB Connector Types</div>
+<div class="item"><span class="label">Type-A</span><span class="val">Standard flat rectangular – PC, Charger, Pendrive</span></div>
+<div class="item"><span class="label">Type-B</span><span class="val">Square shape – Printer, Scanner</span></div>
+<div class="item"><span class="label">Mini-USB</span><span class="val">જૂની digital camera, MP3 player</span></div>
+<div class="item"><span class="label">Micro-USB</span><span class="val">Android phones (2010-2018)</span></div>
+<div class="item"><span class="label">Type-C</span><span class="val">Reversible, Universal – New Phones, Laptops, Tablets</span></div>
+<div class="item"><span class="label">Lightning</span><span class="val">Apple proprietary – iPhone (iPhone 15 સુધી)</span></div>
+<div class="item"><span class="label">Thunderbolt 3/4</span><span class="val">40 Gbps, same as USB-C port – Mac, Dell</span></div>
+</div>
+<div class="card">
+<div class="card-title">🖥️ અન્ય Computer Ports</div>
+<div class="item"><span class="label">HDMI</span><span class="val">High Definition Multimedia Interface – 8K, Audio+Video</span></div>
+<div class="item"><span class="label">DisplayPort</span><span class="val">PC Monitor, 240Hz gaming display</span></div>
+<div class="item"><span class="label">VGA</span><span class="val">Video Graphics Array – 15 pin analog (જૂનો)</span></div>
+<div class="item"><span class="label">DVI</span><span class="val">Digital Visual Interface – LCD Monitor</span></div>
+<div class="item"><span class="label">3.5mm Jack</span><span class="val">Audio Headphone / Mic port</span></div>
+<div class="item"><span class="label">SD Card Slot</span><span class="val">Secure Digital – Camera, Laptop</span></div>
+<div class="item"><span class="label">Ethernet (RJ45)</span><span class="val">Wired LAN port – 1 Gbps / 10 Gbps</span></div>
+<div class="item"><span class="label">COM / Serial Port</span><span class="val">RS-232 – Industrial, ATM machines</span></div>
+</div>
+</div>
+
+<!-- RAM ROM STORAGE -->
+<div class="section" id="mem">
+<div class="card">
+<div class="card-title">💾 RAM (Random Access Memory) – Types</div>
+<table>
+<tr><th>Type</th><th>Full Form</th><th>Speed</th><th>Use</th></tr>
+<tr><td>SRAM</td><td>Static RAM</td><td>Very Fast</td><td>CPU Cache</td></tr>
+<tr><td>DRAM</td><td>Dynamic RAM</td><td>Fast</td><td>Main Memory</td></tr>
+<tr><td>SDRAM</td><td>Synchronous DRAM</td><td>–</td><td>PC (Old)</td></tr>
+<tr><td>DDR1</td><td>Double Data Rate 1</td><td>200-400 MHz</td><td>2000s PC</td></tr>
+<tr><td>DDR2</td><td>Double Data Rate 2</td><td>400-1066 MHz</td><td>2004+</td></tr>
+<tr><td>DDR3</td><td>Double Data Rate 3</td><td>800-2133 MHz</td><td>2007+</td></tr>
+<tr><td>DDR4</td><td>Double Data Rate 4</td><td>1600-3200 MHz</td><td>2014+ Common</td></tr>
+<tr><td><span class="badge b-green">DDR5</span></td><td>Double Data Rate 5</td><td>4800-8400 MHz</td><td>2021+ New PC</td></tr>
+<tr><td>LPDDR5X</td><td>Low Power DDR5X</td><td>8533 MHz</td><td>Flagship Phones 2024</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">💿 ROM / Storage Types</div>
+<div class="item"><span class="label">ROM</span><span class="val">Read Only Memory – Permanent, BIOS firmware</span></div>
+<div class="item"><span class="label">PROM</span><span class="val">Programmable ROM – ફક્ત એકવાર Write</span></div>
+<div class="item"><span class="label">EPROM</span><span class="val">Erasable PROM – UV light થી Erase</span></div>
+<div class="item"><span class="label">EEPROM</span><span class="val">Electrically Erasable PROM – Electric signal</span></div>
+<div class="item"><span class="label">Flash Memory</span><span class="val">EEPROM type – Pendrive, SSD, Phone Storage</span></div>
+<div class="item"><span class="label">SSD</span><span class="val">Solid State Drive – Fast, No moving part, NVMe/SATA</span></div>
+<div class="item"><span class="label">NVMe SSD</span><span class="val">Non-Volatile Memory Express – 7000 MB/s</span></div>
+<div class="item"><span class="label">HDD</span><span class="val">Hard Disk Drive – Magnetic, Spinning, Slower</span></div>
+<div class="item"><span class="label">eMMC</span><span class="val">Embedded MMC – Budget Phone storage</span></div>
+<div class="item"><span class="label">UFS 4.0</span><span class="val">Universal Flash Storage – Flagship phone 2023+</span></div>
+<div class="item"><span class="label">SD Card</span><span class="val">Secure Digital – microSD, SDXC, SDUC variants</span></div>
+<div class="item"><span class="label">Cloud Storage</span><span class="val">Google Drive, iCloud, OneDrive – Remote server</span></div>
+</div>
+<div class="card">
+<div class="card-title">⚙️ Processor – CPU Terms</div>
+<div class="item"><span class="label">CPU</span><span class="val">Central Processing Unit – Computer brain</span></div>
+<div class="item"><span class="label">GPU</span><span class="val">Graphics Processing Unit – Gaming, AI</span></div>
+<div class="item"><span class="label">SoC</span><span class="val">System on Chip – Phone processor (Snapdragon, Exynos)</span></div>
+<div class="item"><span class="label">NPU</span><span class="val">Neural Processing Unit – AI tasks, Face detection</span></div>
+<div class="item"><span class="label">Cache</span><span class="val">L1, L2, L3 – CPU ની fast temporary memory</span></div>
+<div class="item"><span class="label">Overclocking</span><span class="val">CPU ની default speed વધારવી</span></div>
+</div>
+</div>
+
+<!-- CAMERA -->
+<div class="section" id="cam">
+<div class="card">
+<div class="card-title">📷 Camera ટેકનોલોજી Terms</div>
+<div class="item"><span class="label">MP (Megapixel)</span><span class="val">10 લાખ Pixels = 1 MP. 200 MP = Latest 2024</span></div>
+<div class="item"><span class="label">OIS</span><span class="val">Optical Image Stabilization – Blur ઓછો</span></div>
+<div class="item"><span class="label">EIS</span><span class="val">Electronic Image Stabilization – Software</span></div>
+<div class="item"><span class="label">PDAF</span><span class="val">Phase Detection Auto Focus – ઝડપી Focus</span></div>
+<div class="item"><span class="label">ToF Sensor</span><span class="val">Time of Flight – Depth, AR, 3D Face unlock</span></div>
+<div class="item"><span class="label">Periscope Zoom</span><span class="val">200x Zoom – Samsung, Vivo, Huawei</span></div>
+<div class="item"><span class="label">RAW Format</span><span class="val">Uncompressed photo data – Professional editing</span></div>
+<div class="item"><span class="label">HDR</span><span class="val">High Dynamic Range – Better light/dark balance</span></div>
+<div class="item"><span class="label">Night Mode</span><span class="val">Low light photography – Multi-frame stacking</span></div>
+<div class="item"><span class="label">4K / 8K Video</span><span class="val">3840x2160 / 7680x4320 resolution video</span></div>
+<div class="item"><span class="label">Slow Motion</span><span class="val">240fps / 960fps / 4000fps – High FPS video</span></div>
+<div class="item"><span class="label">AI Camera</span><span class="val">Scene detection, Portrait, Skin tone AI</span></div>
+<div class="item"><span class="label">CMOS Sensor</span><span class="val">Complementary Metal Oxide Semiconductor – Image sensor</span></div>
+<div class="item"><span class="label">Aperture (f/)</span><span class="val">f/1.4 = Wide open, More light, Background blur</span></div>
+</div>
+<div class="card">
+<div class="card-title">🌐 Website / Internet ટેકનોલોજી</div>
+<div class="item"><span class="label">HTTP</span><span class="val">HyperText Transfer Protocol – Web request/response</span></div>
+<div class="item"><span class="label">HTTPS</span><span class="val">HTTP Secure – SSL/TLS encrypted – Green lock</span></div>
+<div class="item"><span class="label">DNS</span><span class="val">Domain Name System – domain → IP convert</span></div>
+<div class="item"><span class="label">IP Address</span><span class="val">Internet Protocol – IPv4 (32bit), IPv6 (128bit)</span></div>
+<div class="item"><span class="label">URL</span><span class="val">Uniform Resource Locator – Website address</span></div>
+<div class="item"><span class="label">SSL/TLS</span><span class="val">Secure Sockets Layer / Transport Layer Security</span></div>
+<div class="item"><span class="label">CDN</span><span class="val">Content Delivery Network – Fast website loading</span></div>
+<div class="item"><span class="label">API</span><span class="val">Application Programming Interface – Service connect</span></div>
+<div class="item"><span class="label">VPN</span><span class="val">Virtual Private Network – Hide IP, Encryption tunnel</span></div>
+<div class="item"><span class="label">Firewall</span><span class="val">Network traffic filter – Hardware/Software</span></div>
+<div class="item"><span class="label">Cookie</span><span class="val">Website saves small data in browser</span></div>
+<div class="item"><span class="label">HTML5</span><span class="val">Hyper Text Markup Language 5 – Latest Web standard</span></div>
+<div class="item"><span class="label">CSS3</span><span class="val">Cascading Style Sheets 3 – Website design</span></div>
+</div>
+</div>
+
+<!-- WEB TECH (separate tab) -->
+<div class="section" id="web">
+<div class="card">
+<div class="card-title">🌐 Internet & Web Full Forms</div>
+<div class="item"><span class="label">WWW</span><span class="val">World Wide Web – Tim Berners-Lee, 1989</span></div>
+<div class="item"><span class="label">ISP</span><span class="val">Internet Service Provider – Jio, Airtel, BSNL</span></div>
+<div class="item"><span class="label">LAN</span><span class="val">Local Area Network – Building/Office</span></div>
+<div class="item"><span class="label">WAN</span><span class="val">Wide Area Network – City/Country Level</span></div>
+<div class="item"><span class="label">MAN</span><span class="val">Metropolitan Area Network – City Level</span></div>
+<div class="item"><span class="label">PAN</span><span class="val">Personal Area Network – Bluetooth range (10m)</span></div>
+<div class="item"><span class="label">VoIP</span><span class="val">Voice over Internet Protocol – WhatsApp Call, Skype</span></div>
+<div class="item"><span class="label">IoT</span><span class="val">Internet of Things – Smart devices connected</span></div>
+<div class="item"><span class="label">Cloud Computing</span><span class="val">Remote servers for storage/computing – AWS, Azure</span></div>
+<div class="item"><span class="label">SaaS</span><span class="val">Software as a Service – Gmail, Zoom online use</span></div>
+<div class="item"><span class="label">IaaS</span><span class="val">Infrastructure as a Service – AWS EC2, Virtual Server</span></div>
+<div class="item"><span class="label">PaaS</span><span class="val">Platform as a Service – Google App Engine</span></div>
+<div class="item"><span class="label">AI / ML</span><span class="val">Artificial Intelligence / Machine Learning</span></div>
+<div class="item"><span class="label">AR / VR</span><span class="val">Augmented Reality / Virtual Reality</span></div>
+<div class="item"><span class="label">Blockchain</span><span class="val">Distributed Ledger – Bitcoin, NFT, Smart Contract</span></div>
+<div class="item"><span class="label">Metaverse</span><span class="val">Virtual 3D Internet World – Meta, VR Headset</span></div>
+</div>
+</div>
+
+<!-- CYBER CRIME -->
+<div class="section" id="cyber">
+<div class="card">
+<div class="card-title">🚨 Cyber Crime – Types (ગુજરાતીમાં)</div>
+<table>
+<tr><th>Crime</th><th>વ્યાખ્યા</th></tr>
+<tr><td><span class="badge b-red">Phishing</span></td><td>Fake email/website દ્વારા password/bank info ચોરવી</td></tr>
+<tr><td><span class="badge b-red">Vishing</span></td><td>Voice call – Phone call fraud, OTP ચોરી</td></tr>
+<tr><td><span class="badge b-red">Smishing</span></td><td>SMS Phishing – Fake SMS link</td></tr>
+<tr><td><span class="badge b-amber">Identity Theft</span></td><td>બીજાની personal info ઉઠાવી online fraud</td></tr>
+<tr><td><span class="badge b-amber">Cyberstalking</span></td><td>Internet/social media થી follow/harass</td></tr>
+<tr><td><span class="badge b-amber">Cyberbullying</span></td><td>Online ધમકી, નિંદા, harassment</td></tr>
+<tr><td><span class="badge b-red">Online Fraud</span></td><td>Fake shopping, lottery, job offer scam</td></tr>
+<tr><td><span class="badge b-red">Ransomware</span></td><td>Files lock, Bitcoin ransom demand</td></tr>
+<tr><td><span class="badge b-red">Child Pornography</span></td><td>IT Act Section 67B – Strict punishment</td></tr>
+<tr><td><span class="badge b-amber">Sexting</span></td><td>Intimate images/messages online share</td></tr>
+<tr><td><span class="badge b-amber">Hacking</span></td><td>Unauthorized computer/network access</td></tr>
+<tr><td><span class="badge b-amber">Data Breach</span></td><td>Personal/Corporate data leak</td></tr>
+<tr><td><span class="badge b-blue">Crypto Fraud</span></td><td>Fake Bitcoin/Crypto investment scheme</td></tr>
+<tr><td><span class="badge b-blue">Email Spoofing</span></td><td>Fake sender email address</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">📞 Cyber Crime Helpline Numbers</div>
+<div class="item"><span class="label">Helpline</span><span class="val">📱 1930 – National Cyber Crime Helpline</span></div>
+<div class="item"><span class="label">Website</span><span class="val">cybercrime.gov.in – Online complaint portal</span></div>
+<div class="item"><span class="label">Police</span><span class="val">100 – Emergency, Cyber Cell Gujarat</span></div>
+</div>
+</div>
+
+<!-- ATTACKS -->
+<div class="section" id="attack">
+<div class="card">
+<div class="card-title">⚠️ Cyber Attacks – Technical Types</div>
+<table>
+<tr><th>Attack</th><th>Full Form / Meaning</th></tr>
+<tr><td><span class="badge b-red">DoS</span></td><td>Denial of Service – Server ને overload</td></tr>
+<tr><td><span class="badge b-red">DDoS</span></td><td>Distributed DoS – Multiple sources attack</td></tr>
+<tr><td><span class="badge b-red">MITM</span></td><td>Man in the Middle – Data intercept</td></tr>
+<tr><td><span class="badge b-red">SQL Injection</span></td><td>Database query hack – Data steal</td></tr>
+<tr><td><span class="badge b-amber">XSS</span></td><td>Cross Site Scripting – Malicious script inject</td></tr>
+<tr><td><span class="badge b-amber">CSRF</span></td><td>Cross Site Request Forgery – Fake request</td></tr>
+<tr><td><span class="badge b-amber">Brute Force</span></td><td>All possible passwords try – Password crack</td></tr>
+<tr><td><span class="badge b-amber">Dictionary Attack</span></td><td>Common word list – Password guess</td></tr>
+<tr><td><span class="badge b-red">Zero Day</span></td><td>Unknown software vulnerability exploit</td></tr>
+<tr><td><span class="badge b-amber">Trojan Horse</span></td><td>Legitimate software disguised malware</td></tr>
+<tr><td><span class="badge b-red">Rootkit</span></td><td>Deep system hidden malware</td></tr>
+<tr><td><span class="badge b-amber">Keylogger</span></td><td>Keyboard press record – Password steal</td></tr>
+<tr><td><span class="badge b-amber">Spyware</span></td><td>Silent data collector malware</td></tr>
+<tr><td><span class="badge b-amber">Adware</span></td><td>Unwanted advertisement malware</td></tr>
+<tr><td><span class="badge b-red">Botnet</span></td><td>Infected computer network (Zombie network)</td></tr>
+<tr><td><span class="badge b-blue">Social Engineering</span></td><td>Human psychology exploit – Info steal</td></tr>
+<tr><td><span class="badge b-blue">Watering Hole</span></td><td>Target website infect – Visitor attack</td></tr>
+<tr><td><span class="badge b-blue">Drive-by Download</span></td><td>Website visit = auto malware download</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">🔐 Security Terminology</div>
+<div class="item"><span class="label">Encryption</span><span class="val">Data ને code (cipher) માં convert – AES, RSA</span></div>
+<div class="item"><span class="label">Decryption</span><span class="val">Cipher data ને original data માં convert</span></div>
+<div class="item"><span class="label">2FA / MFA</span><span class="val">Two/Multi Factor Authentication – Extra security</span></div>
+<div class="item"><span class="label">OTP</span><span class="val">One Time Password – 6 digit, 30 sec valid</span></div>
+<div class="item"><span class="label">Captcha</span><span class="val">Completely Automated Public Turing test – Bot block</span></div>
+<div class="item"><span class="label">Digital Signature</span><span class="val">Electronic signature – Document authenticity</span></div>
+<div class="item"><span class="label">PKI</span><span class="val">Public Key Infrastructure – Certificate system</span></div>
+<div class="item"><span class="label">Honeypot</span><span class="val">Fake system – Hacker trap, Track attack</span></div>
+<div class="item"><span class="label">Penetration Testing</span><span class="val">Authorized hacking – Security check (Ethical Hacking)</span></div>
+<div class="item"><span class="label">White/Black/Grey Hat</span><span class="val">Good hacker / Criminal hacker / Both</span></div>
+</div>
+</div>
+
+<!-- IT LAW -->
+<div class="section" id="law">
+<div class="card">
+<div class="card-title">📜 IT Act 2000 – Important Sections (ભારત)</div>
+<table>
+<tr><th>Section</th><th>અપરાધ</th><th>સજા</th></tr>
+<tr><td><span class="badge b-blue">Sec 43</span></td><td>Computer damage / unauthorized access</td><td>Civil compensation</td></tr>
+<tr><td><span class="badge b-amber">Sec 65</span></td><td>Source code tampering</td><td>3 yr / ₹2 lakh</td></tr>
+<tr><td><span class="badge b-amber">Sec 66</span></td><td>Computer related offence (Hacking)</td><td>3 yr / ₹5 lakh</td></tr>
+<tr><td><span class="badge b-amber">Sec 66A</span></td><td>Offensive online message (Struck down 2015)</td><td>—</td></tr>
+<tr><td><span class="badge b-red">Sec 66B</span></td><td>Stolen computer resource</td><td>3 yr / ₹1 lakh</td></tr>
+<tr><td><span class="badge b-red">Sec 66C</span></td><td>Identity theft – Digital signature fraud</td><td>3 yr / ₹1 lakh</td></tr>
+<tr><td><span class="badge b-red">Sec 66D</span></td><td>Cheating by impersonation (computer)</td><td>3 yr / ₹1 lakh</td></tr>
+<tr><td><span class="badge b-red">Sec 66E</span></td><td>Privacy violation – Private images</td><td>3 yr / ₹2 lakh</td></tr>
+<tr><td><span class="badge b-red">Sec 66F</span></td><td>Cyber Terrorism</td><td>Life imprisonment</td></tr>
+<tr><td><span class="badge b-red">Sec 67</span></td><td>Obscene material online publish</td><td>3→5 yr / ₹5→10 lakh</td></tr>
+<tr><td><span class="badge b-red">Sec 67B</span></td><td>Child pornography</td><td>5→7 yr / ₹10 lakh</td></tr>
+<tr><td><span class="badge b-amber">Sec 70</span></td><td>Protected system unauthorized access</td><td>10 yr</td></tr>
+<tr><td><span class="badge b-amber">Sec 72</span></td><td>Privacy & confidentiality breach</td><td>2 yr / ₹1 lakh</td></tr>
+</table>
+<p class="note">📌 IT Act 2000 – Information Technology Act | 2008 Amendment – IT (Amendment) Act</p>
+</div>
+<div class="card">
+<div class="card-title">🏛️ Cyber Crime Organizations</div>
+<div class="item"><span class="label">CERT-In</span><span class="val">Computer Emergency Response Team – India – cybersecurity.gov.in</span></div>
+<div class="item"><span class="label">CBI Cyber Cell</span><span class="val">Central Bureau of Investigation – Cyber Crime</span></div>
+<div class="item"><span class="label">NCCC</span><span class="val">National Cyber Coordination Centre – NTRO</span></div>
+<div class="item"><span class="label">Interpol</span><span class="val">International Criminal Police Organization</span></div>
+<div class="item"><span class="label">FBI Cyber Division</span><span class="val">USA Federal Bureau – Cyber investigation</span></div>
+<div class="item"><span class="label">Adjudicating Officer</span><span class="val">IT Act disputes – Civil cases, Max ₹5 crore</span></div>
+</div>
+</div>
+
+<div id="no-result" style="display:none;padding:2rem;text-align:center;color:var(--color-text-secondary)">
+  <i class="ti ti-search" style="font-size:32px" aria-hidden="true"></i>
+  <p style="margin-top:8px">કોઈ result મળ્યું નહીં. બીજો શબ્દ try કરો.</p>
+</div>
+</div>
+
+<script>
+const sections = ['gen','wire','usb','mem','cam','web','cyber','attack','law'];
+function show(id,btn){
+  sections.forEach(s=>{
+    document.getElementById(s).classList.remove('show');
+  });
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('show');
+  btn.classList.add('active');
+  document.getElementById('no-result').style.display='none';
+  document.getElementById('srch').value='';
+}
+function doSearch(q){
+  q=q.trim().toLowerCase();
+  if(!q){
+    document.querySelectorAll('.tab')[0].click();
+    document.getElementById('no-result').style.display='none';
+    return;
+  }
+  sections.forEach(s=>document.getElementById(s).classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  let found=false;
+  sections.forEach(s=>{
+    const sec=document.getElementById(s);
+    const txt=sec.innerText.toLowerCase();
+    if(txt.includes(q)){sec.classList.add('show');found=true;}
+  });
+  document.getElementById('no-result').style.display=found?'none':'block';
+}
+</script>

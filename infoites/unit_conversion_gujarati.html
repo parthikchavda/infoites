@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>એકમ રૂપાંતર - Unit Conversions</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f3ef;
+    --surface: #fdfcfa;
+    --border: #e0dbd2;
+    --accent: #5b6fa0;
+    --accent2: #8b5e3c;
+    --text: #2a2520;
+    --muted: #7a7060;
+    --tag: #eae7e0;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  body {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 20px 14px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+
+  header h1 {
+    font-size: clamp(1.2rem, 4vw, 1.7rem);
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  header p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 14px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 72px;
+    z-index: 99;
+  }
+
+  nav button {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 0.78rem;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+
+  nav button.active, nav button:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 14px 60px;
+  }
+
+  .section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    color: var(--accent2);
+    font-weight: 700;
+    margin: 24px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title .icon { font-size: 1.3rem; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .card h3 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table tr td {
+    padding: 5px 4px;
+    font-size: 0.83rem;
+    border-bottom: 1px solid #eeebe4;
+    vertical-align: middle;
+  }
+
+  table tr:last-child td { border-bottom: none; }
+
+  td.label {
+    color: var(--muted);
+    font-size: 0.78rem;
+    width: 48%;
+  }
+
+  td.value {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+
+  td.eq {
+    color: var(--accent2);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    width: 12%;
+  }
+
+  .highlight-row td { background: #f0ede6; border-radius: 4px; }
+
+  .formula-box {
+    background: linear-gradient(135deg, #eef0f8 0%, #f5f3ef 100%);
+    border: 1px solid #cdd2e8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+  }
+
+  .formula-box .f-title {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .formula-box .f-eq {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+  }
+
+  .formula-box .f-note {
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag);
+    color: var(--muted);
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin: 2px 2px 2px 0;
+    font-weight: 600;
+  }
+
+  .big-table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .big-table-card h3 {
+    background: var(--accent);
+    color: white;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .big-table-card table { padding: 0; }
+  .big-table-card td { padding: 7px 14px; }
+  .big-table-card tr:nth-child(even) td { background: #f7f5f0; }
+
+  .search-bar {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 0.9rem;
+    background: var(--surface);
+    color: var(--text);
+    margin-bottom: 18px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar:focus { border-color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .card-grid { grid-template-columns: 1fr; }
+    nav { top: 60px; }
+    nav button { font-size: 0.72rem; padding: 4px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📐 એકમ રૂપાંતર સારાંશ</h1>
+  <p>Unit Conversions — ગણિત, વિજ્ઞાન, ભૌતિકશાસ્ત્ર & વધુ</p>
+</header>
+
+<nav>
+  <button class="active" onclick="show('length')">📏 લંબાઈ</button>
+  <button onclick="show('mass')">⚖️ દળ</button>
+  <button onclick="show('volume')">🧪 કદ</button>
+  <button onclick="show('time')">⏱️ સમય</button>
+  <button onclick="show('temp')">🌡️ તાપમાન</button>
+  <button onclick="show('area')">🗺️ ક્ષેત્રફળ</button>
+  <button onclick="show('speed')">🚀 ઝડપ</button>
+  <button onclick="show('data')">💾 ડેટા</button>
+  <button onclick="show('physics')">⚡ ભૌતિકશાસ્ત્ર</button>
+  <button onclick="show('math')">🔢 ગણિત</button>
+  <button onclick="show('wireless')">📡 વાયરલેસ</button>
+</nav>
+
+<div class="container">
+
+<!-- LENGTH -->
+<div class="section active" id="length">
+  <div class="section-title"><span class="icon">📏</span> લંબાઈ (Length)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>મૂળ SI એકમો</h3>
+      <table>
+        <tr><td class="label">૧ km (કિલોમીટર)</td><td class="eq">=</td><td class="value">૧,૦૦૦ m</td></tr>
+        <tr><td class="label">૧ m (મીટર)</td><td class="eq">=</td><td class="value">૧૦૦ cm</td></tr>
+        <tr><td class="label">૧ m (મીટર)</td><td class="eq">=</td><td class="value">૧,૦૦૦ mm</td></tr>
+        <tr><td class="label">૧ cm</td><td class="eq">=</td><td class="value">૧૦ mm</td></tr>
+        <tr><td class="label">૧ mm</td><td class="eq">=</td><td class="value">૧,૦૦૦ µm</td></tr>
+        <tr><td class="label">૧ µm (માઇક્રોમીટર)</td><td class="eq">=</td><td class="value">૧,૦૦૦ nm</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ઇમ્પિરિઅલ / ભારતીય</h3>
+      <table>
+        <tr><td class="label">૧ inch</td><td class="eq">=</td><td class="value">2.54 cm</td></tr>
+        <tr><td class="label">૧ foot</td><td class="eq">=</td><td class="value">12 inches = 30.48 cm</td></tr>
+        <tr><td class="label">૧ yard</td><td class="eq">=</td><td class="value">3 feet = 91.44 cm</td></tr>
+        <tr><td class="label">૧ mile</td><td class="eq">=</td><td class="value">1.609 km</td></tr>
+        <tr><td class="label">૧ nautical mile</td><td class="eq">=</td><td class="value">1.852 km</td></tr>
+        <tr><td class="label">૧ furlong</td><td class="eq">=</td><td class="value">201.17 m</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ખગોળ / અન્ય</h3>
+      <table>
+        <tr><td class="label">૧ Light Year</td><td class="eq">=</td><td class="value">9.46 × 10¹⁵ m</td></tr>
+        <tr><td class="label">૧ AU (Astro. Unit)</td><td class="eq">=</td><td class="value">1.496 × 10¹¹ m</td></tr>
+        <tr><td class="label">૧ Parsec</td><td class="eq">=</td><td class="value">3.086 × 10¹⁶ m</td></tr>
+        <tr><td class="label">૧ Angstrom (Å)</td><td class="eq">=</td><td class="value">10⁻¹⁰ m</td></tr>
+        <tr><td class="label">૧ Fermi (fm)</td><td class="eq">=</td><td class="value">10⁻¹⁵ m</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MASS -->
+<div class="section" id="mass">
+  <div class="section-title"><span class="icon">⚖️</span> દળ / વજન (Mass)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>SI & Metric</h3>
+      <table>
+        <tr><td class="label">૧ tonne (ટન)</td><td class="eq">=</td><td class="value">૧,૦૦૦ kg</td></tr>
+        <tr><td class="label">૧ kg</td><td class="eq">=</td><td class="value">૧,૦૦૦ g</td></tr>
+        <tr><td class="label">૧ g</td><td class="eq">=</td><td class="value">૧,૦૦૦ mg</td></tr>
+        <tr><td class="label">૧ mg</td><td class="eq">=</td><td class="value">૧,૦૦૦ µg</td></tr>
+        <tr><td class="label">૧ quintal</td><td class="eq">=</td><td class="value">૧૦૦ kg</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ઇમ્પિરિઅલ</h3>
+      <table>
+        <tr><td class="label">૧ pound (lb)</td><td class="eq">=</td><td class="value">453.592 g</td></tr>
+        <tr><td class="label">૧ ounce (oz)</td><td class="eq">=</td><td class="value">28.35 g</td></tr>
+        <tr><td class="label">૧ stone</td><td class="eq">=</td><td class="value">6.35 kg</td></tr>
+        <tr><td class="label">૧ US ton</td><td class="eq">=</td><td class="value">907.185 kg</td></tr>
+        <tr><td class="label">૧ UK ton</td><td class="eq">=</td><td class="value">1016.05 kg</td></tr>
+        <tr><td class="label">૧ carat</td><td class="eq">=</td><td class="value">0.2 g</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ભારતીય</h3>
+      <table>
+        <tr><td class="label">૧ maund (મણ)</td><td class="eq">=</td><td class="value">37.324 kg</td></tr>
+        <tr><td class="label">૧ seer</td><td class="eq">=</td><td class="value">933 g</td></tr>
+        <tr><td class="label">૧ tola</td><td class="eq">=</td><td class="value">11.664 g</td></tr>
+        <tr><td class="label">૧ ratti</td><td class="eq">=</td><td class="value">0.1215 g</td></tr>
+        <tr><td class="label">1 atomic mass unit</td><td class="eq">=</td><td class="value">1.66 × 10⁻²⁷ kg</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- VOLUME -->
+<div class="section" id="volume">
+  <div class="section-title"><span class="icon">🧪</span> કદ / આયતન (Volume)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Metric</h3>
+      <table>
+        <tr><td class="label">૧ m³</td><td class="eq">=</td><td class="value">૧,૦૦૦ L</td></tr>
+        <tr><td class="label">૧ litre (L)</td><td class="eq">=</td><td class="value">૧,૦૦૦ mL</td></tr>
+        <tr><td class="label">૧ mL</td><td class="eq">=</td><td class="value">1 cm³</td></tr>
+        <tr><td class="label">૧ kL (kilolitre)</td><td class="eq">=</td><td class="value">૧,૦૦૦ L</td></tr>
+        <tr><td class="label">૧ dL (decilitre)</td><td class="eq">=</td><td class="value">100 mL</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ઇમ્પિરિઅલ (US)</h3>
+      <table>
+        <tr><td class="label">૧ gallon (US)</td><td class="eq">=</td><td class="value">3.785 L</td></tr>
+        <tr><td class="label">૧ quart</td><td class="eq">=</td><td class="value">0.946 L</td></tr>
+        <tr><td class="label">૧ pint</td><td class="eq">=</td><td class="value">473 mL</td></tr>
+        <tr><td class="label">૧ cup</td><td class="eq">=</td><td class="value">240 mL</td></tr>
+        <tr><td class="label">૧ fluid ounce</td><td class="eq">=</td><td class="value">29.57 mL</td></tr>
+        <tr><td class="label">૧ tablespoon</td><td class="eq">=</td><td class="value">15 mL</td></tr>
+        <tr><td class="label">૧ teaspoon</td><td class="eq">=</td><td class="value">5 mL</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ઇમ્પિરિઅલ (UK)</h3>
+      <table>
+        <tr><td class="label">૧ gallon (UK)</td><td class="eq">=</td><td class="value">4.546 L</td></tr>
+        <tr><td class="label">૧ pint (UK)</td><td class="eq">=</td><td class="value">568 mL</td></tr>
+        <tr><td class="label">૧ barrel (oil)</td><td class="eq">=</td><td class="value">158.987 L</td></tr>
+        <tr><td class="label">૧ bushel</td><td class="eq">=</td><td class="value">36.37 L</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TIME -->
+<div class="section" id="time">
+  <div class="section-title"><span class="icon">⏱️</span> સમય (Time)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>સ્ટાન્ડર્ડ</h3>
+      <table>
+        <tr><td class="label">૧ minute</td><td class="eq">=</td><td class="value">60 seconds</td></tr>
+        <tr><td class="label">૧ hour</td><td class="eq">=</td><td class="value">60 min = 3,600 sec</td></tr>
+        <tr><td class="label">૧ day</td><td class="eq">=</td><td class="value">24 hrs = 86,400 sec</td></tr>
+        <tr><td class="label">૧ week</td><td class="eq">=</td><td class="value">7 days</td></tr>
+        <tr><td class="label">૧ fortnight</td><td class="eq">=</td><td class="value">14 days</td></tr>
+        <tr><td class="label">૧ month (avg)</td><td class="eq">=</td><td class="value">30.44 days</td></tr>
+        <tr><td class="label">૧ year</td><td class="eq">=</td><td class="value">365.25 days</td></tr>
+        <tr><td class="label">૧ decade</td><td class="eq">=</td><td class="value">10 years</td></tr>
+        <tr><td class="label">૧ century</td><td class="eq">=</td><td class="value">100 years</td></tr>
+        <tr><td class="label">૧ millennium</td><td class="eq">=</td><td class="value">1,000 years</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>સૂક્ષ્મ & ખગોળ</h3>
+      <table>
+        <tr><td class="label">૧ second</td><td class="eq">=</td><td class="value">1,000 ms</td></tr>
+        <tr><td class="label">૧ ms (millisecond)</td><td class="eq">=</td><td class="value">1,000 µs</td></tr>
+        <tr><td class="label">૧ µs (microsecond)</td><td class="eq">=</td><td class="value">1,000 ns</td></tr>
+        <tr><td class="label">૧ ns (nanosecond)</td><td class="eq">=</td><td class="value">1,000 ps</td></tr>
+        <tr><td class="label">Sidereal year</td><td class="eq">=</td><td class="value">365.256 days</td></tr>
+        <tr><td class="label">Lunar month</td><td class="eq">=</td><td class="value">29.53 days</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TEMPERATURE -->
+<div class="section" id="temp">
+  <div class="section-title"><span class="icon">🌡️</span> તાપમાન (Temperature)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>ફોર્મ્યુલા</h3>
+      <table>
+        <tr><td class="label">°C → °F</td><td class="eq">=</td><td class="value">(°C × 9/5) + 32</td></tr>
+        <tr><td class="label">°F → °C</td><td class="eq">=</td><td class="value">(°F − 32) × 5/9</td></tr>
+        <tr><td class="label">°C → K</td><td class="eq">=</td><td class="value">°C + 273.15</td></tr>
+        <tr><td class="label">K → °C</td><td class="eq">=</td><td class="value">K − 273.15</td></tr>
+        <tr><td class="label">°F → K</td><td class="eq">=</td><td class="value">(°F + 459.67) × 5/9</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ખાસ મૂલ્યો</h3>
+      <table>
+        <tr><td class="label">પાણી ઠારે</td><td class="eq">=</td><td class="value">0°C = 32°F = 273.15K</td></tr>
+        <tr><td class="label">પાણી ઉકળે</td><td class="eq">=</td><td class="value">100°C = 212°F = 373.15K</td></tr>
+        <tr><td class="label">શરીર temp</td><td class="eq">=</td><td class="value">37°C = 98.6°F</td></tr>
+        <tr><td class="label">Absolute Zero</td><td class="eq">=</td><td class="value">−273.15°C = 0K</td></tr>
+        <tr><td class="label">ઓરડાનું temp</td><td class="eq">=</td><td class="value">25°C = 77°F = 298K</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- AREA -->
+<div class="section" id="area">
+  <div class="section-title"><span class="icon">🗺️</span> ક્ષેત્રફળ (Area)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Metric</h3>
+      <table>
+        <tr><td class="label">૧ km²</td><td class="eq">=</td><td class="value">10⁶ m²</td></tr>
+        <tr><td class="label">૧ hectare (ha)</td><td class="eq">=</td><td class="value">10,000 m²</td></tr>
+        <tr><td class="label">૧ are</td><td class="eq">=</td><td class="value">100 m²</td></tr>
+        <tr><td class="label">૧ m²</td><td class="eq">=</td><td class="value">10,000 cm²</td></tr>
+        <tr><td class="label">૧ cm²</td><td class="eq">=</td><td class="value">100 mm²</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Imperial & ભારતીય</h3>
+      <table>
+        <tr><td class="label">૧ acre</td><td class="eq">=</td><td class="value">4,047 m² = 0.4047 ha</td></tr>
+        <tr><td class="label">૧ sq mile</td><td class="eq">=</td><td class="value">2.59 km²</td></tr>
+        <tr><td class="label">૧ sq yard</td><td class="eq">=</td><td class="value">0.836 m²</td></tr>
+        <tr><td class="label">૧ bigha (ભીઘા)</td><td class="eq">=</td><td class="value">2,500 m² (Gujarat approx)</td></tr>
+        <tr><td class="label">૧ guntha</td><td class="eq">=</td><td class="value">101.17 m²</td></tr>
+        <tr><td class="label">૧ sq foot</td><td class="eq">=</td><td class="value">0.0929 m²</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SPEED -->
+<div class="section" id="speed">
+  <div class="section-title"><span class="icon">🚀</span> ઝડપ (Speed)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>રૂપાંતર</h3>
+      <table>
+        <tr><td class="label">૧ m/s</td><td class="eq">=</td><td class="value">3.6 km/h</td></tr>
+        <tr><td class="label">૧ km/h</td><td class="eq">=</td><td class="value">0.2778 m/s</td></tr>
+        <tr><td class="label">૧ mph</td><td class="eq">=</td><td class="value">1.609 km/h</td></tr>
+        <tr><td class="label">૧ knot</td><td class="eq">=</td><td class="value">1.852 km/h</td></tr>
+        <tr><td class="label">Mach 1 (sea level)</td><td class="eq">=</td><td class="value">343 m/s = 1235 km/h</td></tr>
+        <tr><td class="label">પ્રકાશ ઝડપ (c)</td><td class="eq">=</td><td class="value">3 × 10⁸ m/s</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ટ્રિક: km/h → m/s</h3>
+      <div class="formula-box">
+        <div class="f-title">Quick Convert</div>
+        <div class="f-eq">km/h ÷ 3.6 = m/s</div>
+        <div class="f-note">ઉદા: 72 km/h ÷ 3.6 = 20 m/s</div>
+      </div>
+      <div class="formula-box">
+        <div class="f-title">m/s → km/h</div>
+        <div class="f-eq">m/s × 3.6 = km/h</div>
+        <div class="f-note">ઉદા: 20 m/s × 3.6 = 72 km/h</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA -->
+<div class="section" id="data">
+  <div class="section-title"><span class="icon">💾</span> ડેટા સ્ટોરેજ (Data)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Binary (SI Prefix)</h3>
+      <table>
+        <tr><td class="label">૧ Byte (B)</td><td class="eq">=</td><td class="value">8 bits</td></tr>
+        <tr><td class="label">૧ KB (Kilobyte)</td><td class="eq">=</td><td class="value">1,024 B</td></tr>
+        <tr><td class="label">૧ MB (Megabyte)</td><td class="eq">=</td><td class="value">1,024 KB</td></tr>
+        <tr><td class="label">૧ GB (Gigabyte)</td><td class="eq">=</td><td class="value">1,024 MB</td></tr>
+        <tr><td class="label">૧ TB (Terabyte)</td><td class="eq">=</td><td class="value">1,024 GB</td></tr>
+        <tr><td class="label">૧ PB (Petabyte)</td><td class="eq">=</td><td class="value">1,024 TB</td></tr>
+        <tr><td class="label">૧ EB (Exabyte)</td><td class="eq">=</td><td class="value">1,024 PB</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Bandwidth (ઝડપ)</h3>
+      <table>
+        <tr><td class="label">૧ Kbps</td><td class="eq">=</td><td class="value">1,000 bits/sec</td></tr>
+        <tr><td class="label">૧ Mbps</td><td class="eq">=</td><td class="value">1,000 Kbps</td></tr>
+        <tr><td class="label">૧ Gbps</td><td class="eq">=</td><td class="value">1,000 Mbps</td></tr>
+        <tr><td class="label">૧ Byte/s</td><td class="eq">=</td><td class="value">8 bits/s</td></tr>
+        <tr><td class="label">10 Mbps internet</td><td class="eq">=</td><td class="value">~1.25 MB/s</td></tr>
+        <tr><td class="label">1 Gbps fibre</td><td class="eq">=</td><td class="value">~125 MB/s</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- PHYSICS -->
+<div class="section" id="physics">
+  <div class="section-title"><span class="icon">⚡</span> ભૌતિકશાસ્ત્ર (Physics)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>બળ & ઊર્જા</h3>
+      <table>
+        <tr><td class="label">૧ Newton (N)</td><td class="eq">=</td><td class="value">1 kg·m/s²</td></tr>
+        <tr><td class="label">૧ Joule (J)</td><td class="eq">=</td><td class="value">1 N·m = 1 kg·m²/s²</td></tr>
+        <tr><td class="label">૧ kJ</td><td class="eq">=</td><td class="value">1,000 J</td></tr>
+        <tr><td class="label">૧ calorie</td><td class="eq">=</td><td class="value">4.184 J</td></tr>
+        <tr><td class="label">૧ kcal</td><td class="eq">=</td><td class="value">4,184 J</td></tr>
+        <tr><td class="label">૧ kWh</td><td class="eq">=</td><td class="value">3.6 × 10⁶ J</td></tr>
+        <tr><td class="label">૧ eV</td><td class="eq">=</td><td class="value">1.6 × 10⁻¹⁹ J</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>દબાણ (Pressure)</h3>
+      <table>
+        <tr><td class="label">૧ Pascal (Pa)</td><td class="eq">=</td><td class="value">1 N/m²</td></tr>
+        <tr><td class="label">૧ kPa</td><td class="eq">=</td><td class="value">1,000 Pa</td></tr>
+        <tr><td class="label">૧ bar</td><td class="eq">=</td><td class="value">100,000 Pa</td></tr>
+        <tr><td class="label">૧ atm</td><td class="eq">=</td><td class="value">101,325 Pa</td></tr>
+        <tr><td class="label">૧ atm</td><td class="eq">=</td><td class="value">1.01325 bar</td></tr>
+        <tr><td class="label">૧ mmHg (torr)</td><td class="eq">=</td><td class="value">133.322 Pa</td></tr>
+        <tr><td class="label">૧ PSI</td><td class="eq">=</td><td class="value">6,894.76 Pa</td></tr>
+        <tr><td class="label">૧ PSI</td><td class="eq">=</td><td class="value">0.0689 bar</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>વિદ્યુત (Electrical)</h3>
+      <table>
+        <tr><td class="label">૧ Watt (W)</td><td class="eq">=</td><td class="value">1 J/s = 1 V·A</td></tr>
+        <tr><td class="label">૧ kW</td><td class="eq">=</td><td class="value">1,000 W</td></tr>
+        <tr><td class="label">૧ MW</td><td class="eq">=</td><td class="value">10⁶ W</td></tr>
+        <tr><td class="label">૧ HP (horsepower)</td><td class="eq">=</td><td class="value">746 W</td></tr>
+        <tr><td class="label">૧ Ampere (A)</td><td class="eq">=</td><td class="value">1 C/s</td></tr>
+        <tr><td class="label">૧ Volt (V)</td><td class="eq">=</td><td class="value">1 J/C</td></tr>
+        <tr><td class="label">૧ Ohm (Ω)</td><td class="eq">=</td><td class="value">1 V/A</td></tr>
+        <tr><td class="label">૧ Farad (F)</td><td class="eq">=</td><td class="value">1 C/V</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ઊર્જા & અન્ય</h3>
+      <table>
+        <tr><td class="label">g (ગુ. ત્વ. ખેંચ)</td><td class="eq">=</td><td class="value">9.8 m/s²</td></tr>
+        <tr><td class="label">c (પ્રકાશ ઝડપ)</td><td class="eq">=</td><td class="value">3 × 10⁸ m/s</td></tr>
+        <tr><td class="label">h (Planck)</td><td class="eq">=</td><td class="value">6.626 × 10⁻³⁴ J·s</td></tr>
+        <tr><td class="label">k (Boltzmann)</td><td class="eq">=</td><td class="value">1.38 × 10⁻²³ J/K</td></tr>
+        <tr><td class="label">R (Gas constant)</td><td class="eq">=</td><td class="value">8.314 J/mol·K</td></tr>
+        <tr><td class="label">NA (Avogadro)</td><td class="eq">=</td><td class="value">6.022 × 10²³</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MATHS -->
+<div class="section" id="math">
+  <div class="section-title"><span class="icon">🔢</span> ગણિત સૂત્રો (Maths)</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Metric Prefixes</h3>
+      <table>
+        <tr><td class="label">Tera (T)</td><td class="eq">=</td><td class="value">10¹²</td></tr>
+        <tr><td class="label">Giga (G)</td><td class="eq">=</td><td class="value">10⁹</td></tr>
+        <tr><td class="label">Mega (M)</td><td class="eq">=</td><td class="value">10⁶</td></tr>
+        <tr><td class="label">Kilo (k)</td><td class="eq">=</td><td class="value">10³</td></tr>
+        <tr><td class="label">Hecto (h)</td><td class="eq">=</td><td class="value">10²</td></tr>
+        <tr><td class="label">Deka (da)</td><td class="eq">=</td><td class="value">10¹</td></tr>
+        <tr><td class="label">Deci (d)</td><td class="eq">=</td><td class="value">10⁻¹</td></tr>
+        <tr><td class="label">Centi (c)</td><td class="eq">=</td><td class="value">10⁻²</td></tr>
+        <tr><td class="label">Milli (m)</td><td class="eq">=</td><td class="value">10⁻³</td></tr>
+        <tr><td class="label">Micro (µ)</td><td class="eq">=</td><td class="value">10⁻⁶</td></tr>
+        <tr><td class="label">Nano (n)</td><td class="eq">=</td><td class="value">10⁻⁹</td></tr>
+        <tr><td class="label">Pico (p)</td><td class="eq">=</td><td class="value">10⁻¹²</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ભૌમિતિ સૂત્રો</h3>
+      <table>
+        <tr><td class="label">વર્તુળ ક્ષે.</td><td class="eq">=</td><td class="value">πr²</td></tr>
+        <tr><td class="label">વ. પરિઘ</td><td class="eq">=</td><td class="value">2πr</td></tr>
+        <tr><td class="label">ત્રિભુજ ક્ષે.</td><td class="eq">=</td><td class="value">½ × b × h</td></tr>
+        <tr><td class="label">લંબચોરસ ક્ષે.</td><td class="eq">=</td><td class="value">l × b</td></tr>
+        <tr><td class="label">ઘન (Volume)</td><td class="eq">=</td><td class="value">l³</td></tr>
+        <tr><td class="label">ગોળો V</td><td class="eq">=</td><td class="value">4/3 πr³</td></tr>
+        <tr><td class="label">ગોળો SA</td><td class="eq">=</td><td class="value">4πr²</td></tr>
+        <tr><td class="label">નળાકાર V</td><td class="eq">=</td><td class="value">πr²h</td></tr>
+        <tr><td class="label">શંકુ V</td><td class="eq">=</td><td class="value">⅓ πr²h</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>ખૂણા (Angles)</h3>
+      <table>
+        <tr><td class="label">180°</td><td class="eq">=</td><td class="value">π radian</td></tr>
+        <tr><td class="label">360°</td><td class="eq">=</td><td class="value">2π radian</td></tr>
+        <tr><td class="label">1 radian</td><td class="eq">=</td><td class="value">57.296°</td></tr>
+        <tr><td class="label">1°</td><td class="eq">=</td><td class="value">60 minutes (')</td></tr>
+        <tr><td class="label">1'</td><td class="eq">=</td><td class="value">60 seconds ('')</td></tr>
+        <tr><td class="label">90°</td><td class="eq">=</td><td class="value">π/2 rad (Right angle)</td></tr>
+        <tr><td class="label">π</td><td class="eq">=</td><td class="value">3.14159265...</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- WIRELESS / PSI -->
+<div class="section" id="wireless">
+  <div class="section-title"><span class="icon">📡</span> વાયરલેસ & PSI (Wireless)</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>આવૃત્તિ (Frequency)</h3>
+      <table>
+        <tr><td class="label">૧ Hz</td><td class="eq">=</td><td class="value">1 cycle/second</td></tr>
+        <tr><td class="label">૧ kHz</td><td class="eq">=</td><td class="value">1,000 Hz</td></tr>
+        <tr><td class="label">૧ MHz</td><td class="eq">=</td><td class="value">10⁶ Hz</td></tr>
+        <tr><td class="label">૧ GHz</td><td class="eq">=</td><td class="value">10⁹ Hz</td></tr>
+        <tr><td class="label">૧ THz</td><td class="eq">=</td><td class="value">10¹² Hz</td></tr>
+        <tr><td class="label">Radio (AM)</td><td class="eq">=</td><td class="value">530–1700 kHz</td></tr>
+        <tr><td class="label">Radio (FM)</td><td class="eq">=</td><td class="value">88–108 MHz</td></tr>
+        <tr><td class="label">WiFi 2.4 GHz</td><td class="eq">=</td><td class="value">2.4 × 10⁹ Hz</td></tr>
+        <tr><td class="label">WiFi 5 GHz</td><td class="eq">=</td><td class="value">5 × 10⁹ Hz</td></tr>
+        <tr><td class="label">5G mmWave</td><td class="eq">=</td><td class="value">24–100 GHz</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>PSI & Pressure</h3>
+      <table>
+        <tr><td class="label">૧ PSI</td><td class="eq">=</td><td class="value">6,894.76 Pa</td></tr>
+        <tr><td class="label">૧ PSI</td><td class="eq">=</td><td class="value">0.06895 bar</td></tr>
+        <tr><td class="label">૧ PSI</td><td class="eq">=</td><td class="value">51.71 mmHg</td></tr>
+        <tr><td class="label">1 bar</td><td class="eq">=</td><td class="value">14.50 PSI</td></tr>
+        <tr><td class="label">1 atm</td><td class="eq">=</td><td class="value">14.696 PSI</td></tr>
+        <tr><td class="label">ટાયર (Car)</td><td class="eq">=</td><td class="value">30–35 PSI</td></tr>
+        <tr><td class="label">ટાયર (Bike)</td><td class="eq">=</td><td class="value">80–120 PSI</td></tr>
+        <tr><td class="label">1 kPa</td><td class="eq">=</td><td class="value">0.145 PSI</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Signal & dB</h3>
+      <table>
+        <tr><td class="label">0 dBm</td><td class="eq">=</td><td class="value">1 mW</td></tr>
+        <tr><td class="label">+10 dBm</td><td class="eq">=</td><td class="value">10 mW</td></tr>
+        <tr><td class="label">+30 dBm</td><td class="eq">=</td><td class="value">1 W</td></tr>
+        <tr><td class="label">Excellent WiFi</td><td class="eq">=</td><td class="value">≥ −50 dBm</td></tr>
+        <tr><td class="label">Good WiFi</td><td class="eq">=</td><td class="value">−60 to −70 dBm</td></tr>
+        <tr><td class="label">Poor WiFi</td><td class="eq">=</td><td class="value">≤ −80 dBm</td></tr>
+        <tr><td class="label">Wavelength λ</td><td class="eq">=</td><td class="value">c / f</td></tr>
+        <tr><td class="label">2.4GHz λ</td><td class="eq">=</td><td class="value">~12.5 cm</td></tr>
+        <tr><td class="label">5GHz λ</td><td class="eq">=</td><td class="value">~6 cm</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Wireless Generations</h3>
+      <table>
+        <tr><td class="label">2G (GSM)</td><td class="eq">=</td><td class="value">~9.6–384 kbps</td></tr>
+        <tr><td class="label">3G (UMTS)</td><td class="eq">=</td><td class="value">~384 kbps – 2 Mbps</td></tr>
+        <tr><td class="label">4G LTE</td><td class="eq">=</td><td class="value">~10–100 Mbps</td></tr>
+        <tr><td class="label">5G (sub-6)</td><td class="eq">=</td><td class="value">~100 Mbps – 1 Gbps</td></tr>
+        <tr><td class="label">5G mmWave</td><td class="eq">=</td><td class="value">~1–20 Gbps</td></tr>
+        <tr><td class="label">WiFi 4 (802.11n)</td><td class="eq">=</td><td class="value">~150 Mbps</td></tr>
+        <tr><td class="label">WiFi 5 (802.11ac)</td><td class="eq">=</td><td class="value">~3.5 Gbps</td></tr>
+        <tr><td class="label">WiFi 6 (802.11ax)</td><td class="eq">=</td><td class="value">~9.6 Gbps</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
