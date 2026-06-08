@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ભારતીય બંધારણ — સંપૂર્ણ માર્ગદર્શિકા</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1a56db;
+      --blue-light: #dbeafe;
+      --blue-dark: #1e3a8a;
+      --orange: #ea580c;
+      --orange-light: #ffedd5;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --red: #dc2626;
+      --red-light: #fee2e2;
+      --yellow: #d97706;
+      --yellow-light: #fef9c3;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-light: #475569;
+      --header-h: 70px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hind Vadodara', 'Mukta', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #3b82f6 100%);
+      color: #fff;
+      padding: 18px 16px 14px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 4px 20px rgba(26,86,219,.35);
+    }
+    .header h1 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; letter-spacing: .3px; }
+    .header p { font-size: 12px; opacity: .85; margin-top: 4px; }
+    .header-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .hbadge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+
+    /* ── TABS ── */
+    .tab-bar {
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      display: flex;
+      gap: 4px;
+      padding: 8px 10px;
+      position: sticky;
+      top: var(--header-h);
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s;
+      flex-shrink: 0;
+      font-family: 'Hind Vadodara', sans-serif;
+    }
+    .tab:hover { background: var(--blue-light); color: var(--blue); border-color: #93c5fd; }
+    .tab.on { background: var(--blue); color: #fff; border-color: var(--blue); box-shadow: 0 2px 10px rgba(26,86,219,.3); }
+
+    /* ── SECTIONS ── */
+    .sec { display: none; padding: 12px; animation: fadeIn .25s ease; }
+    .sec.show { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .ch {
+      padding: 10px 14px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ch.imp { background: linear-gradient(90deg, #fffbeb, #fef3c7); border-bottom-color: #fde68a; color: #78350f; }
+    .ch.blue { background: linear-gradient(90deg, #eff6ff, #dbeafe); border-bottom-color: #bfdbfe; color: #1e3a8a; }
+    .ch.green { background: linear-gradient(90deg, #f0fdf4, #dcfce7); border-bottom-color: #86efac; color: #14532d; }
+    .ch.red { background: linear-gradient(90deg, #fff1f2, #fee2e2); border-bottom-color: #fca5a5; color: #7f1d1d; }
+
+    /* ── ROW ── */
+    .row {
+      display: flex;
+      gap: 10px;
+      padding: 8px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      align-items: flex-start;
+    }
+    .row:last-child { border-bottom: none; }
+    .row.hl { background: #fffbeb; }
+    .row.hb { background: #eff6ff; }
+    .row.hg { background: #f0fdf4; }
+    .row.hr { background: #fff1f2; }
+    .row.hp { background: #faf5ff; }
+
+    .num {
+      min-width: 58px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--orange);
+      background: var(--orange-light);
+      padding: 2px 8px;
+      border-radius: 8px;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .num.imp { color: #b91c1c; background: #fee2e2; }
+    .num.grn { color: #15803d; background: #dcfce7; }
+    .num.blu { color: #1d4ed8; background: #dbeafe; }
+
+    .txt { font-size: 13.5px; color: var(--text); flex: 1; line-height: 1.55; }
+    .txt b { color: var(--blue-dark); }
+    .sm { font-size: 11.5px; color: var(--text-light); margin-top: 3px; display: block; font-style: italic; }
+
+    /* ── EXAMPLE BOX ── */
+    .eg {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid #86efac;
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 6px 10px;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #166534;
+    }
+    .eg::before { content: "📌 દાખલો: "; font-weight: 700; }
+
+    /* ── SIMPLE EXPLAIN ── */
+    .explain {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #93c5fd;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 6px 10px;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #1e3a8a;
+    }
+    .explain::before { content: "💡 સરળ ભાષામાં: "; font-weight: 700; }
+
+    /* ── BADGES ── */
+    .b {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+    .br { background: #fee2e2; color: #991b1b; }
+    .bg { background: #dcfce7; color: #14532d; }
+    .ba { background: #fef3c7; color: #78350f; }
+    .bpu { background: var(--purple-light); color: #4c1d95; }
+    .bi { background: var(--blue-light); color: #1e3a8a; }
+    .bpk { background: #fce7f3; color: #9d174d; }
+
+    /* ── GRID ── */
+    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; }
+
+    /* ── TRICK BOX ── */
+    .trick {
+      background: linear-gradient(135deg, #fffbeb, #fef9c3);
+      border: 1.5px solid #fde047;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .trick-t {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #713f12;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trick-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+      align-items: flex-start;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.5);
+    }
+    .tr-key {
+      min-width: 36px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    .tr-val { font-size: 13px; color: #1c1917; }
+
+    /* ── CASE CARD ── */
+    .case-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .case-card.red { border-left-color: var(--red); }
+    .case-card.green { border-left-color: var(--green); }
+    .case-card.purple { border-left-color: var(--purple); }
+    .case-h {
+      padding: 8px 14px;
+      background: #eff6ff;
+      border-bottom: 1px solid #c7d2fe;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e3a8a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .case-card.red .case-h { background: #fff1f2; border-bottom-color: #fca5a5; color: #7f1d1d; }
+    .case-card.green .case-h { background: #f0fdf4; border-bottom-color: #86efac; color: #14532d; }
+    .case-card.purple .case-h { background: #faf5ff; border-bottom-color: #c4b5fd; color: #3b0764; }
+    .case-b { padding: 8px 14px; font-size: 13px; color: #334155; }
+    .star { color: #f59e0b; }
+
+    /* ── NOTE ── */
+    .note {
+      font-size: 12px;
+      color: #475569;
+      padding: 7px 14px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── PART HEADER BADGE ── */
+    .part-hero {
+      background: linear-gradient(135deg, #1e3a8a, #1a56db);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .part-hero .pnum { font-size: 22px; font-weight: 700; opacity: .7; }
+    .part-hero .ptitle { font-size: 14px; font-weight: 700; }
+    .part-hero .psub { font-size: 11.5px; opacity: .8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .grid2 { grid-template-columns: 1fr; }
+      .header h1 { font-size: 15px; }
+      .num { min-width: 48px; font-size: 11px; }
+      .txt { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇮🇳 ભારતીય બંધારણ — સંપૂર્ણ માર્ગદર્શિકા</h1>
+  <p>PSI | Technical Operator | Wireless PSI પરીક્ષા — ગુજરાતીમાં સરળ સ્પષ્ટીકરણ સાથે</p>
+  <div class="header-badges">
+    <span class="hbadge">22 ભાગ</span>
+    <span class="hbadge">395 અનુ.</span>
+    <span class="hbadge">12 Schedules</span>
+    <span class="hbadge">26 Jan 1950</span>
+  </div>
+</div>
+
+<div class="tab-bar" id="tabs">
+  <button class="tab on" onclick="sw('bhag',this)">📋 22 ભાગ</button>
+  <button class="tab" onclick="sw('fr',this)">⚖️ મૂળ. અધિ.</button>
+  <button class="tab" onclick="sw('dpsp',this)">🎯 DPSP</button>
+  <button class="tab" onclick="sw('sansad',this)">🏛️ સંસદ</button>
+  <button class="tab" onclick="sw('rashtrap',this)">👑 રાષ્ટ્રપ્રધાન</button>
+  <button class="tab" onclick="sw('rajyapal',this)">🏢 રાજ્ય</button>
+  <button class="tab" onclick="sw('cases',this)">⚡ કેસ</button>
+  <button class="tab" onclick="sw('trick',this)">💡 ટ્રિક</button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 1 — 22 BHAG
+════════════════════════════════════════════ -->
+<div class="sec show" id="bhag">
+  <div class="trick">
+    <div class="trick-t">💡 ઝડપી સ્મૃતિ: ભારતનું બંધારણ = 22 ભાગ | 395 અનુ. | 12 Schedules | 26 Jan 1950 થી લાગુ</div>
+    <div class="trick-row"><span class="tr-key">ભાગ III</span><span class="tr-val">= મૂળભૂત અધિકારો → અમેરિકા પ્રેરિત</span></div>
+    <div class="trick-row"><span class="tr-key">ભાગ IV</span><span class="tr-val">= DPSP → આયર્લેન્ડ પ્રેરિત</span></div>
+    <div class="trick-row"><span class="tr-key">ભાગ IV-A</span><span class="tr-val">= ફરજો → 42મો સુ. 1976 (42nd Amendment)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="ch imp">ભારતીય બંધારણ — 22 ભાગ (Parts) — કુલ 395 અનુ.</div>
+    <div class="row hl">
+      <span class="num">ભાગ I</span>
+      <span class="txt">
+        <b>સંઘ અને રાજ્ય</b> (અનુ. 1–4)
+        <span class="sm">ભારત = "Union of States" — ભારત રાજ્યોનો સંઘ છે</span>
+        <div class="explain">ભારત કોઈ "Federation" (ફેડરેશન) નથી, "Union of States" (રાજ્યોનો સંઘ) છે. એટલે રાજ્ય ભારતમાંથી અલગ ન થઈ શકે.</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ II</span>
+      <span class="txt">
+        <b>નાગરિકતા</b> — Citizenship (અનુ. 5–11)
+        <span class="sm">Single Citizenship — ભારતમાં ફક્ત એક નાગરિકતા</span>
+        <div class="explain">USA જેવા દેશોમાં "Dual Citizenship" (રાજ્ય + દેશ) હોય છે, પણ ભારતમાં ફક્ત ભારતની નાગરિકતા.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ III</span>
+      <span class="txt">
+        <span class="b br">મૂળભૂત અધિકારો</span> — Fundamental Rights (અનુ. 12–35)
+        <span class="sm">Justiciable — Court દ્વારા apply કરી શકાય | અમેરિકાથી પ્રેરિત</span>
+        <div class="eg">અ. 21 — "Right to Life" — Police ગેરકાયદે ધરપકડ કરે તો SC/HC માં Writ દ્વારા ઈલાજ.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ IV</span>
+      <span class="txt">
+        <span class="b ba">DPSP</span> — Directive Principles (અનુ. 36–51)
+        <span class="sm">Non-Justiciable — Court enforce ન કરી શકે | આયર્લેન્ડ પ્રેરિત</span>
+        <div class="explain">DPSP = સરકારને "ગુડ ગવર્નન્સ" માટે મળેલી ગાઈડ. Court enforce ન કરી શકે, પણ Moral duty. જેમ: School teacher ઘૂઘ ઘૂઘ ન ઘૂઘ ...</div>
+        <div class="eg">અ. 44 — UCC (Uniform Civil Code) — "one law for all" — DPSP છે, FR નહિ, એટલે Court force ન કરી શકે.</div>
+      </span>
+    </div>
+    <div class="row hg">
+      <span class="num grn">IV-A</span>
+      <span class="txt">
+        <span class="b bg">મૂળભૂત ફરજો</span> — Fundamental Duties (અનુ. 51A)
+        <span class="sm">42મો સુ. 1976 | રશિયા (USSR) પ્રેરિત | 11 ફરજો (86th Amend 2002 = 11th duty)</span>
+        <div class="explain">અધિકારો પ્રજાને મળ્યા, ત્યારે ફરજો પણ આવ્યા. ૧૯૭૬ (Emergency) ના 42nd Amendment પહેલા Duties ન હતી.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ V</span>
+      <span class="txt">
+        <b>સંઘ — Union Executive</b> (અનુ. 52–151)
+        <span class="sm">PM, President, Lok Sabha, Rajya Sabha, SC</span>
+        <div class="eg">PM = Real executive | President = Nominal head (rubber stamp)</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ VI</span>
+      <span class="txt">
+        <b>રાજ્ય — State Govt</b> (અનુ. 152–237)
+        <span class="sm">CM, Governor, MLA, Vidhansabha, HC</span>
+        <div class="eg">ભાગ V (Union) = ભાગ VI (State) ની mirror copy. PM ↔ CM | President ↔ Governor | SC ↔ HC</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ VII</span>
+      <span class="txt">
+        <b>નાબૂદ</b> — 7th Amendment 1956 દ્વારા Abolished
+        <span class="sm">Part B States ની જૂની ગોઠવણ — હવે અસ્તિત્વ નથી</span>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ VIII</span>
+      <span class="txt">
+        <b>Union Territories</b> (અનુ. 239–242)
+        <span class="sm">Delhi, J&K, Ladakh, Puducherry, etc.</span>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num grn">ભાગ IX</span>
+      <span class="txt">
+        <span class="b bg">પંચ. રાજ</span> — 73rd Amendment 1992 (અનુ. 243)
+        <span class="sm">ગ્રામ – Block – જિલ્લો | 3-tier system</span>
+        <div class="eg">ગ્રામ સ્તર → ગ્રામ પંચાયત | Block → તાલુકા પંચ. | જિલ્લો → જિલ્લા પંચ.</div>
+      </span>
+    </div>
+    <div class="row hg">
+      <span class="num grn">IX-A</span>
+      <span class="txt">
+        <span class="b bg">શહ. સ્વ.</span> — 74th Amendment 1992 (અનુ. 243P)
+        <span class="sm">Nagar Panchayat | Municipality | Municipal Corporation</span>
+        <div class="eg">ગ્રામ → Rural (ભાગ IX) | શહેર → Urban (ભાગ IX-A)</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">IX-B</span>
+      <span class="txt">Co-operative Societies — 97th Amendment 2011 (અનુ. 243ZH)</span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ X</span>
+      <span class="txt">Scheduled & Tribal Areas (અનુ. 244) — 5th & 6th Schedule</span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ XI</span>
+      <span class="txt">
+        <b>કેન્દ્ર-રાજ્ય સંબંધ</b> (અનુ. 245–263) — 7th Schedule
+        <span class="sm">Union List | State List | Concurrent List</span>
+        <div class="explain">7th Schedule = 3 Yadi: Union (100 items) — State (61 items) — Concurrent (52 items). Conflict → Union wins.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ XII</span>
+      <span class="txt">
+        <b>નાણાં</b> — Finance + Trade + Property (અનુ. 264–300A)
+        <span class="sm">300A = Property Right (Legal Right, FR નહિ)</span>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XIII</span>
+      <span class="txt">Trade & Commerce — Intra India (અનુ. 301–307)</span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ XIV</span>
+      <span class="txt">
+        <b>Services</b> — UPSC/PSC (અનુ. 308–323)
+        <span class="sm">IAS, IPS, IFS — Civil Services</span>
+        <div class="eg">PSI Exam = GPSC (State PSC) under Part XIV</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">XIV-A</span>
+      <span class="txt">Tribunals — 42nd Amendment 1976 (અનુ. 323A–323B)</span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XV</span>
+      <span class="txt">ચૂંટણી — Elections + Election Commission (અનુ. 324–329A)</span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XVI</span>
+      <span class="txt">SC/ST/OBC Special Provisions (અનુ. 330–342A)</span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XVII</span>
+      <span class="txt">ભાષા — Official Language Hindi + 8th Schedule (અનુ. 343–351)</span>
+    </div>
+    <div class="row hr">
+      <span class="num imp">ભાગ XVIII</span>
+      <span class="txt">
+        <span class="b br">કટોકટી</span> — Emergency (અનુ. 352 | 356 | 360)
+        <span class="sm">National | State (President Rule) | Financial</span>
+        <div class="eg">1975 = Indira Gandhi → National Emergency (352) | "ઈતિહાસમાં સૌથી ખતરનાક સમય"</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XIX</span>
+      <span class="txt">Miscellaneous — અનુ. 361–367</span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">ભાગ XX</span>
+      <span class="txt">
+        <b>બંધ. સુધારો</b> — Amendment (અનુ. 368)
+        <span class="sm">Simple / Special / Basic Structure</span>
+        <div class="explain">368 = "ક્યારે સુધારી શકાય?" — ૩ રીત: Simple majority | 2/3 majority | 2/3 + 50% States. Basic Structure ક્યારેય ન બદલી શકાય (Kesavananda Case 1973).</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XXI</span>
+      <span class="txt">Temporary, Transitional Provisions (અનુ. 369–392)</span>
+    </div>
+    <div class="row">
+      <span class="num">ભાગ XXII</span>
+      <span class="txt">Short Title + Commencement (અનુ. 393–395) | 26 Jan 1950</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 2 — FUNDAMENTAL RIGHTS (FR)
+════════════════════════════════════════════ -->
+<div class="sec" id="fr">
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક: 6 Fundamental Rights = "સ સ્વ શો ધ સ સ"</div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સમાનતા (14–18) — Right to Equality</span></div>
+    <div class="trick-row"><span class="tr-key">સ્વ</span><span class="tr-val">સ્વાતંત્ર્ય (19–22) — Right to Freedom</span></div>
+    <div class="trick-row"><span class="tr-key">શો</span><span class="tr-val">શોષણ વિ. (23–24) — Against Exploitation</span></div>
+    <div class="trick-row"><span class="tr-key">ધ</span><span class="tr-val">ધર્મ સ્વ. (25–28) — Freedom of Religion</span></div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સાંસ્કૃ. (29–30) — Cultural & Educational</span></div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સાંવૈ. ઇ. (32–35) — Constitutional Remedies</span></div>
+    <div style="padding:6px 8px;font-size:12px;color:#713f12;background:rgba(255,255,255,.5);border-radius:6px;margin-top:6px;">⚠️ <b>Note:</b> Property (31) = FR ન રહ્યો | 44th Amendment 1978 → 300A (Legal Right)</div>
+  </div>
+
+  <div class="card">
+    <div class="ch imp">🔍 રાજ્ય (State) ની વ્યાખ્યા — Art. 12</div>
+    <div class="row hl">
+      <span class="num imp">12</span>
+      <span class="txt">
+        <b>'State' = સરકાર + સંસદ + રાજ્ય વિધાનસભા + Local Authorities + Statutory Bodies</b>
+        <span class="sm">LIC, ONGC, SBI = 'State' ગણાય | FR apply</span>
+        <div class="explain">FR ભૂલવા ફક્ત "Government" ભૂલ ન કરે. LIC, ONGC જેવી PSU (Public Companies) પણ FR ભૂલ ન કરી શકે.</div>
+        <div class="eg">SBI (Bank) ગ્રાહક સાથે ભેદ-ભાવ રાખે → Art. 14 ভাઙ → Court જઈ શકો.</div>
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch imp">⚖️ ન્યાયિક પુનરાવલોકન — Art. 13</div>
+    <div class="row hl">
+      <span class="num imp">13</span>
+      <span class="txt">
+        <b>FR સાથે અસંગત (Inconsistent) કોઈ પણ કાયદો = Void (રદ)</b>
+        <span class="sm">Pre-constitutional Laws (1950 પહેલા) + Post-constitutional Laws (1950 પછી)</span>
+        <div class="explain">Judicial Review = Court ની "Power to Strike Down". સરકાર FR ઘૂઘ ઘૂઘ ઘૂઘ .... — ન કઈ, court reject.</div>
+        <div class="eg">Parliament law pass: "Muslim women Court નહિ જઈ શકે" → Art. 14 ऀ ਤ ਤ (Equality) ভাẩg → SC void declare.</div>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 1 -->
+  <div class="card">
+    <div class="ch imp">1️⃣ સમાનતાનો અધિકાર — Right to Equality (14–18)</div>
+    <div class="row hl">
+      <span class="num imp">14</span>
+      <span class="txt">
+        <b>કાયદા સમક્ષ સમાનતા — Rule of Law</b>
+        <span class="sm">England (Dicey) + America | "Law is equal for all"</span>
+        <div class="explain">PM, CM, Collector — સૌ Legal court સામે equal. કોઈ "above the law" નથી.</div>
+        <div class="eg">PM Modi ને Court summon આવ્યો → જવું પડશે. "Rule of Law" — 14 under.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">15</span>
+      <span class="txt">
+        <b>ધર્મ/જ્ઞાતિ/લિ./જ./RP ના આધારે ભેદ-ભાવ નહિ</b>
+        <span class="sm">15(3) = Women/Child special provision OK | 15(4) = SC/ST backward class OK</span>
+        <div class="eg">Hotel: "Hindu only" — Art. 15 violation | Government school: "Boys only admission" → Art. 15(1) violation.</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">16</span>
+      <span class="txt">
+        <b>સ. નિ. ની સ. ક.માં સ. અવ.</b> — Equal Opportunity in Public Employment
+        <span class="sm">16(4) = Reservation for SC/ST/OBC valid | Indra Sawhney Case</span>
+        <div class="eg">Government job: Caste/Religion આધારે રોકી ન શકાય. Reservation 16(4) = Exception (છૂટ).</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">17</span>
+      <span class="txt">
+        <span class="b br">અસ્પૃ. નાબૂ.</span> — <b>Untouchability Abolished</b>
+        <span class="sm">Punishable offence | Protection of Civil Rights Act 1955</span>
+        <div class="explain">Untouchability = ગુનો. ૧૯૫૫ Act = offence. ₹500 fine + jail.</div>
+        <div class="eg">"ઊંચી જ્ઞાતિ"ની well-water 'lower caste' use ન કરે → ૧૭ violation → Punishable.</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">18</span>
+      <span class="txt">
+        <b>Titles નાબૂદ</b> — Rai Bahadur, Khan Bahadur, etc. banned
+        <span class="sm">Military (Param Vir Chakra) + Academic (PhD, MBBS) titles OK</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 2 -->
+  <div class="card">
+    <div class="ch imp">2️⃣ સ્વાતંત્ર્ય અધિકાર — Right to Freedom (19–22)</div>
+    <div class="row hl">
+      <span class="num imp">19</span>
+      <span class="txt">
+        <b>6 Freedom: વ+સ+સ+ગ+ર+ધ</b>
+        <span class="sm">(a)વાણી (b)Assembly (c)Association (d)ગতি (e)Residence (f)Profession</span>
+        <div class="eg">19(1)(a) = Facebook post, Protest, Press freedom. "7th freedom (ress) 44th Amendment 1978 → remove."</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">20</span>
+      <span class="txt">
+        <b>ગ. સ. ર.</b> — 3 Protections:
+        <span class="sm">① Double Jeopardy: same crime twice trial नहि | ② Self-Incrimination: ખુદ witness ন |③ Ex-post-facto: past crime nahi</span>
+        <div class="eg">Court: "Same case twice!" → 20(2) = Double Jeopardy violation.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">21</span>
+      <span class="txt">
+        <span class="b br">Right to Life — સૌથી મહત્ત્વ</span>
+        <span class="sm">Maneka Gandhi Case 1978: "Procedure must be Fair, Just, Reasonable" | Privacy 2017</span>
+        <div class="explain">21 = "Life" = ફક્ત breathing alive नहि — Dignified life (ગરિમા), Privacy, Travel abroad, Live with family, Free from torture — બધું 21 under.</div>
+        <div class="eg">Police torture → Art. 21 | Prison में baat करने का right → Art. 21 | Right to privacy (Puttaswamy 2017) → Art. 21</div>
+      </span>
+    </div>
+    <div class="row hg">
+      <span class="num grn">21A</span>
+      <span class="txt">
+        <span class="b bg">6–14 Age = Free Education</span>
+        <span class="sm">86th Amendment 2002 | RTE Act 2009</span>
+        <div class="eg">6-14 year child → Government school → Free + Compulsory education. Private school 25% RTE seat .</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">22</span>
+      <span class="txt">
+        <b>ધ. સ. ર.</b> — Detention Safeguards
+        <span class="sm">24 Hrs → Magistrate | Lawyer right | Preventive Detention (44th Amend)</span>
+        <div class="eg">Police arrest → 24 Hr में Magistrate के सामने → Lawyer right. India में bail system = Art. 22.</div>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 3 -->
+  <div class="card">
+    <div class="ch">3️⃣ શોષણ વિ. — Against Exploitation (23–24)</div>
+    <div class="row">
+      <span class="num">23</span>
+      <span class="txt">
+        <b>Human Trafficking + Begar (Forced Labour) — નિ.</b>
+        <span class="sm">Devaswom Board Case | State can compel military service</span>
+        <div class="eg">Village सरपंच forced free work → Art. 23 violation | Bonded Labour = Art. 23 violation.</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">24</span>
+      <span class="txt">
+        <b>14 Year — Child Labour — Factory/Mine — નિ.</b>
+        <span class="sm">Child Labour Act 1986, Amendment 2016 | Home/Agriculture = NOT banned</span>
+        <div class="eg">10 year boy → Carpet factory → Art. 24 violation → FIR under Child Labour Act.</div>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 4 -->
+  <div class="card">
+    <div class="ch">4️⃣ ધર્મ સ્વ. — Freedom of Religion (25–28)</div>
+    <div class="row">
+      <span class="num">25</span>
+      <span class="txt">
+        <b>Conscience + ધ. ઉ. + ઉ. + પ.</b>
+        <span class="sm">Subject to public order, morality, health</span>
+        <div class="eg">Hindu, Muslim, Christian = ধর্ম practice, propagate, profess right. Temple, Mosque, Church = OK. But "Human Sacrifice" = NOT OK (public order).</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">26</span><span class="txt">ધ. સ. ની સ્ — Religious Institution Establish & Manage<span class="sm">Property own, manage right (religious denominations)</span></span></div>
+    <div class="row"><span class="num">27</span><span class="txt"><b>No Religious Tax</b> — ধর্ম খরচ for Tax nahi<span class="sm">Government tax collected for religious purpose = violation</span></span></div>
+    <div class="row"><span class="num">28</span><span class="txt"><b>State School — No compulsory Religious Instruction</b><span class="sm">Aided Schools may teach religion (opt-out allowed)</span></span></div>
+  </div>
+
+  <!-- RIGHT 5 -->
+  <div class="card">
+    <div class="ch">5️⃣ સાંસ્કૃ./શૈ. — Culture & Education (29–30)</div>
+    <div class="row">
+      <span class="num">29</span>
+      <span class="txt">
+        <b>Minority Language/Script/Culture — রক্ষ.</b>
+        <span class="sm">Any section of citizens (minority or majority)</span>
+        <div class="eg">Gujarati medium school Gujarat में → Art. 29 = protect language, script, culture.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">30</span>
+      <span class="txt">
+        <b>Minority Educational Institutions — Establish + Manage</b>
+        <span class="sm">St. Xavier's Case | Aligarh Muslim University | Religious + Linguistic minority</span>
+        <div class="eg">Muslim minority → AMU establish + manage right | Christian minority → St. Xavier's College manage right → Art. 30 protect.</div>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 6 - PROPERTY -->
+  <div class="card">
+    <div class="ch">6️⃣ મિલકત — Property Right (31 → 300A)</div>
+    <div class="row hl">
+      <span class="num imp">31</span>
+      <span class="txt">
+        <b>Right to Property — FR ❌ → Legal Right ✅</b>
+        <span class="sm">44th Amendment 1978 → Art. 31 remove → Art. 300A (Legal right, FR नहि)</span>
+        <div class="explain">Property right 1978 सुधी FR हता. Indira Gandhi land reforms। 44th Amend = now just Legal right. Court में जाओ, पर FR नहि.</div>
+      </span>
+    </div>
+  </div>
+
+  <!-- RIGHT 7 - WRITS -->
+  <div class="card">
+    <div class="ch imp">7️⃣ સાંવૈ. ઇ. — Constitutional Remedies (32–35)</div>
+    <div class="row hl">
+      <span class="num imp">32</span>
+      <span class="txt">
+        <span class="b br">ડો. આંબેડકર = "FR ना Heart & Soul"</span>
+        <b>— SC में Writ right</b>
+        <span class="sm">5 Writs: HC / MA / PR / CE / QW | Art. 226 = HC can also issue writs</span>
+        <div class="explain">32 = Supreme Court में directly जाने का right when FR violated. 226 = HC में जाने का right. 226 = wider (FR + other rights).</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">33</span><span class="txt">સંસદ — Army/Police ने FR पर limit<span class="sm">Discipline के लिए restriction</span></span></div>
+    <div class="row"><span class="num">34</span><span class="txt">Martial Law क्षेत्र में FR suspend possible</span></div>
+    <div class="row"><span class="num">35</span><span class="txt">FR ना implement कानून = Only Parliament बना शके</span></div>
+    <div class="note">
+      <b>5 Writs (PSI Exam Very IMP):</b><br>
+      <span class="b br">HC</span> = Habeas Corpus = "Body लाओ" — Illegal detention challenge |
+      <span class="b bi">MA</span> = Mandamus = "Do it!" — Public duty enforce |
+      <span class="b ba">PR</span> = Prohibition = "Stop!" — Lower court ne rok |
+      <span class="b bg">CE</span> = Certiorari = "Case upar transfer" — Wrong decision quash |
+      <span class="b bpu">QW</span> = Quo Warranto = "किस अधिकार से?" — Illegal office holder
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 3 — DPSP
+════════════════════════════════════════════ -->
+<div class="sec" id="dpsp">
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક: DPSP 3 Types = "સ ગ ઉ" | Ireland | Non-Justiciable</div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">Socialistic — 38, 39, 39A, 41, 42, 43, 43B, 47</span></div>
+    <div class="trick-row"><span class="tr-key">ગ</span><span class="tr-val">Gandhian — 40, 43, 46, 47, 48</span></div>
+    <div class="trick-row"><span class="tr-key">ઉ</span><span class="tr-val">Liberal — 44, 45, 48A, 49, 50, 51</span></div>
+    <div style="padding:6px 8px;background:rgba(255,255,255,.6);border-radius:6px;margin-top:6px;font-size:12px;color:#713f12;">
+      ⚖️ DPSP vs FR: Conflict → FR wins | Minerva Mills 1980: FR + DPSP balance must
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch imp">🏭 Socialistic Principles — સમાજવાદી</div>
+    <div class="row hl">
+      <span class="num imp">38</span>
+      <span class="txt">
+        <b>Welfare State — Social Order</b>
+        <span class="sm">38(1)=Social order | 38(2)=Inequality reduce</span>
+        <div class="explain">Government = "welfare" (welfare) State. ફક્ત economy grow नहि, inequality पण ઘटाओ.</div>
+      </span>
+    </div>
+    <div class="row hl">
+      <span class="num imp">39</span>
+      <span class="txt">
+        <b>Equal Pay + Resource distribution</b>
+        <span class="sm">39(a)=Adequate livelihood | 39(b)=Material resources distribution | 39(d)=Equal Pay Equal Work</span>
+        <div class="eg">Male-Female same work → same pay → 39(d). Government ignore → PIL possible.</div>
+      </span>
+    </div>
+    <div class="row hg">
+      <span class="num grn">39A</span>
+      <span class="txt">
+        <b>Free Legal Aid — Equal Justice</b>
+        <span class="sm">42nd Amendment 1976 | Poor cannot afford lawyer → State provide</span>
+        <div class="eg">Gareeb accused → free lawyer (Legal Services Authority). 39A ना reason থেকে. India में NALSA (National Legal Services Authority).</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">41</span><span class="txt">Right to Work, Education, Public Assistance</span></div>
+    <div class="row"><span class="num">42</span><span class="txt"><b>Just & Humane Work + Maternity Relief</b><span class="sm">Maternity Benefit Act 1961</span></span></div>
+    <div class="row">
+      <span class="num">43</span>
+      <span class="txt">
+        <b>Living Wage + Cottage Industries</b>
+        <span class="sm">43A=Workers in Management | 43B=Co-operatives</span>
+        <div class="eg">Minimum wage above "Living Wage" = 43 goal. Khadi + village industry = 43.</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">47</span><span class="txt">Nutrition + Health + Prohibition<span class="sm">Government Liquor ban effort = 47</span></span></div>
+  </div>
+
+  <div class="card">
+    <div class="ch green">🌿 Gandhian Principles — ગાંધીવાદી</div>
+    <div class="row hl">
+      <span class="num imp">40</span>
+      <span class="txt">
+        <b>Gram Panchayat — Village self-govt</b>
+        <span class="sm">Gram Swaraj — Gandhi ना vision | 73rd Amendment 1992 थी implement</span>
+        <div class="eg">"Village में Power to the People" = Gandhi ना Gram Swaraj dream → Art. 40 DPSP → 73rd Amend 1992 finally implemented.</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">43</span><span class="txt">Cottage Industry — Khadi promotion</span></div>
+    <div class="row"><span class="num">46</span><span class="txt">SC/ST + Weaker sections — Educational & Economic uplift</span></div>
+    <div class="row"><span class="num">47</span><span class="txt">Intoxicating Drinks ban — Prohibition<span class="sm">Gujarat = Dry State (Prohibition)</span></span></div>
+    <div class="row">
+      <span class="num">48</span>
+      <span class="txt">
+        <b>Cow Slaughter ban + Agriculture + Animal Husbandry</b>
+        <span class="sm">Gau Raksha = Art. 48 DPSP</span>
+        <div class="eg">Cow Slaughter ban Laws = Art. 48 DPSP ना basis पर. DPSP = Court enforce नहि करे, but State can make law.</div>
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch blue">📚 Liberal Principles — ઉદારવાદી</div>
+    <div class="row hl">
+      <span class="num imp">44</span>
+      <span class="txt">
+        <span class="b bpu">Uniform Civil Code — UCC</span>
+        <span class="sm">Gujarat/Goa — partially UCC | Big debate topic | DPSP, FR नहि</span>
+        <div class="explain">UCC = एक देश, एक कानून (Marriage, Divorce, Property for all religions). Goa = Only state with UCC. Still DPSP = not mandatory.</div>
+        <div class="eg">Muslim = 4 shaadi allowed (Personal Law) | UCC = all same. Currently DPSP = Court enforce नहि कर सके.</div>
+      </span>
+    </div>
+    <div class="row">
+      <span class="num">45</span>
+      <span class="txt">Early Childhood Care — Under 6 age<span class="sm">86th Amendment → 6-14 to 21A | 0-6 still in 45</span></span>
+    </div>
+    <div class="row">
+      <span class="num">48A</span>
+      <span class="txt">Environment Protection + Forest<span class="sm">42nd Amendment 1976 | Environment Protection Act 1986</span></span>
+    </div>
+    <div class="row"><span class="num">49</span><span class="txt">Monument Protection — ASI care</span></div>
+    <div class="row hl">
+      <span class="num imp">50</span>
+      <span class="txt">
+        <b>Separation of Judiciary & Executive</b>
+        <span class="sm">Very IMP DPSP | Independent Judiciary = Basic Structure</span>
+        <div class="explain">Judge = Independent. Government (Executive) ने Judge पर pressure न हो. Art. 50 = separation की goal.</div>
+      </span>
+    </div>
+    <div class="row"><span class="num">51</span><span class="txt">International Peace + UN + International Law</span></div>
+  </div>
+
+  <div class="card">
+    <div class="ch imp">⚡ Fundamental Duties — 11 ফরজ (51A)</div>
+    <div class="trick" style="margin:8px;border-radius:8px;">
+      <div class="trick-t">💡 ટ્રિક: 11 Duties = "RI BAPES PCE"</div>
+      <div class="trick-row"><span class="tr-key">R</span><span class="tr-val">Respect Constitution/National Flag/Anthem</span></div>
+      <div class="trick-row"><span class="tr-key">I</span><span class="tr-val">Independence movement ideals cherish</span></div>
+      <div class="trick-row"><span class="tr-key">B</span><span class="tr-val">Be sovereign/unity/integrity</span></div>
+      <div class="trick-row"><span class="tr-key">A</span><span class="tr-val">Armed forces defend</span></div>
+      <div class="trick-row"><span class="tr-key">P</span><span class="tr-val">Promote harmony + brotherhood</span></div>
+      <div class="trick-row"><span class="tr-key">E</span><span class="tr-val">Ensure cultural heritage preserve</span></div>
+      <div class="trick-row"><span class="tr-key">S</span><span class="tr-val">Scientific temper develop</span></div>
+      <div class="trick-row"><span class="tr-key">P</span><span class="tr-val">Public property protect</span></div>
+      <div class="trick-row"><span class="tr-key">C</span><span class="tr-val">Collective activity excellence strive</span></div>
+      <div class="trick-row"><span class="tr-key">E</span><span class="tr-val">Environment (forest, rivers, wildlife) protect</span></div>
+      <div class="trick-row"><span class="tr-key">+1</span><span class="tr-val">86th Amend 2002: Children 6-14 Education (11th duty)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 4 — SANSAD
+════════════════════════════════════════════ -->
+<div class="sec" id="sansad">
+  <div class="grid2">
+    <div class="card">
+      <div class="ch imp">🏛️ લોક સભા — Art. 81</div>
+      <div class="row hl">
+        <span class="num imp">સભ્ય</span>
+        <span class="txt">
+          <b>550 max (530 State + 20 UT)</b>
+          <span class="sm">હાળ: 543 elected | Preamble "Lower House"</span>
+          <div class="explain">LS = "People's House" — Direct election by public. 18+ vote right (61st Amendment 1989).</div>
+        </span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Speaker</span>
+        <span class="txt">
+          <b>Om Birla (2024)</b>
+          <span class="sm">Money Bill certify | Casting Vote | Presides | LS members elect</span>
+          <div class="eg">Money Bill = LS Speaker certify. RS = ફક્ત 14 days suggest. Speaker Final.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Deputy</span>
+        <span class="txt">Jagdambika Pal<span class="sm">Speaker absent = Deputy chair</span></span>
+      </div>
+      <div class="row">
+        <span class="num">ગa. gu.</span>
+        <span class="txt">5 Year | President dissolve earlier<span class="sm">Emergency → extend | Normal → 5 year fixed</span></span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Money Bill</span>
+        <span class="txt">
+          <b>LS only introduce | RS = 14 days suggest only</b>
+          <span class="sm">Art. 110 | Speaker certifies</span>
+          <div class="explain">Money Bill (Tax, Budget) = LS start. RS = advise only, reject cannot. LS = Final power.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Quorum</span>
+        <span class="txt">1/10 = 55 members (Art. 100)</span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Joint Sitting</span>
+        <span class="txt">
+          <b>Art. 108 — Deadlock → President call</b>
+          <span class="sm">LS + RS = together | LS prevails (more members)</span>
+          <div class="eg">Ordinary Bill deadlock → Joint Sitting → LS = 543, RS = 250 → LS wins. Money Bill = Joint Sitting नहिं.</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">🏛️ રાજ્ય સભા — Art. 80</div>
+      <div class="row hl">
+        <span class="num imp">સભ્ય</span>
+        <span class="txt">
+          <b>250 max (238 elected + 12 President nominate)</b>
+          <span class="sm">Art. 80 | Permanent House — Dissolve ন হায়</span>
+          <div class="explain">RS = "Upper House" / "States' House". States represent here. Permanent = never dissolve.</div>
+        </span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Chair</span>
+        <span class="txt">
+          <b>VP of India (Ex-officio Chairman)</b>
+          <span class="sm">Jagdeep Dhankhar — Vice President</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Deputy</span>
+        <span class="txt">Harivansh Narayan Singh<span class="sm">RS members elect</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Term</span>
+        <span class="txt">Permanent — 1/3 retire every 2 years | Each member = 6 year</span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Special</span>
+        <span class="txt">
+          <b>Art. 249: State matter → Parliament bill</b>
+          <span class="sm">Art. 312: All India Service create | RS = States protect</span>
+          <div class="eg">RS pass resolution (2/3) → Parliament can legislate on State List. States protect करने वाला House.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">12 Nom.</span>
+        <span class="txt">President nominates — Art, Science, Literature, Social Service (Art. 80(3))</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">👔 ઉ.-રા. — Vice President (Art. 63–71)</div>
+      <div class="row hl">
+        <span class="num imp">ચૂ.</span>
+        <span class="txt">
+          <b>MP only (LS+RS) Electoral College — Art. 66</b>
+          <span class="sm">MLA vote नहिं | President election = MLA + MP</span>
+        </span>
+      </div>
+      <div class="row"><span class="num">Ka.</span><span class="txt">5 Year | No limit on re-election</span></div>
+      <div class="row"><span class="num">Bhu.</span><span class="txt">RS ना Chair (Ex-officio)<span class="sm">President absent → act as President</span></span></div>
+      <div class="row"><span class="num">Ha.</span><span class="txt">Jagdeep Dhankhar (15th VP, 2022)</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">🇮🇳 PM — Prime Minister (Art. 74–75)</div>
+      <div class="row hl">
+        <span class="num imp">Ga.</span>
+        <span class="txt">
+          <b>Art. 74 — Cabinet head | Real Executive</b>
+          <span class="sm">President = Nominal | PM = Real power</span>
+          <div class="explain">India = Parliamentary system. PM = actual boss. President = "Rubber Stamp" mostly. But President can act in President's own discretion in some cases.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Chu.</span>
+        <span class="txt">LS majority leader → President appoint<span class="sm">LS member compulsory within 6 months</span></span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Power</span>
+        <span class="txt">Cabinet head | President advise | Parliament session | Policy decide<span class="sm">PM = Most powerful constitutional position in India</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Ha.</span>
+        <span class="txt">Narendra Modi (14th PM, 2014–)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 5 — RASHTRA PRADHAN (PRESIDENT + EMERGENCY + SC)
+════════════════════════════════════════════ -->
+<div class="sec" id="rashtrap">
+  <div class="grid2">
+    <div class="card">
+      <div class="ch imp">👑 રાષ્ટ્રપ્રધાન — President (Art. 52–62)</div>
+      <div class="row hl">
+        <span class="num imp">Chu.</span>
+        <span class="txt">
+          <b>Electoral College — MLA + MP (both Houses + all States)</b>
+          <span class="sm">Art. 54 | Single Transferable Vote | Proportional Representation</span>
+          <div class="explain">President = Indirect election. MLA + Lok Sabha MP + Rajya Sabha MP — all vote. VP = Only MP vote. LS + RS only.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Qualify</span>
+        <span class="txt">Indian | 35+ age | LS member eligible | No government post</span>
+      </div>
+      <div class="row">
+        <span class="num">Ka.</span>
+        <span class="txt">5 Year | Re-election possible (no limit) | Oath = CJI administer</span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Art. 72</span>
+        <span class="txt">
+          <b>Pardon Power (Maafi)</b>
+          <span class="sm">Pardon | Reprieve | Respite | Remit | Commute | Death Sentence = President only</span>
+          <div class="eg">Death sentence → mercy petition → President power under 72. Governor = 161 (no death sentence).</div>
+        </span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Art. 61</span>
+        <span class="txt">
+          <b>Impeachment — Mahabhiyog</b>
+          <span class="sm">Both Houses 2/3 majority | "Violation of Constitution" — only ground</span>
+          <div class="eg">India में कभी President impeach नहिं हुआ. Unique = Both Houses agree must.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Art. 123</span>
+        <span class="txt">Ordinance Power — Parliament recess<span class="sm">6 months में Parliament पास करे वरना expire</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Ha.</span>
+        <span class="txt">Droupadi Murmu (15th President, 2022)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch red">🚨 Emergency — 3 Prakar (Art. 352, 356, 360)</div>
+      <div class="row hr">
+        <span class="num imp">352</span>
+        <span class="txt">
+          <span class="b br">National Emergency</span>
+          <span class="sm">War / External Aggression / Armed Rebellion | Cabinet written rec. → 44th Amend | 1962, 1971, 1975</span>
+          <div class="explain">352 = Biggest emergency. Whole India affected. FR suspend possible (Art. 358-359). State elections stop. LS extend possible.</div>
+          <div class="eg">1962 = China war | 1971 = Pakistan war | 1975 = Internal disturbance (Indira Gandhi) — India में 3 times.</div>
+        </span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">356</span>
+        <span class="txt">
+          <span class="b ba">President's Rule (State Emergency)</span>
+          <span class="sm">Governor recommend | Max 3 year | Bommai Case 1994 control</span>
+          <div class="explain">State government fail → Governor report to President → President's Rule. Bommai Case: floor test mandatory before 356.</div>
+          <div class="eg">BJP vs Congress — State government unstable → Governor report → 356. Bommai Case 1994 = abuse control.</div>
+        </span>
+      </div>
+      <div class="row hb">
+        <span class="num blu">360</span>
+        <span class="txt">
+          <span class="b bi">Financial Emergency</span>
+          <span class="sm">Never imposed in India | Money crisis | State + Center salary cut possible</span>
+          <div class="eg">360 = India में कभी नहि! 1991 Economic crisis = IMF loan → but 360 never used.</div>
+        </span>
+      </div>
+      <div class="note">352 approve = LS special majority (2/3 present+voting + majority total) + RS also | 14 days में Parliament approve</div>
+    </div>
+
+    <div class="card">
+      <div class="ch blue">⚖️ Supreme Court — Art. 124</div>
+      <div class="row hl">
+        <span class="num imp">CJI</span>
+        <span class="txt">
+          <b>Sanjiv Khanna (2024)</b>
+          <span class="sm">Seniormost SC judge appointed | President appoint</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Judge</span>
+        <span class="txt">CJI + 33 judges = total 34 (Art. 124(1)) | Parliament can increase</span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Remove</span>
+        <span class="txt">Both Houses 2/3 majority — Proved misbehaviour<span class="sm">No SC judge ever removed in India</span></span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Retire</span>
+        <span class="txt">65 age | HC judge = 62 age</span>
+      </div>
+      <div class="row">
+        <span class="num">PIL</span>
+        <span class="txt">
+          <b>Public Interest Litigation</b>
+          <span class="sm">Hussainara Khatoon 1979 = 1st PIL | No Locus Standi rule</span>
+          <div class="explain">PIL = Anyone on behalf of public go to Court. "Locus Standi" (personal interest) NOT required. 1st PIL = Hussainara (undertrial prisoners).</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">CAG</span>
+        <span class="txt">Art. 148 — Comptroller & Auditor General | Government accounts audit<span class="sm">Independent office | Reports to Parliament</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 6 — RAJYAPAL / VIDHAN
+════════════════════════════════════════════ -->
+<div class="sec" id="rajyapal">
+  <div class="grid2">
+    <div class="card">
+      <div class="ch imp">🏛️ રાજ્યપાળ — Governor (Art. 153–162)</div>
+      <div class="row hl">
+        <span class="num imp">Na.</span>
+        <span class="txt">
+          <b>President appoint — Centre Agent</b>
+          <span class="sm">Pleasure of President | No election | Art. 153</span>
+          <div class="explain">Governor = Centre's representative in State. President appoint kare, pleasure pe rehta. CM → Elected. Governor → Appointed.</div>
+          <div class="eg">Same person = 2+ State Governor possible (Art. 153 Proviso). E.g., Gujarat + Maharashtra same Governor.</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Qualify</span>
+        <span class="txt">Indian | 35+ age | No government post<span class="sm">Not necessarily from that state</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Ka.</span>
+        <span class="txt">5 year — President pleasure — earlier remove<span class="sm">No impeachment process (unlike President)</span></span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Art. 161</span>
+        <span class="txt">
+          <b>Pardon Power</b> — Death Sentence siva
+          <span class="sm">Court Martial case pardon nahi | Death = Only President (Art. 72)</span>
+          <div class="eg">State criminal case → Governor pardon 161. Court Martial या Death sentence = President only (72).</div>
+        </span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Art. 213</span>
+        <span class="txt">Ordinance — State legislature recess<span class="sm">CM + Cabinet advise | 6 months expire</span></span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">356</span>
+        <span class="txt">Governor recommend → President's Rule<span class="sm">Bommai Case 1994 — floor test before 356</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Art. 200</span>
+        <span class="txt">Bill refer to President<span class="sm">Governor = Bill assent, withhold, or reserve for President</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">👨‍💼 CM + State Cabinet (Art. 163–164)</div>
+      <div class="row hl">
+        <span class="num imp">CM</span>
+        <span class="txt">
+          <b>Vidhansabha majority → Governor appoint</b>
+          <span class="sm">Art. 164 | Real State Executive (like PM at Centre)</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">163</span>
+        <span class="txt">State CoM — Governor ने advise<span class="sm">Collective Responsibility — Vidhansabha</span></span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Size</span>
+        <span class="txt">91st Amendment — max 15% of Vidhansabha<span class="sm">Min 12 members | Gujarat = 182 × 15% = 27 max</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">🏛️ વિધાન સભા — Vidhansabha</div>
+      <div class="row hl">
+        <span class="num imp">Speaker</span>
+        <span class="txt">Vidhansabha elected — Gujarat: Shankar Chaudhary<span class="sm">Presides | Money Bill certify</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Size</span>
+        <span class="txt">Max 500, Min 60 | Gujarat = 182 MLAs</span>
+      </div>
+      <div class="row">
+        <span class="num">Ka.</span>
+        <span class="txt">5 year | Emergency extend | Governor dissolve earlier</span>
+      </div>
+      <div class="row">
+        <span class="num">Quorum</span>
+        <span class="txt">1/10 members</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">🏛️ વિધાન પ. — Vidhan Parishad (Upper House)</div>
+      <div class="row hl">
+        <span class="num imp">Exist</span>
+        <span class="txt">
+          <b>6 States only: UP, Bihar, MH, Karnataka, AP, Telangana</b>
+          <span class="sm">Gujarat — NO Parishad | Art. 169 = create/abolish</span>
+          <div class="explain">Vidhan Parishad = "State Rajya Sabha". LS ↔ Vidhansabha. RS ↔ Vidhan Parishad. Gujarat में नहिं!</div>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Permanent</span>
+        <span class="txt">1/3 retire every 2 year | 6 yr term | Like RS permanent</span>
+      </div>
+      <div class="row">
+        <span class="num">Size</span>
+        <span class="txt">Min 40 | Max = 1/3 of Vidhansabha members</span>
+      </div>
+      <div class="row">
+        <span class="num">Create</span>
+        <span class="txt">Art. 169 — Parliament simple majority (+ State resolution)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch blue">⚖️ High Court — Art. 214</div>
+      <div class="row hl">
+        <span class="num imp">Chief J.</span>
+        <span class="txt">President appoint (CJI + State Governor consult)</span>
+      </div>
+      <div class="row">
+        <span class="num">Remove</span>
+        <span class="txt">SC judge jeva — Parliament 2/3 majority</span>
+      </div>
+      <div class="row hg">
+        <span class="num grn">Retire</span>
+        <span class="txt">62 age (SC = 65 age)</span>
+      </div>
+      <div class="row hl">
+        <span class="num imp">Gujarat HC</span>
+        <span class="txt">Ahmedabad — Established 1960<span class="sm">Chief Justice: Sunita Agarwal (2024)</span></span>
+      </div>
+      <div class="row">
+        <span class="num">Writ</span>
+        <span class="txt">Art. 226 — HC Writ jurisdiction (wider than SC 32)<span class="sm">HC = FR + other rights both. SC 32 = only FR.</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch imp">⚖️ Advocate General — Art. 165</div>
+      <div class="row hl">
+        <span class="num imp">AG (State)</span>
+        <span class="txt">
+          <b>State's top lawyer — Governor appoint</b>
+          <span class="sm">HC Judge qualify | = Centre's AG equivalent at state level</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="num">Rights</span>
+        <span class="txt">All courts in State + Parliament attend right<span class="sm">No vote right in house</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 7 — IMP CASES
+════════════════════════════════════════════ -->
+<div class="sec" id="cases">
+
+  <div class="case-card">
+    <div class="case-h"><span class="star">★★★</span> Kesavananda Bharati Case (1973) — SC 13 Judge Bench</div>
+    <div class="case-b">
+      <b>Basic Structure Doctrine</b> — Parliament can amend but NOT destroy basic structure. Federalism, Democracy, Secularism, Judicial Review = Basic Structure.
+      <div class="explain">42nd Amendment = "Parliament is supreme, can change anything." → Kesavananda: "No! Basic Structure is permanent." Party change, not soul.</div>
+      <div class="eg">Parliament = "We remove Art. 32 (Writs)!" → Court: NO! Art. 32 = Basic Structure → Cannot remove.</div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-h"><span class="star">★★★</span> Maneka Gandhi Case (1978) — Art. 21</div>
+    <div class="case-b">
+      <b>Right to Life expanded</b> — "Procedure established by Law" must be Fair, Just & Reasonable. Passport confiscate = violation. Expanded Art. 21 scope.
+      <div class="explain">Passport जब्त → "Travel abroad" = Art. 21. पहले: AK Gopalan Case (1950) = Art. 21 narrow. Maneka = expanded. Now: Dignity, Privacy, Clean Environment = 21.</div>
+      <div class="eg">CCTV home के अंदर = Privacy violation → Art. 21 (Puttaswamy 2017 confirm).</div>
+    </div>
+  </div>
+
+  <div class="case-card red">
+    <div class="case-h"><span class="star">★★★</span> S.R. Bommai Case (1994) — Art. 356</div>
+    <div class="case-b">
+      <b>President's Rule (356) misuse control.</b> Floor test must before recommending 356. SC can review 356 proclamation. Federalism = Basic Structure.
+      <div class="eg">Gujarat 2002 → State government collapse fear → Governor 356 recommend. Bommai: Floor test first. 356 = last resort, not political tool.</div>
+    </div>
+  </div>
+
+  <div class="case-card green">
+    <div class="case-h"><span class="star">★★★</span> Minerva Mills Case (1980) — Art. 368</div>
+    <div class="case-b">
+      <b>42nd Amendment struck down partially.</b> FR + DPSP balance must. Judicial review = Basic Structure. Parliament cannot give unlimited power to itself.
+      <div class="explain">42nd Amend: DPSP > FR. Minerva: No balance! FR + DPSP both important. Court = watchdog, always.</div>
+    </div>
+  </div>
+
+  <div class="case-card purple">
+    <div class="case-h"><span class="star">★★</span> Golaknath Case (1967) — Art. 13</div>
+    <div class="case-b">
+      <b>Parliament CANNOT amend Fundamental Rights.</b> Later overruled by 24th Amendment + Kesavananda Case.
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-h"><span class="star">★★</span> Indra Sawhney Case (1992) — Reservation</div>
+    <div class="case-b">
+      <b>Mandal Commission</b> — OBC 27% reservation valid. Total reservation cap = 50%. Creamy Layer exclude from OBC. Economic criteria alone ≠ sufficient for SC/ST.
+      <div class="eg">103rd Amendment (2019) = EWS 10% → But total = 60%. Case pending in SC for 50% cap review.</div>
+    </div>
+  </div>
+
+  <div class="case-card green">
+    <div class="case-h"><span class="star">★★</span> Puttaswamy Case (2017) — Right to Privacy</div>
+    <div class="case-b">
+      <b>Privacy = Fundamental Right under Art. 21.</b> 9-judge bench unanimous. Aadhaar partially upheld.
+      <div class="eg">Aadhaar = biometric data → Privacy concern → Puttaswamy case. SC: Privacy = FR, but Aadhaar = partially valid (welfare schemes).</div>
+    </div>
+  </div>
+
+  <div class="case-card purple">
+    <div class="case-h"><span class="star">★★</span> Hussainara Khatoon (1979) — 1st PIL</div>
+    <div class="case-b">
+      <b>First Public Interest Litigation.</b> Undertrial prisoners right. Free Legal Aid = FR. Speedy Trial = Art. 21.
+      <div class="explain">PIL = Anyone can file on public behalf. 1979 से India में PIL system. Hussainara = Bihar undertrial prisoners years in jail without trial.</div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-h"><span class="star">★★</span> Vishaka Case (1997) — Sexual Harassment</div>
+    <div class="case-b">
+      <b>Workplace Sexual Harassment guidelines.</b> Later POSH Act 2013. Art. 14, 19, 21 violation.
+      <div class="eg">Bhanwari Devi case (Rajasthan) → Vishaka PIL → SC = workplace safety guidelines → POSH Act 2013.</div>
+    </div>
+  </div>
+
+  <div class="case-card red">
+    <div class="case-h"><span class="star">★</span> A.K. Gopalan (1950) vs Maneka Gandhi (1978) — Art. 21</div>
+    <div class="case-b">
+      Gopalan: Art. 21 = narrow (procedure only). Maneka: Overruled — procedure must be Fair, Just, Reasonable. Art. 21 greatly expanded.
+    </div>
+  </div>
+
+  <div class="case-card purple">
+    <div class="case-h"><span class="star">★</span> Berubari Union Case (1960) — Preamble</div>
+    <div class="case-b">
+      Preamble is NOT part of Constitution (later changed by Kesavananda = IS part). Territory cession needs Art. 368 amendment.
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-h"><span class="star">★</span> Kihoto Hollohan Case (1992) — Anti-Defection</div>
+    <div class="case-b">
+      Speaker/Chairman decision on Disqualification = judicial review possible. 10th Schedule (Anti-Defection) = valid.
+      <div class="eg">MLA party change → Speaker disqualify → MLA says unfair → SC review possible (Kihoto).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TAB 8 — TRICKS
+════════════════════════════════════════════ -->
+<div class="sec" id="trick">
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 1: 6 FR = "સ સ્વ શો ધ સ સ"</div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સમાનતા (14–18) — Equality</span></div>
+    <div class="trick-row"><span class="tr-key">સ્વ</span><span class="tr-val">સ્વ. (19–22) — Freedom</span></div>
+    <div class="trick-row"><span class="tr-key">શો</span><span class="tr-val">શોષ. (23–24) — Exploitation</span></div>
+    <div class="trick-row"><span class="tr-key">ધ</span><span class="tr-val">ધર્મ (25–28) — Religion</span></div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સાં. (29–30) — Cultural</span></div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">સાંવૈ. ઉ. (32–35) — Remedies</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 2: 5 Writs = "HC MA PR CE QW"</div>
+    <div class="trick-row"><span class="tr-key">HC</span><span class="tr-val">Habeas Corpus = "Body લાવ" — Illegal Detention challenge</span></div>
+    <div class="trick-row"><span class="tr-key">MA</span><span class="tr-val">Mandamus = "ફ. ક." — Public duty enforce</span></div>
+    <div class="trick-row"><span class="tr-key">PR</span><span class="tr-val">Prohibition = "અટ." — Lower court stop (prevent)</span></div>
+    <div class="trick-row"><span class="tr-key">CE</span><span class="tr-val">Certiorari = "ઉ. ત." — Case upper court transfer / quash</span></div>
+    <div class="trick-row"><span class="tr-key">QW</span><span class="tr-val">Quo Warranto = "ક. અ.?" — By what authority office hold?</span></div>
+    <div style="background:rgba(255,255,255,.6);padding:5px 8px;border-radius:6px;margin-top:4px;font-size:12px;color:#713f12;">SC = Art. 32 Writs | HC = Art. 226 Writs (wider — FR + other rights)</div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 3: DPSP = "સ ગ ઉ" (Ireland)</div>
+    <div class="trick-row"><span class="tr-key">સ</span><span class="tr-val">Socialistic — 38, 39, 39A, 41, 42, 43, 43B, 47</span></div>
+    <div class="trick-row"><span class="tr-key">ગ</span><span class="tr-val">Gandhian — 40, 43, 46, 47, 48</span></div>
+    <div class="trick-row"><span class="tr-key">ઉ</span><span class="tr-val">Liberal — 44, 45, 48A, 49, 50, 51</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 4: Emergency 3 = "NFS" (352–356–360)</div>
+    <div class="trick-row"><span class="tr-key">N</span><span class="tr-val">352 National — War / External Aggression / Armed Rebellion</span></div>
+    <div class="trick-row"><span class="tr-key">F</span><span class="tr-val">356 Failed State — President Rule (State Emergency)</span></div>
+    <div class="trick-row"><span class="tr-key">Fi</span><span class="tr-val">360 Financial — India में ક્યારેય Impose ન થઈ!</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 5: IMP Article Numbers — ₹ (PSI Exam Must)</div>
+    <div class="trick-row"><span class="tr-key">14</span><span class="tr-val">Equality | 17=Untouchability | 19=6 Freedom | 21=Life | 32=Writs (SC)</span></div>
+    <div class="trick-row"><span class="tr-key">44</span><span class="tr-val">UCC | 50=Judiciary separate | 51=Int. Peace | 51A=Duties</span></div>
+    <div class="trick-row"><span class="tr-key">72</span><span class="tr-val">President Pardon | 74=PM advise | 76=AG (Centre)</span></div>
+    <div class="trick-row"><span class="tr-key">108</span><span class="tr-val">Joint Sitting | 110=Money Bill | 123=Ordinance (President)</span></div>
+    <div class="trick-row"><span class="tr-key">148</span><span class="tr-val">CAG | 161=Governor Pardon | 165=AG (State) | 213=State Ordinance</span></div>
+    <div class="trick-row"><span class="tr-key">226</span><span class="tr-val">HC Writs | 243=Panchayat | 280=Finance Commission | 324=Election Commission</span></div>
+    <div class="trick-row"><span class="tr-key">352</span><span class="tr-val">Nat. Emergency | 356=President Rule | 360=Financial Emergency</span></div>
+    <div class="trick-row"><span class="tr-key">368</span><span class="tr-val">Amendment | 370=J&K (Abrogated 2019) | 393=Short Title</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 6: IMP Amendments — સુધારા</div>
+    <div class="trick-row"><span class="tr-key">1st 1951</span><span class="tr-val">Land Reform + 9th Schedule</span></div>
+    <div class="trick-row"><span class="tr-key">7th 1956</span><span class="tr-val">States Reorganization (Language basis)</span></div>
+    <div class="trick-row"><span class="tr-key">24th 1971</span><span class="tr-val">Parliament can amend FR (overruled Golaknath)</span></div>
+    <div class="trick-row"><span class="tr-key">42nd 1976</span><span class="tr-val">Mini Constitution (Emergency era) — DPSP > FR | Duties added</span></div>
+    <div class="trick-row"><span class="tr-key">44th 1978</span><span class="tr-val">Property 300A | 352 change (Cabinet written) | 42nd undo</span></div>
+    <div class="trick-row"><span class="tr-key">52nd 1985</span><span class="tr-val">Anti-Defection — 10th Schedule</span></div>
+    <div class="trick-row"><span class="tr-key">61st 1989</span><span class="tr-val">Vote age 21 → 18</span></div>
+    <div class="trick-row"><span class="tr-key">73rd 1992</span><span class="tr-val">Panchayati Raj — Part IX</span></div>
+    <div class="trick-row"><span class="tr-key">74th 1992</span><span class="tr-val">Urban Local Bodies — Part IX-A</span></div>
+    <div class="trick-row"><span class="tr-key">86th 2002</span><span class="tr-val">RTE + Art. 21A (6–14 Free Education)</span></div>
+    <div class="trick-row"><span class="tr-key">91st 2003</span><span class="tr-val">Cabinet size = 15% of House</span></div>
+    <div class="trick-row"><span class="tr-key">101st 2016</span><span class="tr-val">GST (Goods & Services Tax)</span></div>
+    <div class="trick-row"><span class="tr-key">103rd 2019</span><span class="tr-val">EWS 10% reservation</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 7: Speakers / Chairs</div>
+    <div class="trick-row"><span class="tr-key">LS</span><span class="tr-val">Speaker = Om Birla | Elected by LS members</span></div>
+    <div class="trick-row"><span class="tr-key">RS</span><span class="tr-val">Chairman = Jagdeep Dhankhar (VP Ex-officio)</span></div>
+    <div class="trick-row"><span class="tr-key">VS (Guj)</span><span class="tr-val">Speaker = Shankar Chaudhary | Elected by VS members</span></div>
+    <div class="trick-row"><span class="tr-key">VP</span><span class="tr-val">Vidhan Parishad Chairman = Members elect</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 8: Borrowed Features — ક્યાંથી?</div>
+    <div class="trick-row"><span class="tr-key">UK</span><span class="tr-val">Parliamentary System | Single Citizenship | Rule of Law | Cabinet System</span></div>
+    <div class="trick-row"><span class="tr-key">USA</span><span class="tr-val">FR | Judicial Review | Preamble | SC independence | Impeachment</span></div>
+    <div class="trick-row"><span class="tr-key">Ireland</span><span class="tr-val">DPSP | Election of President | Nomination to RS</span></div>
+    <div class="trick-row"><span class="tr-key">Canada</span><span class="tr-val">Federation (Strong Centre) | Residuary Powers to Centre</span></div>
+    <div class="trick-row"><span class="tr-key">Australia</span><span class="tr-val">Concurrent List | Joint Sitting</span></div>
+    <div class="trick-row"><span class="tr-key">USSR</span><span class="tr-val">Fundamental Duties | Planning Commission</span></div>
+    <div class="trick-row"><span class="tr-key">Germany</span><span class="tr-val">Emergency Provisions (352–360)</span></div>
+    <div class="trick-row"><span class="tr-key">SA</span><span class="tr-val">Amendment procedure (368)</span></div>
+    <div class="trick-row"><span class="tr-key">Japan</span><span class="tr-val">Procedure established by Law (Art. 21)</span></div>
+  </div>
+
+  <div class="trick">
+    <div class="trick-t">💡 ટ્રિક 9: Basic Structure (Kesavananda 1973)</div>
+    <div class="trick-row"><span class="tr-key">1</span><span class="tr-val">Supremacy of Constitution</span></div>
+    <div class="trick-row"><span class="tr-key">2</span><span class="tr-val">Republican + Democratic form</span></div>
+    <div class="trick-row"><span class="tr-key">3</span><span class="tr-val">Secular character</span></div>
+    <div class="trick-row"><span class="tr-key">4</span><span class="tr-val">Separation of Powers</span></div>
+    <div class="trick-row"><span class="tr-key">5</span><span class="tr-val">Federal character</span></div>
+    <div class="trick-row"><span class="tr-key">6</span><span class="tr-val">Judicial Review + Independence of Judiciary</span></div>
+    <div class="trick-row"><span class="tr-key">7</span><span class="tr-val">Free + Fair Elections</span></div>
+    <div class="trick-row"><span class="tr-key">8</span><span class="tr-val">Unity + Integrity of nation</span></div>
+    <div style="background:rgba(255,255,255,.6);padding:5px 8px;border-radius:6px;margin-top:4px;font-size:12px;color:#713f12;">⚠️ Parliament = can amend, but CANNOT destroy Basic Structure. List exhaustive नहिं = SC add कर सके.</div>
+  </div>
+
+</div>
+
+<script>
+  function sw(id, btn) {
+    document.querySelectorAll('.sec').forEach(s => s.classList.remove('show'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+    document.getElementById(id).classList.add('show');
+    btn.classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

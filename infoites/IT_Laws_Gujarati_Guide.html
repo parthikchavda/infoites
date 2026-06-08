@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT & Cyber Laws – ગુજરાતી સ્ટડી ગાઈડ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron: #FF6B00;
+  --saffron-light: #FFF3E8;
+  --navy: #0D2137;
+  --navy-mid: #1A3A5C;
+  --teal: #00897B;
+  --teal-light: #E0F2F1;
+  --gold: #F5A623;
+  --gold-light: #FFF8E1;
+  --red: #C0392B;
+  --red-light: #FDEDEC;
+  --purple: #6C3483;
+  --purple-light: #F5EEF8;
+  --green: #1B5E20;
+  --green-light: #E8F5E9;
+  --blue: #1565C0;
+  --blue-light: #E3F2FD;
+  --gray: #546E7A;
+  --bg: #F8F6F0;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --border: #D5C9B8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans Gujarati', 'Tiro Devanagari Hindi', Georgia, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── HEADER ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1C4587 100%);
+  color: white;
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "🇮🇳";
+  position: absolute; top: -10px; left: -10px;
+  font-size: 120px; opacity: 0.04;
+}
+.hero::after {
+  content: "⚖️";
+  position: absolute; bottom: -20px; right: -10px;
+  font-size: 120px; opacity: 0.04;
+}
+.hero h1 { font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.hero p { font-size: 14px; opacity: 0.8; }
+.hero-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.hbadge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+}
+
+/* ── NAV TABS ── */
+.nav-wrap { background: white; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; overflow-x: auto; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.nav-inner { display: inline-flex; gap: 0; padding: 0 12px; }
+.nav-btn {
+  padding: 12px 16px;
+  border: none; background: none;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  color: var(--gray); cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-btn:hover { color: var(--saffron); background: var(--saffron-light); }
+.nav-btn.active { color: var(--saffron); border-bottom-color: var(--saffron); background: var(--saffron-light); }
+
+/* ── CONTAINER ── */
+.container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.card-header {
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.card-header:hover { opacity: 0.9; }
+.card-icon { font-size: 22px; flex-shrink: 0; }
+.card-title { flex: 1; }
+.card-title h3 { font-size: 16px; font-weight: 700; }
+.card-title p { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+.card-arrow { font-size: 18px; transition: transform 0.3s; color: rgba(255,255,255,0.8); }
+.card.open .card-arrow { transform: rotate(180deg); }
+.card-body { display: none; padding: 0 20px 20px; }
+.card.open .card-body { display: block; }
+
+/* ── COLOR THEMES ── */
+.theme-orange .card-header { background: linear-gradient(135deg, #E65100, var(--saffron)); color: white; }
+.theme-navy .card-header { background: linear-gradient(135deg, var(--navy), var(--navy-mid)); color: white; }
+.theme-teal .card-header { background: linear-gradient(135deg, #00695C, var(--teal)); color: white; }
+.theme-gold .card-header { background: linear-gradient(135deg, #F57F17, #FFC107); color: #1A1A2E; }
+.theme-red .card-header { background: linear-gradient(135deg, #B71C1C, var(--red)); color: white; }
+.theme-purple .card-header { background: linear-gradient(135deg, #4A148C, var(--purple)); color: white; }
+.theme-green .card-header { background: linear-gradient(135deg, var(--green), #2E7D32); color: white; }
+.theme-blue .card-header { background: linear-gradient(135deg, var(--blue), #1976D2); color: white; }
+.theme-indigo .card-header { background: linear-gradient(135deg, #1A237E, #303F9F); color: white; }
+.theme-brown .card-header { background: linear-gradient(135deg, #4E342E, #795548); color: white; }
+
+/* ── TABLE ── */
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; font-weight: 600; }
+td { padding: 9px 12px; border-bottom: 1px solid #E8E8E8; vertical-align: top; }
+tr:nth-child(even) td { background: #F9F7F3; }
+tr:hover td { background: var(--saffron-light); }
+
+/* ── SECTION LABEL ── */
+.section-tag {
+  display: inline-block;
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.tag-orange { background: var(--saffron-light); color: var(--saffron); border: 1px solid #FFB74D; }
+.tag-teal { background: var(--teal-light); color: var(--teal); border: 1px solid #80CBC4; }
+.tag-red { background: var(--red-light); color: var(--red); border: 1px solid #EF9A9A; }
+.tag-purple { background: var(--purple-light); color: var(--purple); border: 1px solid #CE93D8; }
+.tag-green { background: var(--green-light); color: var(--green); border: 1px solid #A5D6A7; }
+.tag-blue { background: var(--blue-light); color: var(--blue); border: 1px solid #90CAF9; }
+.tag-gold { background: var(--gold-light); color: #7B5800; border: 1px solid #FFE082; }
+
+/* ── KEYPOINTS ── */
+.kp { padding: 12px 16px; border-radius: 8px; margin: 10px 0; border-left: 4px solid; }
+.kp-orange { background: var(--saffron-light); border-color: var(--saffron); }
+.kp-teal { background: var(--teal-light); border-color: var(--teal); }
+.kp-red { background: var(--red-light); border-color: var(--red); }
+.kp-gold { background: var(--gold-light); border-color: var(--gold); }
+.kp-green { background: var(--green-light); border-color: var(--green); }
+.kp-blue { background: var(--blue-light); border-color: var(--blue); }
+.kp-purple { background: var(--purple-light); border-color: var(--purple); }
+
+.kp strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.kp p { font-size: 13.5px; }
+
+/* ── LIST ── */
+ul.fancy { padding-left: 0; list-style: none; }
+ul.fancy li { padding: 6px 0 6px 26px; position: relative; border-bottom: 1px dashed #E8E8E8; font-size: 13.5px; }
+ul.fancy li::before { content: "▶"; position: absolute; left: 0; color: var(--saffron); font-size: 10px; top: 9px; }
+ul.fancy li:last-child { border-bottom: none; }
+
+/* ── SECTION / ARTICLE BOX ── */
+.sec-box { background: var(--navy); color: white; padding: 6px 12px; border-radius: 6px; display: inline-block; font-size: 12px; font-weight: 700; margin-right: 8px; margin-bottom: 6px; }
+
+/* ── GRID ── */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+@media(max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+.mini-card { padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: white; }
+.mini-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.mini-card p { font-size: 12.5px; color: #444; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 24px; margin: 14px 0; }
+.timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 14px; }
+.tl-item::before { content: '●'; position: absolute; left: -24px; color: var(--saffron); font-size: 14px; top: 0; }
+.tl-year { font-weight: 700; color: var(--saffron); font-size: 13px; }
+.tl-text { font-size: 13.5px; color: #333; }
+
+/* ── PENALTY TABLE ── */
+.penalty-chip {
+  display: inline-block;
+  padding: 2px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 600;
+  background: var(--red-light); color: var(--red);
+}
+
+/* ── IMPORTANT BOX ── */
+.important { background: linear-gradient(135deg, #FFF8E1, #FFF3CD); border: 2px solid #F5A623; border-radius: 10px; padding: 14px 18px; margin: 14px 0; }
+.important h4 { color: #7B5800; font-size: 14px; margin-bottom: 8px; }
+
+/* ── PRINT ── */
+@media print { .nav-wrap { display: none; } .section { display: block !important; } }
+
+/* ── SCROLL TOP ── */
+#top-btn { position: fixed; bottom: 20px; right: 16px; background: var(--saffron); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; align-items: center; justify-content: center; z-index: 200; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🇮🇳 ભારતીય IT, સાઈબર અને ઈલેક્ટ્રિક કાયદા</h1>
+  <p>IT Act 2000 • Online Gaming • Cyber Security • Disaster Management • Electric Act</p>
+  <div class="hero-badges">
+    <span class="hbadge">Class 1–2 Level</span>
+    <span class="hbadge">ગુજરાતી માધ્યમ</span>
+    <span class="hbadge">GPSC / UPSC</span>
+    <span class="hbadge">Current Affairs 2025–26</span>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showTab('it2000',this)">💻 IT Act 2000</button>
+    <button class="nav-btn" onclick="showTab('gaming',this)">🎮 Online Gaming</button>
+    <button class="nav-btn" onclick="showTab('cyber',this)">🔐 Cyber Security</button>
+    <button class="nav-btn" onclick="showTab('disaster',this)">🌊 Disaster Mgmt</button>
+    <button class="nav-btn" onclick="showTab('electric',this)">⚡ Electric Act</button>
+    <button class="nav-btn" onclick="showTab('dpdp',this)">🛡️ DPDP Act</button>
+    <button class="nav-btn" onclick="showTab('compare',this)">📊 સરખામણી</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════ IT ACT 2000 ════════════════ -->
+<div id="it2000" class="section active">
+
+  <div class="card theme-orange open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">💻</div>
+      <div class="card-title">
+        <h3>માહિતી ટેકનોલોજી અધિનિયમ, 2000 (IT Act 2000)</h3>
+        <p>Information Technology Act, 2000 – ભારતનો પ્રથમ સાઈબર કાયદો</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-orange">
+        <strong>📌 પ્રાથમિક માહિતી</strong>
+        <p>IT Act 2000 ભારત સંસદ દ્વારા <b>9 મે 2000</b> ના રોજ પ્રમુખ K.R. Narayanan ના હસ્તાક્ષર સાથે અમલમાં આવ્યો. <b>17 ઓક્ટોબર 2000</b> ના રોજ સૂચિત. ભારત IT ક્ષેત્રમાં <b>વિશ્વનો 12મો દેશ</b> છે જે પૃથક સાઈબર કાયદો ધરાવે છે. મૂળ Act માં <b>94 Sections, 13 Chapters, 4 Schedules</b> હતાં.</p>
+      </div>
+
+      <span class="section-tag tag-orange">ઉદ્દેશ્ય</span>
+      <ul class="fancy">
+        <li>ઈ-ગવર્નન્સ, ઈ-કોમર્સ, ઈ-બેન્કિંગ ને કાનૂની આધાર આપવો</li>
+        <li>ડિજિટલ સહી (Digital Signature) ને કાનૂની માન્યતા</li>
+        <li>ઈ-રેકર્ડ ને કાગળ-આધારિત દસ્તાવેજ સમકક્ષ ગણવો</li>
+        <li>સાઈબર ગુનાઓ નિર્ધારિત કરી સજા નક્કી કરવી</li>
+        <li>Certifying Authorities (CA) ની સ્થાપના</li>
+        <li>Cyber Appellate Tribunal ની સ્થાપના</li>
+      </ul>
+
+      <span class="section-tag tag-orange">મુખ્ય Sections</span>
+      <table>
+        <tr><th>Section</th><th>વિષય</th><th>મહત્ત્વ</th></tr>
+        <tr><td><span class="sec-box">Section 2</span></td><td>વ્યાખ્યા – Computer, Cyber Security, Electronic Record</td><td>Cyber Security = unauthorized access, use, disclosure, modification, destruction સામે રક્ષણ</td></tr>
+        <tr><td><span class="sec-box">Section 4</span></td><td>ઈ-રેકર્ડ ને કાનૂની માન્યતા</td><td>Electronic records = paper records</td></tr>
+        <tr><td><span class="sec-box">Section 5</span></td><td>ઈ-સિગ્નેચર ને કાનૂની માન્યતા</td><td>Digital signature = handwritten signature</td></tr>
+        <tr><td><span class="sec-box">Section 43</span></td><td>Computer/Network ને નુકસાન – Civil Liability</td><td>₹5 કરોડ સુધી દંડ</td></tr>
+        <tr><td><span class="sec-box">Section 43A</span></td><td>Sensitive Personal Data ની ઉ઩ेक्षा – Body Corporate Liability</td><td>Compensation – ₹5 crore limit</td></tr>
+        <tr><td><span class="sec-box">Section 65</span></td><td>Computer Source Documents ચેડ (Tampering)</td><td>3 વર્ષ જેલ / ₹2 લાખ દંડ</td></tr>
+        <tr><td><span class="sec-box">Section 66</span></td><td>Computer Hacking / ગુનાઓ</td><td>3 વર્ષ / ₹5 લાખ</td></tr>
+        <tr><td><span class="sec-box">Section 66A</span></td><td>ઓફેન્સિવ Electronic Message (SC ✗ – Shreya Singhal Case 2015)</td><td>Article 19(1)(a) ઉલ્લંઘન – STRUCK DOWN</td></tr>
+        <tr><td><span class="sec-box">Section 66B</span></td><td>Stolen Computer Resource – રિસ્ ઉ</td><td>3 વર્ષ / ₹1 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 66C</span></td><td>Identity Theft</td><td>3 વર્ષ / ₹1 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 66D</span></td><td>Cheating via Computer (Phishing)</td><td>3 વર્ષ / ₹1 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 66E</span></td><td>Privacy Violation (Voyeurism)</td><td>3 વર્ષ / ₹2 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 66F</span></td><td>Cyber Terrorism</td><td>આજીવન કારાવાસ</td></tr>
+        <tr><td><span class="sec-box">Section 67</span></td><td>Obscene Material Online Publish</td><td>3→5 વર્ષ / ₹5→10 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 67B</span></td><td>Child Pornography</td><td>5→7 વર્ષ / ₹10 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 69</span></td><td>Gov. Interception / Monitoring Power</td><td>National Security, Sovereignty</td></tr>
+        <tr><td><span class="sec-box">Section 69A</span></td><td>Website/App Block (TikTok ban 2020)</td><td>Site blocking power</td></tr>
+        <tr><td><span class="sec-box">Section 72</span></td><td>Privacy Breach – CA/Certifying Officers</td><td>2 વર્ષ / ₹1 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 72A</span></td><td>Personal Data Disclosure (without consent)</td><td>3 વર્ષ / ₹5 lakh</td></tr>
+        <tr><td><span class="sec-box">Section 79</span></td><td>Intermediary Liability Exemption (Safe Harbour)</td><td>Due diligence follow કરે તો liable નહીં</td></tr>
+      </table>
+
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-year">2000</span><p class="tl-text">IT Act 2000 – ભારતનો પ્રથમ Cyber Law. 94 Sections, 13 Chapters</p></div>
+        <div class="tl-item"><span class="tl-year">2008</span><p class="tl-text">IT Amendment Act 2008 – Sec 66A-F ઉમેર્યા, Cyber Terrorism, Child Porn, Intermediary Liability, CERT-In ને statutory body</p></div>
+        <div class="tl-item"><span class="tl-year">2011</span><p class="tl-text">IT Rules 2011 – Privacy Rules, Sensitive Personal Data, Intermediary Guidelines</p></div>
+        <div class="tl-item"><span class="tl-year">2015</span><p class="tl-text">Shreya Singhal v. UOI – SC ने Section 66A unconstitutional ઠેરવ્યો (Article 19 ઉ)</p></div>
+        <div class="tl-item"><span class="tl-year">2021</span><p class="tl-text">IT (Intermediary Guidelines & Digital Media Ethics Code) Rules 2021 – Social Media Platforms, OTT regulation</p></div>
+        <div class="tl-item"><span class="tl-year">2023</span><p class="tl-text">Jan Vishwas Act 2023 – Section 66A formally removed. IT Rules 2023 – Online Gaming SRBs</p></div>
+        <div class="tl-item"><span class="tl-year">2025</span><p class="tl-text">DPDP Rules 2025 notified – Article 21 (Privacy) ને operative</p></div>
+      </div>
+
+      <div class="important">
+        <h4>⚠️ CERT-In (Indian Computer Emergency Response Team)</h4>
+        <p>IT Act 2000 ના 2008 Amendment દ્વારા CERT-In ને <b>Statutory Body</b> નો દરજ્જો મળ્યો. Ministry of Electronics & IT (MeitY) under. ₹1 crore penalty – non-reporting of Cyber Incidents (6 hours within).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intermediary -->
+  <div class="card theme-navy">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🌐</div>
+      <div class="card-title"><h3>Intermediary – Section 79 & IT Rules 2021</h3><p>Social Media, OTT, Digital News – ની ભૂમિકા</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-blue">
+        <strong>Intermediary ની વ્યાખ્યા</strong>
+        <p>Section 2(1)(w) – Telecom Service Providers, Network Service Providers, Internet Service Providers, Web Hosting Service Providers, Search Engines, Online Marketplace, Social Media Platform – એ બધા Intermediary</p>
+      </div>
+      <div class="grid2">
+        <div class="mini-card">
+          <h4>🛡️ Safe Harbour (Sec 79)</h4>
+          <p>Due Diligence follow કરે, Unlawful content host ન કરે, Court/Gov ના order ૩૬ hours within remove કરે – તો Liability FREE</p>
+        </div>
+        <div class="mini-card">
+          <h4>📋 IT Rules 2021 – Obligations</h4>
+          <p>Chief Compliance Officer, Nodal Officer, Grievance Officer – India રહેઠાણ. Monthly Compliance Report. Originator Tracing (Messaging Apps)</p>
+        </div>
+        <div class="mini-card">
+          <h4>📱 Significant Social Media</h4>
+          <p>50 lakh + Users = Significant Social Media Intermediary (SSMI). Twitter/X, Meta, YouTube – extra obligations</p>
+        </div>
+        <div class="mini-card">
+          <h4>🎬 OTT & Digital Media</h4>
+          <p>3-tier Grievance Mechanism: Publisher → Self-Regulatory Body → Inter-Departmental Committee</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Constitutional Link -->
+  <div class="card theme-teal">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">⚖️</div>
+      <div class="card-title"><h3>IT Act – બંધારણ સાથે સંબંધ</h3><p>Fundamental Rights, Articles & Key Judgments</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Constitutional Article</th><th>IT Act – સંબંધ</th></tr>
+        <tr><td>Article 19(1)(a) – Freedom of Speech</td><td>Section 66A – SC ए STRUCK DOWN (Shreya Singhal 2015)</td></tr>
+        <tr><td>Article 21 – Right to Privacy</td><td>Puttaswamy Case 2017; DPDP Act 2023, Section 43A</td></tr>
+        <tr><td>Article 19(1)(g) – Freedom of Trade</td><td>E-Commerce, Digital Business ને protection</td></tr>
+        <tr><td>Article 300A – Right to Property</td><td>Data = Digital Property; Section 43 – compensation</td></tr>
+        <tr><td>Article 253 – International Treaty</td><td>UNCITRAL Model Law 1996 ને follow; Extra-territorial Jurisdiction (Section 75)</td></tr>
+      </table>
+      <div class="kp kp-teal">
+        <strong>Anuradha Bhasin v. Union of India (2020)</strong>
+        <p>SC – Internet Access, Article 19(1)(a) & 19(1)(g) નો ભાગ. Internet Shutdown = Reasonable Restrictions under Article 19(2) subject to judicial review & periodic review.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ONLINE GAMING ════════════════ -->
+<div id="gaming" class="section">
+
+  <div class="card theme-purple open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🎮</div>
+      <div class="card-title">
+        <h3>ઓનલાઈન ગેમિંગ પ્રોત્સાહન અને નિયમન અધિનિયમ, 2025</h3>
+        <p>Promotion and Regulation of Online Gaming Act, 2025</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-purple">
+        <strong>📌 ઐતિહાસિક પૃષ્ઠભૂ</strong>
+        <p>ભારત – <b>591 Million gamers</b> (વૈશ્વિક ગેમર્સ ના 20%). 2023 – ₹2.2 Billion market. 2028 – ₹8.6 Billion expected. 9.5 Billion app downloads 2023. <b>FIU-IND</b> ₹4,000 crore suspicious gaming transactions 2023 traced. ₹20,000 crore/year user losses. 2025 – 45 crore લોકો negatively affected.</p>
+      </div>
+
+      <span class="section-tag tag-purple">ગેમ્સ ના પ્રકાર</span>
+      <div class="grid2">
+        <div class="mini-card" style="border-left:4px solid #00897B">
+          <h4>🏆 E-Sports</h4>
+          <p>Organized tournaments, Skill-based competitive digital games. Ministry of Youth Affairs & Sports – guidelines, training academies</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #1565C0">
+          <h4>🎲 Online Social Games</h4>
+          <p>Skill-based entertainment/social games. Wordle, Puzzle games. Union Gov – promote safe, age-appropriate platforms</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #C0392B">
+          <h4>💰 Online Money Games</h4>
+          <p>Financial stakes, Chance/Skill/Both. Dream11, Poker, Rummy. Players pay fees – expectation of monetary gain. BANNED under new Act</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #6C3483">
+          <h4>🚫 Real Money Gaming (RMG)</h4>
+          <p>Comprehensive Ban on all RMG – games of skill, chance, or mixed nature. Eliminates earlier "skill vs chance" loopholes</p>
+        </div>
+      </div>
+
+      <span class="section-tag tag-purple">Act ની મુખ્ય જોગવાઈઓ</span>
+      <table>
+        <tr><th>જોગવાઈ</th><th>વિગત</th></tr>
+        <tr><td>Online Gaming Authority</td><td>Central Authority – guidelines, game categorization, public grievances. Existing agency to oversee</td></tr>
+        <tr><td>Registration (Money Games)</td><td>Self-Regulatory Bodies (SRBs) – mandatory registration; determine permissible games</td></tr>
+        <tr><td>Site Blocking</td><td>Section 69A of IT Act – 1,524 betting/gambling platforms blocked (2022–June 2025)</td></tr>
+        <tr><td>Penal Provisions – Section 111</td><td>Unlawful economic activities & cybercrimes – criminal offense</td></tr>
+        <tr><td>Penal Provisions – Section 112</td><td>Unauthorized betting/gambling = <span class="penalty-chip">1–7 years jail + fine</span></td></tr>
+        <tr><td>Financial Compliance</td><td>AML (Anti-Money Laundering) standards, Financial audits, FIU-IND reporting</td></tr>
+        <tr><td>GST Integration</td><td>IGST – offshore platforms; Simplified Registration; GST Intelligence can block non-compliant platforms</td></tr>
+        <tr><td>Data Retention</td><td>DPDP Act 2023 + sector-specific rules; retention in India</td></tr>
+        <tr><td>User Safety</td><td>Spending limits, self-exclusion, digital literacy, age verification</td></tr>
+      </table>
+
+      <div class="important">
+        <h4>🏛️ Constitutional Challenge</h4>
+        <p>Gambling = State List Entry 34 (State Subject). Centre-State jurisdiction conflict. Act – IT Act, 2000 under Entry 97 (Union) & IGST Act. Challenge pending in Supreme Court. Federal balance vs. national security argument.</p>
+      </div>
+
+      <div class="kp kp-gold">
+        <strong>IT Rules 2023 – Online Gaming SRBs (Self-Regulatory Bodies)</strong>
+        <p>IT (Intermediary Guidelines & Digital Media Ethics Code) Amendment Rules – April 2023. Money Games platforms → SRBs ​with register. Platforms failing SRB registration = Intermediary protection ગુ.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card theme-indigo">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🔍</div>
+      <div class="card-title"><h3>Online Gaming – Regulatory Challenges</h3><p>Enforcement, Federal Issues, Technology Gaps</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>સ્મ</th><th>Challenge</th><th>Solution</th></tr>
+        <tr><td>🌐</td><td>Offshore Platforms – Mirror websites, VPN bypass</td><td>ISP-level blocking + Payment gateway restrictions</td></tr>
+        <tr><td>🔒</td><td>Encrypted communication within games</td><td>OSINT + AI-based monitoring</td></tr>
+        <tr><td>🏛️</td><td>State vs. Centre – Entry 34 conflict</td><td>Centre-State model law; harmonized standards</td></tr>
+        <tr><td>💸</td><td>Cryptocurrency transfers via gaming</td><td>FIU-IND + PMLA integration</td></tr>
+        <tr><td>👦</td><td>Youth addiction, mental health</td><td>Age verification, spending limits, WHO awareness</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ CYBER SECURITY ════════════════ -->
+<div id="cyber" class="section">
+
+  <div class="card theme-red open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🔐</div>
+      <div class="card-title">
+        <h3>રાષ્ટ્રીય સાઈબર સુરક્ષા નીતિ અને Framework</h3>
+        <p>National Cyber Security Policy & Institutional Framework</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-red">
+        <strong>National Cyber Security Policy 2013</strong>
+        <p>MeitY – ભારતની પ્રથમ National Cyber Security Policy. Objective: Safe & Resilient Cyberspace. 5 ​Crore Cybersecurity Professionals તૈયાર કરવા. Critical Information Infrastructure (CII) ​ন protect. ​National Cyber Security Framework (NCSF) – 5 elements: Identify, Protect, Detect, Respond, Recover</p>
+      </div>
+
+      <span class="section-tag tag-red">Institutional Framework</span>
+      <table>
+        <tr><th>સ੍ਥ</th><th>Full Form</th><th>ભૂ</th></tr>
+        <tr><td><b>MeitY</b></td><td>Ministry of Electronics & Information Technology</td><td>Cyber Laws & Policy</td></tr>
+        <tr><td><b>CERT-In</b></td><td>Indian Computer Emergency Response Team</td><td>Cyber Incident Reporting, Prevention, Response (6-hour reporting mandate)</td></tr>
+        <tr><td><b>NCIIPC</b></td><td>National Critical Information Infrastructure Protection Centre</td><td>CII ​ন protection – National Technical Research Organisation (NTRO) under</td></tr>
+        <tr><td><b>CRAC</b></td><td>Cyber Regulations Advisory Committee</td><td>IT Act 2000 under – Advisory to Central Govt</td></tr>
+        <tr><td><b>NIC</b></td><td>National Informatics Centre</td><td>Government IT Infrastructure & e-Governance</td></tr>
+        <tr><td><b>Data Protection Board</b></td><td>DPDP Act 2023 under</td><td>Data disputes – adjudication</td></tr>
+      </table>
+
+      <span class="section-tag tag-red">Critical Information Infrastructure (CII)</span>
+      <div class="kp kp-red">
+        <strong>CII = ​ন facilities, systems or functions whose incapacity or destruction would cause a debilitating impact on national security, governance, economy, and social well-being</strong>
+        <p>Examples: Power Grid, Banking Systems, Telecom Networks, Defence Networks, Government Databases, Healthcare Systems</p>
+      </div>
+
+      <span class="section-tag tag-red">Cyber Offences – Sections & Penalties</span>
+      <table>
+        <tr><th>Offence</th><th>Section</th><th>Penalty</th></tr>
+        <tr><td>Hacking</td><td>Sec 66</td><td>3 years / ₹5 lakh</td></tr>
+        <tr><td>Identity Theft</td><td>Sec 66C</td><td>3 years / ₹1 lakh</td></tr>
+        <tr><td>Phishing / Cheating</td><td>Sec 66D</td><td>3 years / ₹1 lakh</td></tr>
+        <tr><td>Voyeurism</td><td>Sec 66E</td><td>3 years / ₹2 lakh</td></tr>
+        <tr><td>Cyber Terrorism</td><td>Sec 66F</td><td>Life Imprisonment</td></tr>
+        <tr><td>Obscene Content</td><td>Sec 67</td><td>3 yrs → 5 yrs / ₹5 lakh → ₹10 lakh</td></tr>
+        <tr><td>Child Pornography</td><td>Sec 67B</td><td>5 yrs → 7 yrs / ₹10 lakh</td></tr>
+        <tr><td>Source Code Tampering</td><td>Sec 65</td><td>3 years / ₹2 lakh</td></tr>
+        <tr><td>Sensitive Data Disclosure</td><td>Sec 72A</td><td>3 years / ₹5 lakh</td></tr>
+      </table>
+
+      <div class="grid2">
+        <div class="mini-card" style="border-top:4px solid #C0392B">
+          <h4>📋 CERT-In Directions 2022</h4>
+          <p>Cyber Incident Reporting – <b>6 hours</b> within. Data Retention – 180 days. VPN Providers – user logs India server. Telecom, ISPs, Cloud – mandatory reporting</p>
+        </div>
+        <div class="mini-card" style="border-top:4px solid #C0392B">
+          <h4>🏛️ BNS (Bharatiya Nyaya Sanhita) 2023</h4>
+          <p>Old IPC replaced. Sec 303 BNS (theft=data theft), Sec 308 (extortion=cyber extortion), Sec 318 (cheating=phishing), Sec 336 (forgery=identity fraud)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card theme-brown">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title"><h3>Sectoral Cyber Security Regulations</h3><p>Banking, Telecom, Healthcare – sector-specific rules</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Sector</th><th>Regulator</th><th>Key Rule</th></tr>
+        <tr><td>Banking & Finance</td><td>RBI</td><td>RBI Cyber Security Framework; ₹10 lakh penalty for non-compliance; Mandatory reporting within 2-6 hours</td></tr>
+        <tr><td>Telecom</td><td>TRAI / DoT</td><td>TRAI Recommendations 2018 – Privacy, Security, Data Ownership; Temporary Telecom Suspension Rules 2017</td></tr>
+        <tr><td>Healthcare</td><td>MoHFW / NHA</td><td>Digital Health Mission – ABHA ID security; Ayushman Bharat data protection</td></tr>
+        <tr><td>Insurance</td><td>IRDAI</td><td>Cyber Security Guidelines for Insurers</td></tr>
+        <tr><td>Energy / Power</td><td>CERC / MoP</td><td>Power Sector Cyber Security Framework; SCADA security</td></tr>
+        <tr><td>Government IT</td><td>NIC / MeitY</td><td>Government Cyber Security Policy; Cloud Security; Aadhaar data protection (UIDAI)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ DISASTER MANAGEMENT ════════════════ -->
+<div id="disaster" class="section">
+
+  <div class="card theme-teal open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🌊</div>
+      <div class="card-title">
+        <h3>આફત વ્યવ‍ 2005 (Disaster Management Act, 2005)</h3>
+        <p>11 Chapters, 79 Sections – ભારત સરકાર, 23 ડિ 2005</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-teal">
+        <strong>📌 Background</strong>
+        <p>Orissa Cyclone (1999), Gujarat Earthquake 26 Jan 2001, Indian Ocean Tsunami 26 Dec 2004, Kashmir Earthquake 8 Oct 2005 → HPC on DM (1999) → DM Act 23 Dec 2005. Rajya Sabha – 28 Nov 2005, Lok Sabha – 12 Dec 2005, President Assent – 9 Jan 2006. Reactive → <b>Proactive Disaster Management</b></p>
+      </div>
+
+      <span class="section-tag tag-teal">Section 2(d) – Disaster ની વ્યાખ્યા</span>
+      <div class="kp kp-teal">
+        <p>Disaster = "A catastrophe, mishap, calamity, or grave occurrence in any area, arising from natural or man-made causes." – Floods, Earthquakes, Industrial accidents, Epidemics, Bioterrorism. <b>Note:</b> Law-and-order issues (riots) = NOT included (2025 Amendment)</p>
+      </div>
+
+      <span class="section-tag tag-teal">Institutional Framework</span>
+      <table>
+        <tr><th>સ</th><th>Chairperson</th><th>Members</th><th>Key Function</th></tr>
+        <tr><td><b>NDMA</b><br>National DM Authority</td><td>Prime Minister</td><td>Max 9 members; 5-year term</td><td>National DM policies, plans, guidelines. Sec 6</td></tr>
+        <tr><td><b>NEC</b><br>National Executive Committee</td><td>Union Home Secretary</td><td>Secretary-level officers – Home, Health, Power, Finance, Agriculture</td><td>National DM Plan preparation; annual review. Sec 10</td></tr>
+        <tr><td><b>SDMA</b><br>State DM Authority</td><td>Chief Minister</td><td>Max 8 members (CM appointed)</td><td>State DM plans, policies. Sec 14</td></tr>
+        <tr><td><b>DDMA</b><br>District DM Authority</td><td>District Collector / DM / DC</td><td>CEO of Zila Panchayat (co-chair)</td><td>District DM plans. Sec 25-28</td></tr>
+        <tr><td><b>NDRF</b><br>National Disaster Response Force</td><td>Director-General (Central Gov.)</td><td>Specialised units</td><td>Disaster response & rescue operations</td></tr>
+        <tr><td><b>NIDM</b><br>National Institute of DM</td><td>IIT-Delhi pattern</td><td>–</td><td>Research, training, capacity building</td></tr>
+      </table>
+
+      <span class="section-tag tag-teal">Funds</span>
+      <div class="grid2">
+        <div class="mini-card" style="border-left:4px solid #00897B">
+          <h4>NDRF – National Disaster Response Fund</h4>
+          <p>Section 46. State-level disaster = severe, inadequate funds → Centre provides. 100% Central Government contribution. 15th Finance Commission – ₹54,770 crore (2021–26)</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #1565C0">
+          <h4>SDRF – State Disaster Response Fund</h4>
+          <p>Centre–State shared funding. States – 10% local disasters (MHA notified list outside). 15th FC – ₹1,28,122 crore (2021–26)</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #6C3483">
+          <h4>NDMF – National DM Mitigation Fund</h4>
+          <p>15th Finance Commission – ₹13,693 crore. First time dedicated DRR (Disaster Risk Reduction) fund – not just response</p>
+        </div>
+        <div class="mini-card" style="border-left:4px solid #C0392B">
+          <h4>SDMF – State DM Mitigation Fund</h4>
+          <p>₹32,031 crore (15th FC). State-level mitigation activities; prevention-focused</p>
+        </div>
+      </div>
+
+      <span class="section-tag tag-teal">DM Act 2025 Amendment (Latest)</span>
+      <div class="kp kp-teal">
+        <strong>Disaster Management Amendment Act 2025</strong>
+        <p>Lok Sabha – 12 Dec 2024, Rajya Sabha – 25 March 2025. Key Changes: (1) NDMA – extreme climate events ની risk recognize. (2) Minimum standards of relief guidelines. (3) National & State Disaster Databases. (4) <b>Urban Disaster Management Authorities</b> – state capitals & cities with Municipal Corporation. (5) 'Hazards', 'Prevention', 'Mitigation' – definitions ઉ. (6) Man-made disasters (riots) – disaster definition exclude</p>
+      </div>
+
+      <span class="section-tag tag-teal">Constitutional Articles</span>
+      <table>
+        <tr><th>Article</th><th>DM Act – સ</th></tr>
+        <tr><td>Article 21</td><td>Right to Life – Disaster Relief = State Obligation</td></tr>
+        <tr><td>Entry 23, State List</td><td>Relief of distress = State subject</td></tr>
+        <tr><td>Entry 14, Union List</td><td>Parliament – comprehensive legislation (DM Act)</td></tr>
+        <tr><td>Article 356</td><td>National Emergency – National Disaster overlap (COVID-19 2020)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ELECTRICITY ACT ════════════════ -->
+<div id="electric" class="section">
+
+  <div class="card theme-gold open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">
+        <h3>વીજળી અધિ 2003 (Electricity Act, 2003)</h3>
+        <p>Electricity Act, 2003 – Power Sector Reform</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-gold">
+        <strong>📌 Background</strong>
+        <p>Indian Electricity Act 1910 + Electricity Supply Act 1948 + Electricity Regulatory Commissions Act 1998 – ત્રણ ​nej Acts replace. Electricity Act 2003 – <b>Rationalize the law relating to generation, transmission, distribution, trading and use of electricity.</b></p>
+      </div>
+
+      <span class="section-tag tag-gold">Key Provisions</span>
+      <table>
+        <tr><th>Topic</th><th>Provision</th></tr>
+        <tr><td>Generation</td><td>License FREE – thermal, hydro (except atomic). Captive generation allowed freely</td></tr>
+        <tr><td>Transmission</td><td>Common Carrier – access to any licensee; Central Transmission Utility (CTU) = Power Grid Corporation</td></tr>
+        <tr><td>Distribution</td><td>Multiple licenses in one area (open access); Consumers > 1 MW = choice of supplier</td></tr>
+        <tr><td>Trading</td><td>Electricity = tradeable commodity; Trading License required</td></tr>
+        <tr><td>Rural Electrification</td><td>Section 5 – central government – National Electricity Policy; Section 6 – Rural Electrification Policy</td></tr>
+        <tr><td>Theft</td><td>Section 135–140 – Electricity Theft = cognizable offence; 3 years jail</td></tr>
+        <tr><td>Regulatory Bodies</td><td>CERC (Central Electricity Regulatory Commission), SERCs (State Electricity Regulatory Commissions)</td></tr>
+      </table>
+
+      <span class="section-tag tag-gold">Regulatory Architecture</span>
+      <div class="grid2">
+        <div class="mini-card" style="border-top:4px solid #F5A623">
+          <h4>CERC</h4>
+          <p>Central Electricity Regulatory Commission. Inter-state transmission tariff, Wholesale electricity market regulation, Grid standards (Indian Electricity Grid Code)</p>
+        </div>
+        <div class="mini-card" style="border-top:4px solid #F5A623">
+          <h4>SERC</h4>
+          <p>State Electricity Regulatory Commission. State distribution tariff, Retail supply regulation, Consumer grievances</p>
+        </div>
+        <div class="mini-card" style="border-top:4px solid #F5A623">
+          <h4>APTEL</h4>
+          <p>Appellate Tribunal for Electricity. Appeals from CERC/SERC orders. Quasi-judicial body. (Cyber Appellate Tribunal also merged here)</p>
+        </div>
+        <div class="mini-card" style="border-top:4px solid #F5A623">
+          <h4>BEE</h4>
+          <p>Bureau of Energy Efficiency. Energy Conservation Act 2001 under. Star Ratings, PAT (Perform, Achieve, Trade) Scheme</p>
+        </div>
+      </div>
+
+      <span class="section-tag tag-gold">Constitutional Position</span>
+      <div class="kp kp-gold">
+        <strong>Electricity = Concurrent List Entry 38</strong>
+        <p>Centre + States both legislate. Atomic energy = Union List Entry 41. Inter-State rivers + waters = Union List Entry 56. Electricity Act 2003 – Parliament under Entry 38, Concurrent List.</p>
+      </div>
+
+      <span class="section-tag tag-gold">Recent Developments</span>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-year">2022</span><p class="tl-text">Electricity Amendment Bill 2022 – Open Access reforms, Renewable Energy promotion, Privatisation provisions (controversial)</p></div>
+        <div class="tl-item"><span class="tl-year">2023</span><p class="tl-text">Electricity (Rights of Consumers) Rules 2020 – strengthened consumer rights, 24x7 supply obligation</p></div>
+        <div class="tl-item"><span class="tl-year">2025</span><p class="tl-text">National Electricity Policy revision; PM Surya Ghar Muft Bijli Yojana – 1 crore households rooftop solar</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card theme-green">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🌱</div>
+      <div class="card-title"><h3>Energy Conservation Act 2001 & Amendments</h3><p>BEE, PAT Scheme, Green Hydrogen, Carbon Market</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Provision</th><th>Detail</th></tr>
+        <tr><td>BEE (Bureau of Energy Efficiency)</td><td>Mandatory energy audits, Star ratings for appliances (AC, Fridge, etc.)</td></tr>
+        <tr><td>PAT Scheme</td><td>Perform, Achieve & Trade – Energy Savings Certificates (ESCerts) trading</td></tr>
+        <tr><td>EC Amendment 2022</td><td>Carbon Credit Trading Scheme, Green Hydrogen mandate, Renewable Purchase Obligations (RPO)</td></tr>
+        <tr><td>Energy Conservation Building Codes</td><td>Commercial buildings – mandatory energy efficiency standards</td></tr>
+        <tr><td>SMEV (EV)</td><td>Electric vehicles – energy consumption standards, charging infrastructure</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ DPDP ACT ════════════════ -->
+<div id="dpdp" class="section">
+
+  <div class="card theme-navy open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">
+        <h3>ડિ‍ ​ি Personal Data Protection Act, 2023 (DPDP)</h3>
+        <p>Digital Personal Data Protection Act – August 2023</p>
+      </div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-blue">
+        <strong>📌 Background</strong>
+        <p>Justice K.S. Puttaswamy Case 2017 – Right to Privacy = Fundamental Right (Article 21). Justice Srikrishna Committee (2018) – draft Personal Data Protection Bill. DPDP Act = August 2023. DPDP Rules 2025 – notified, operationalised.</p>
+      </div>
+
+      <span class="section-tag tag-blue">Key Concepts</span>
+      <table>
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Data Principal</td><td>Individual – whose data is collected (User)</td></tr>
+        <tr><td>Data Fiduciary</td><td>Organization – that collects & processes data</td></tr>
+        <tr><td>Significant Data Fiduciary</td><td>Large platforms with high risk – extra obligations (MeitY designates)</td></tr>
+        <tr><td>Data Processor</td><td>Third-party processing on behalf of Fiduciary</td></tr>
+        <tr><td>Consent Manager</td><td>Registered entity – managing user consent</td></tr>
+        <tr><td>Cross-border Transfer</td><td>Certain countries permitted; Central Gov. whitelist</td></tr>
+      </table>
+
+      <span class="section-tag tag-blue">Data Principal Rights</span>
+      <ul class="fancy">
+        <li>Right to Access – ​ な data details</li>
+        <li>Right to Correction & Erasure</li>
+        <li>Right to Grievance Redressal</li>
+        <li>Right to Nominate (death / incapacity)</li>
+        <li>Right to withdraw Consent any time</li>
+      </ul>
+
+      <span class="section-tag tag-blue">Penalties</span>
+      <table>
+        <tr><th>Offence</th><th>Maximum Fine</th></tr>
+        <tr><td>Child data breach / harm</td><td>₹200 Crore</td></tr>
+        <tr><td>Significant Data Fiduciary obligations breach</td><td>₹150 Crore</td></tr>
+        <tr><td>Data security breach – inadequate safeguards</td><td>₹250 Crore</td></tr>
+        <tr><td>Breach of notification duty</td><td>₹200 Crore</td></tr>
+        <tr><td>General violations</td><td>₹50 Crore</td></tr>
+      </table>
+
+      <div class="kp kp-blue">
+        <strong>DPDP Rules 2025 – Key Points</strong>
+        <p>Children's data safeguards. Data Fiduciary duties clarity. Data Protection Board – constitution & powers notified. Breach notification within 72 hours. Aadhaar-based consent manager. GDPR-inspired framework.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card theme-teal">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">📱</div>
+      <div class="card-title"><h3>Other Important IT-Related Laws</h3><p>Aadhaar, Telecom Act, BNS – Cyber provisions</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Law</th><th>Year</th><th>Key Provision</th></tr>
+        <tr><td>Aadhaar Act</td><td>2016</td><td>UIDAI; Aadhaar = biometric ID; authentication for gov. services; Sec 29 – identity protection; Sec 33 – disclosure for national security</td></tr>
+        <tr><td>Telecom Act</td><td>2023</td><td>Indian Telegraph Act 1885 replaced; TRAI roles; Spectrum management; Satellite communication; Encryption standards</td></tr>
+        <tr><td>BNS (Bharatiya Nyaya Sanhita)</td><td>2023</td><td>IPC replaced; Sec 303–336 – cyber-related offences; Organized crime provisions</td></tr>
+        <tr><td>BNSS</td><td>2023</td><td>CrPC replaced; Electronic records admissibility; Online FIR; Forensic investigation norms</td></tr>
+        <tr><td>BSA (Bharatiya Sakshya Act)</td><td>2023</td><td>Evidence Act replaced; Electronic evidence = admissible; Section 63 – electronic records</td></tr>
+        <tr><td>Copyright Act</td><td>1957 (amended)</td><td>Section 81 IT Act – Copyright Act override. Digital piracy, Software copyright</td></tr>
+        <tr><td>PMLA</td><td>2002</td><td>Online gaming / Crypto – money laundering; FIU-IND reporting</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ COMPARISON ════════════════ -->
+<div id="compare" class="section">
+
+  <div class="card theme-navy open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">📊</div>
+      <div class="card-title"><h3>IT & Cyber Laws – Quick Summary Comparison</h3><p>GPSC/UPSC Exam Fast Revision</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Law</th><th>Year</th><th>Ministry</th><th>Constitutional Basis</th><th>Key Body</th></tr>
+        <tr><td>IT Act 2000</td><td>2000</td><td>MeitY</td><td>Entry 97, Union List</td><td>CERT-In, CRAC, Cyber Appellate Tribunal</td></tr>
+        <tr><td>Online Gaming Act</td><td>2025</td><td>MeitY + Youth Ministry</td><td>Entry 97 (Union) + Entry 34 (State – conflict)</td><td>Online Gaming Authority, SRBs</td></tr>
+        <tr><td>DPDP Act</td><td>2023</td><td>MeitY</td><td>Article 21 (Privacy), Entry 97</td><td>Data Protection Board</td></tr>
+        <tr><td>Disaster Mgmt Act</td><td>2005</td><td>MHA</td><td>Entry 14 (Union) + Entry 23 (State)</td><td>NDMA, SDMA, NDRF, NIDM</td></tr>
+        <tr><td>Electricity Act</td><td>2003</td><td>MoP</td><td>Entry 38, Concurrent List</td><td>CERC, SERC, APTEL</td></tr>
+        <tr><td>Energy Conservation Act</td><td>2001</td><td>MoP</td><td>Entry 38, Concurrent</td><td>BEE</td></tr>
+        <tr><td>Aadhaar Act</td><td>2016</td><td>MeitY / UIDAI</td><td>Entry 97 + Article 21</td><td>UIDAI</td></tr>
+        <tr><td>Telecom Act</td><td>2023</td><td>DoT</td><td>Entry 31, Union List</td><td>TRAI, DoT</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card theme-orange">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">🎯</div>
+      <div class="card-title"><h3>Exam-Oriented Key Points – IT & Cyber Field</h3><p>Most frequently asked in GPSC / UPSC</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="kp kp-orange">
+        <strong>1. Shreya Singhal v. Union of India (2015)</strong>
+        <p>SC – Section 66A = Article 19(1)(a) violation. Struck down. Chilling effect on free speech. Jan Vishwas Act 2023 – formally removed.</p>
+      </div>
+      <div class="kp kp-teal">
+        <strong>2. Justice K.S. Puttaswamy v. UOI (2017)</strong>
+        <p>9-Judge bench. Right to Privacy = Fundamental Right under Article 21. Basis of DPDP Act 2023. Informational Privacy, Decisional Privacy.</p>
+      </div>
+      <div class="kp kp-red">
+        <strong>3. Anuradha Bhasin v. UOI (2020)</strong>
+        <p>Internet = Article 19(1)(a) & 19(1)(g). Internet shutdown must be proportionate, time-bound, subject to judicial review. Review orders – periodically publish.</p>
+      </div>
+      <div class="kp kp-blue">
+        <strong>4. L. Chandra Kumar Case (1997)</strong>
+        <p>High Courts & Supreme Court – Judicial Review = Basic Structure. Tribunals (IT Act Cyber Tribunal) cannot oust HC jurisdiction. APTEL appeals subject to HC/SC.</p>
+      </div>
+      <div class="kp kp-gold">
+        <strong>5. S.R. Bommai (1994) + Disaster Context</strong>
+        <p>COVID-19 2020 – Disaster Management Act + National Disaster = Emergency like situation without invoking Article 352. Section 6 NDMA powers extensive.</p>
+      </div>
+      <div class="kp kp-purple">
+        <strong>6. Section 69A – App Ban</strong>
+        <p>59 Chinese Apps (TikTok) June 2020, 43 Nov 2020, 54 including Free Fire Feb 2022 – National Security, Section 69A. 1,524 gaming/betting apps blocked by June 2025.</p>
+      </div>
+
+      <span class="section-tag tag-orange" style="margin-top:16px;">Current Affairs 2025–26</span>
+      <table>
+        <tr><th>Event</th><th>Detail</th></tr>
+        <tr><td>DPDP Rules 2025</td><td>Article 21 Privacy strengthen; Data Protection Board operational; ₹250 crore penalty</td></tr>
+        <tr><td>Online Gaming Act 2025</td><td>Real Money Gaming ban; 45 crore affected; Online Gaming Authority</td></tr>
+        <tr><td>DM Amendment 2025</td><td>Urban DM Authorities; Climate risks; National/State Databases</td></tr>
+        <tr><td>Telecom Act 2023</td><td>Indian Telegraph Act 1885 replaced; Spectrum reform</td></tr>
+        <tr><td>BNS/BNSS/BSA 2023</td><td>IPC/CrPC/Evidence Act replaced; Cyber provisions updated</td></tr>
+        <tr><td>PM Surya Ghar Yojana 2024</td><td>Electricity Act – 1 crore households rooftop solar; Free electricity 300 units</td></tr>
+        <tr><td>Aadhaar Norm Tightening (UIDAI) 2025</td><td>Administrative Reforms; Aadhaar misuse prevention; Digital Governance</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card theme-green">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon">📝</div>
+      <div class="card-title"><h3>One-liner Quick Revision</h3><p>Exam ना 5 minutes before – સ ​</p></div>
+      <div class="card-arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <ul class="fancy">
+        <li>IT Act 2000 = ભારતનો <b>12</b>મો Cyber Law, <b>94</b> Sections, <b>17 Oct 2000</b> notified</li>
+        <li>Section <b>66F</b> = Cyber Terrorism → <b>Life Imprisonment</b></li>
+        <li>Section <b>69A</b> = Website Block → TikTok, Chinese Apps ban</li>
+        <li>Section <b>66A</b> = <b>STRUCK DOWN</b> – Shreya Singhal 2015 – Article 19(1)(a)</li>
+        <li>CERT-In = Statutory Body (2008 Amendment). <b>6-hour</b> cyber incident reporting</li>
+        <li>NCIIPC = CII protection → NTRO (PM Office) under</li>
+        <li>DPDP Act 2023 = <b>Puttaswamy 2017</b> (Privacy) implement. Max penalty <b>₹250 crore</b></li>
+        <li>Online Gaming Act 2025 = Real Money Gaming BAN. <b>568 million</b> gamers India</li>
+        <li>DM Act 2005 = NDMA (PM chair), SDMA (CM chair), DDMA (Collector chair)</li>
+        <li>NDRF = Sec 46, DM Act. <b>National Disaster Response Force</b></li>
+        <li>Electricity Act 2003 = Concurrent List <b>Entry 38</b>. CERC + SERC + APTEL</li>
+        <li>BEE = <b>Bureau of Energy Efficiency</b> → EC Act 2001</li>
+        <li>Disaster = Section 2(d) DM Act. Natural + Man-made (riots EXCLUDE – 2025)</li>
+        <li>Anuradha Bhasin 2020 = Internet = <b>Article 19(1)(a)</b> + proportionality</li>
+        <li>Gambling = State List <b>Entry 34</b>. Online Gaming Act 2025 = Centre–State conflict</li>
+        <li>DM Amendment 2025 = <b>Urban DM Authorities</b> for cities with Municipal Corporation</li>
+        <li>15th Finance Commission = <b>41%</b> to States. NDRF ₹54,770 cr; SDRF ₹1,28,122 cr</li>
+        <li>APTEL = Appellate Tribunal for Electricity + Cyber Appellate Tribunal merged</li>
+        <li>BNS Sec 66F <> IT Act Sec 66F = Cyber Terrorism = <b>Life Imprisonment</b></li>
+        <li>Section 79 IT Act = <b>Safe Harbour</b> – Intermediary protection</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- container end -->
+
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleCard(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+// Auto-open first card in each section
+document.querySelectorAll('.section').forEach(sec => {
+  const first = sec.querySelector('.card');
+  if (first) first.classList.add('open');
+});
+window.addEventListener('scroll', () => {
+  document.getElementById('top-btn').style.display = window.scrollY > 300 ? 'flex' : 'none';
+});
+</script>
+</body>
+</html>
