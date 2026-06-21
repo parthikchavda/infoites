@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Short Form → Full Form | Wireless PSI Syllabus Decoder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a100d;
+    --surface:#101a15;
+    --surface-2:#16221c;
+    --trace:#34f5a0;
+    --trace-dim:#1d6b48;
+    --gold:#f2b632;
+    --text:#e7f2ec;
+    --text-muted:#87a296;
+    --border:#1f2e27;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(52,245,160,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(242,182,50,0.05), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; margin:0; }
+  code, .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- Header ---------- */
+  header{
+    padding:48px 24px 28px;
+    max-width:920px;
+    margin:0 auto;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--trace);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:18px; height:1px;
+    background:var(--trace);
+    display:inline-block;
+  }
+  h1{
+    font-size:clamp(28px, 5vw, 42px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:10px 14px;
+  }
+  h1 span.arrow{ color:var(--gold); font-weight:500; }
+  .subtitle{
+    margin-top:10px;
+    color:var(--text-muted);
+    font-size:15px;
+    max-width:560px;
+  }
+  .subtitle .guj{ color:var(--text); }
+
+  .stats{
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin-top:24px;
+  }
+  .stat-pill{
+    border:1px solid var(--border);
+    background:var(--surface);
+    border-radius:999px;
+    padding:7px 14px;
+    font-size:12.5px;
+    color:var(--text-muted);
+    display:flex; align-items:center; gap:7px;
+  }
+  .stat-pill b{ color:var(--text); font-family:'JetBrains Mono', monospace; font-weight:700; }
+  .stat-pill.gold b{ color:var(--gold); }
+
+  /* ---------- Controls ---------- */
+  .controls{
+    max-width:920px;
+    margin:0 auto;
+    padding:22px 24px 0;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:linear-gradient(var(--bg) 78%, transparent);
+    padding-bottom:14px;
+  }
+  .controls-inner{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .search-wrap{
+    flex:1 1 240px;
+    position:relative;
+  }
+  .search-wrap svg{
+    position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; stroke:var(--text-muted);
+  }
+  #search{
+    width:100%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 14px 11px 38px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    outline:none;
+    transition:border-color .15s ease;
+  }
+  #search::placeholder{ color:var(--text-muted); }
+  #search:focus{ border-color:var(--trace); }
+
+  #impToggle{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:7px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 16px;
+    color:var(--text-muted);
+    font-family:'Inter', sans-serif;
+    font-size:13.5px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  #impToggle:hover{ border-color:var(--gold); color:var(--text); }
+  #impToggle.active{
+    background:rgba(242,182,50,0.1);
+    border-color:var(--gold);
+    color:var(--gold);
+  }
+  #impToggle .star{ font-size:14px; }
+
+  #noResults{
+    display:none;
+    max-width:920px; margin:40px auto; padding:0 24px;
+    color:var(--text-muted); text-align:center; font-size:14px;
+  }
+
+  /* ---------- Timeline ---------- */
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:30px 24px 80px;
+    position:relative;
+  }
+  .timeline{
+    position:relative;
+    padding-left:54px;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:19px; top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(var(--trace-dim), var(--trace) 8%, var(--trace) 92%, var(--trace-dim));
+    opacity:.55;
+  }
+
+  .chapter{
+    position:relative;
+    margin-bottom:14px;
+  }
+  .chapter-node{
+    position:absolute;
+    left:-54px; top:0;
+    width:40px; height:40px;
+    border-radius:50%;
+    background:var(--surface);
+    border:2px solid var(--trace-dim);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px; font-weight:700;
+    color:var(--trace);
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .chapter.has-terms .chapter-node{ border-color:var(--trace); box-shadow:0 0 0 4px rgba(52,245,160,0.08); }
+
+  .chapter-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    cursor:pointer;
+    padding:14px 16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    transition:border-color .15s ease;
+  }
+  .chapter-head:hover{ border-color:var(--trace-dim); }
+  .chapter-title{
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .chapter-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--text-muted);
+    margin-top:5px;
+  }
+  .chapter-meta .imp-count{ color:var(--gold); }
+
+  .chev{
+    flex:0 0 auto;
+    width:20px; height:20px;
+    color:var(--text-muted);
+    transition:transform .2s ease;
+    margin-top:2px;
+  }
+  .chapter[data-open="true"] .chev{ transform:rotate(180deg); }
+
+  .chapter-body{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .28s ease;
+  }
+  .chapter[data-open="true"] .chapter-body{ max-height:1400px; }
+
+  .terms-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:10px;
+    padding:14px 2px 4px;
+  }
+
+  .empty-note{
+    padding:16px 4px 4px;
+    color:var(--text-muted);
+    font-size:13px;
+    font-style:italic;
+  }
+
+  .term-card{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-left:3px solid var(--border);
+    border-radius:10px;
+    padding:12px 13px;
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .term-card:hover{
+    transform:translateY(-2px);
+    background:#1a2620;
+  }
+  .term-card.imp{ border-left-color:var(--gold); }
+  .term-card.imp:hover{ border-color:rgba(242,182,50,0.4); }
+
+  .term-top{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:6px;
+  }
+  .term-short{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--trace);
+    letter-spacing:0.01em;
+  }
+  .term-card.imp .term-short{ color:var(--gold); }
+  .star-ic{ color:var(--gold); font-size:12px; }
+
+  .term-full{
+    font-size:13.5px;
+    color:var(--text);
+    line-height:1.4;
+  }
+
+  mark{
+    background:rgba(242,182,50,0.35);
+    color:var(--text);
+    border-radius:3px;
+    padding:0 2px;
+  }
+
+  /* ---------- Scroll to top ---------- */
+  #toTop{
+    position:fixed;
+    right:18px; bottom:18px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--surface);
+    border:1px solid var(--trace-dim);
+    color:var(--trace);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    opacity:0; pointer-events:none;
+    transform:translateY(10px);
+    transition:opacity .2s ease, transform .2s ease, border-color .2s ease;
+    z-index:30;
+  }
+  #toTop.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+  #toTop:hover{ border-color:var(--trace); }
+
+  footer{
+    text-align:center;
+    color:var(--text-muted);
+    font-size:12px;
+    padding:0 24px 40px;
+  }
+
+  @media (max-width:600px){
+    header{ padding:32px 16px 22px; }
+    .controls{ padding:16px 16px 12px; }
+    main{ padding:22px 16px 70px; }
+    .timeline{ padding-left:42px; }
+    .timeline::before{ left:15px; }
+    .chapter-node{ left:-42px; width:32px; height:32px; font-size:11px; }
+    .chapter-title{ font-size:14.5px; }
+    .terms-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Wireless PSI · Syllabus Reference</div>
+  <h1>Short Form <span class="arrow">→</span> Full Form</h1>
+  <p class="subtitle">Every short form across your 11-chapter ECE syllabus — components, protocols, mobile networks, security, web & current trends — decoded chapter-wise.<br>
+  <span class="guj">પરીક્ષામાં વારંવાર પુછાય એવા ટર્મ્સ ⭐ ગોલ્ડ બોર્ડરથી હાઇલાઇટ થયેલ છે.</span></p>
+
+  <div class="stats">
+    <div class="stat-pill">Chapters <b id="statChapters">11</b></div>
+    <div class="stat-pill">Short forms <b id="statTotal">0</b></div>
+    <div class="stat-pill gold">High-yield ⭐ <b id="statImp">0</b></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="text" placeholder="Search VLSI, GSM, RADAR, full form...">
+    </div>
+    <button id="impToggle"><span class="star">★</span> Important only</button>
+  </div>
+</div>
+
+<main>
+  <div class="timeline" id="timeline"></div>
+  <div id="noResults">No matches. Try a different short form or full form.</div>
+</main>
+
+<div id="toTop" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</div>
+
+<footer>Built for last-minute revision — tap a chapter to expand, search to jump straight to a term.</footer>
+
+<script>
+const chapters = [
+  { title:"Electronics Components, Devices and Circuits", terms:[
+      {s:"AC", f:"Alternating Current", i:true},
+      {s:"DC", f:"Direct Current", i:true},
+      {s:"IC", f:"Integrated Circuit", i:true},
+      {s:"LED", f:"Light Emitting Diode", i:true},
+      {s:"LCD", f:"Liquid Crystal Display", i:true},
+      {s:"PN", f:"P-N Junction (diode)", i:false},
+      {s:"BJT", f:"Bipolar Junction Transistor", i:true},
+      {s:"FET", f:"Field Effect Transistor", i:true},
+      {s:"JFET", f:"Junction Field Effect Transistor", i:false},
+      {s:"MOSFET", f:"Metal Oxide Semiconductor Field Effect Transistor", i:true},
+      {s:"UJT", f:"Uni-Junction Transistor", i:false},
+      {s:"SCR", f:"Silicon Controlled Rectifier", i:true},
+      {s:"LDR", f:"Light Dependent Resistor", i:true},
+      {s:"Op-Amp", f:"Operational Amplifier", i:true},
+      {s:"RPS", f:"Regulated Power Supply", i:true},
+      {s:"PCB", f:"Printed Circuit Board", i:true},
+      {s:"EMF", f:"Electromotive Force", i:false},
+  ]},
+  { title:"Digital Electronics & VLSI", terms:[
+      {s:"VLSI", f:"Very Large Scale Integration", i:true},
+      {s:"PLA", f:"Programmable Logic Array", i:false},
+      {s:"FPGA", f:"Field Programmable Gate Array", i:true},
+      {s:"VHDL", f:"VHSIC Hardware Description Language", i:true},
+      {s:"MOS", f:"Metal Oxide Semiconductor", i:true},
+      {s:"A to D", f:"Analog to Digital Conversion (ADC)", i:false},
+      {s:"D to A", f:"Digital to Analog Conversion (DAC)", i:false},
+      {s:"ALU", f:"Arithmetic Logic Unit", i:true},
+      {s:"RAM", f:"Random Access Memory", i:true},
+      {s:"ROM", f:"Read Only Memory", i:true},
+      {s:"PROM", f:"Programmable Read Only Memory", i:false},
+      {s:"EPROM", f:"Erasable Programmable Read Only Memory", i:false},
+      {s:"EEPROM", f:"Electrically Erasable Programmable Read Only Memory", i:false},
+      {s:"FF", f:"Flip-Flop", i:false},
+      {s:"BCD", f:"Binary Coded Decimal", i:true},
+      {s:"ASCII", f:"American Standard Code for Information Interchange", i:true},
+      {s:"CMOS", f:"Complementary Metal Oxide Semiconductor", i:true},
+      {s:"TTL", f:"Transistor-Transistor Logic", i:true},
+      {s:"PLD", f:"Programmable Logic Device", i:false},
+      {s:"CPLD", f:"Complex Programmable Logic Device", i:false},
+      {s:"ASIC", f:"Application Specific Integrated Circuit", i:true},
+  ]},
+  { title:"Electronics Networks and Instruments & Measurements", terms:[
+      {s:"CRO", f:"Cathode Ray Oscilloscope", i:true},
+      {s:"DSO", f:"Digital Storage Oscilloscope", i:false},
+      {s:"DMM", f:"Digital Multimeter", i:true},
+      {s:"dB", f:"Decibel", i:true},
+      {s:"RMS", f:"Root Mean Square", i:true},
+      {s:"EMI", f:"Electromagnetic Interference", i:false},
+      {s:"EMC", f:"Electromagnetic Compatibility", i:false},
+      {s:"Q-factor", f:"Quality Factor", i:false},
+  ]},
+  { title:"Communication Engineering", terms:[
+      {s:"AM", f:"Amplitude Modulation", i:true},
+      {s:"FM", f:"Frequency Modulation", i:true},
+      {s:"PM", f:"Phase Modulation", i:false},
+      {s:"SSB", f:"Single Side Band", i:true},
+      {s:"DSB", f:"Double Side Band", i:false},
+      {s:"VSB", f:"Vestigial Side Band", i:false},
+      {s:"PCM", f:"Pulse Code Modulation", i:true},
+      {s:"PWM", f:"Pulse Width Modulation", i:true},
+      {s:"PAM", f:"Pulse Amplitude Modulation", i:false},
+      {s:"PPM", f:"Pulse Position Modulation", i:false},
+      {s:"TDM", f:"Time Division Multiplexing", i:true},
+      {s:"FDM", f:"Frequency Division Multiplexing", i:true},
+      {s:"SNR", f:"Signal to Noise Ratio", i:true},
+      {s:"IF", f:"Intermediate Frequency", i:true},
+      {s:"RF", f:"Radio Frequency", i:true},
+      {s:"AGC", f:"Automatic Gain Control", i:false},
+      {s:"BW", f:"Bandwidth", i:true},
+      {s:"PSTN", f:"Public Switched Telephone Network", i:true},
+      {s:"PBX", f:"Private Branch Exchange", i:false},
+  ]},
+  { title:"Communication Applications", terms:[
+      {s:"RADAR", f:"Radio Detection And Ranging", i:true},
+      {s:"GSM", f:"Global System for Mobile Communications", i:true},
+      {s:"CDMA", f:"Code Division Multiple Access", i:true},
+      {s:"PAL-D", f:"Phase Alternating Line (Delay-line variant)", i:false},
+      {s:"TV", f:"Television", i:false},
+      {s:"NTSC", f:"National Television System Committee", i:false},
+      {s:"SECAM", f:"Sequential Colour with Memory", i:false},
+      {s:"VSAT", f:"Very Small Aperture Terminal", i:false},
+      {s:"GEO", f:"Geostationary Earth Orbit", i:false},
+      {s:"LEO", f:"Low Earth Orbit", i:false},
+      {s:"DTH", f:"Direct To Home", i:true},
+      {s:"SIM", f:"Subscriber Identity Module", i:true},
+      {s:"IMEI", f:"International Mobile Equipment Identity", i:true},
+      {s:"IMSI", f:"International Mobile Subscriber Identity", i:true},
+      {s:"BTS", f:"Base Transceiver Station", i:true},
+      {s:"BSC", f:"Base Station Controller", i:false},
+      {s:"MSC", f:"Mobile Switching Centre", i:true},
+      {s:"HLR", f:"Home Location Register", i:false},
+      {s:"VLR", f:"Visitor Location Register", i:false},
+      {s:"TDMA", f:"Time Division Multiple Access", i:true},
+      {s:"FDMA", f:"Frequency Division Multiple Access", i:true},
+      {s:"WCDMA", f:"Wideband Code Division Multiple Access", i:false},
+      {s:"UMTS", f:"Universal Mobile Telecommunications System", i:false},
+      {s:"VoIP", f:"Voice over Internet Protocol", i:true},
+      {s:"Wi-Fi", f:"Wireless Fidelity", i:true},
+      {s:"LASER", f:"Light Amplification by Stimulated Emission of Radiation", i:true},
+  ]},
+  { title:"Microprocessors & Microcontrollers", terms:[
+      {s:"8085", f:"Intel 8085 — 8-bit Microprocessor", i:true},
+      {s:"8051", f:"Intel 8051 — 8-bit Microcontroller", i:true},
+      {s:"RISC", f:"Reduced Instruction Set Computer", i:true},
+      {s:"CPU", f:"Central Processing Unit", i:true},
+      {s:"I/O", f:"Input/Output", i:true},
+      {s:"DMA", f:"Direct Memory Access", i:true},
+      {s:"PC", f:"Program Counter", i:false},
+      {s:"SP", f:"Stack Pointer", i:false},
+      {s:"ISR", f:"Interrupt Service Routine", i:false},
+      {s:"CISC", f:"Complex Instruction Set Computer", i:true},
+      {s:"ARM", f:"Advanced RISC Machine", i:true},
+      {s:"UART", f:"Universal Asynchronous Receiver Transmitter", i:true},
+      {s:"SPI", f:"Serial Peripheral Interface", i:false},
+      {s:"I2C", f:"Inter-Integrated Circuit", i:false},
+      {s:"GPIO", f:"General Purpose Input Output", i:false},
+  ]},
+  { title:"Computer Networks", terms:[
+      {s:"LAN", f:"Local Area Network", i:true},
+      {s:"TCP/IP", f:"Transmission Control Protocol / Internet Protocol", i:true},
+      {s:"IP", f:"Internet Protocol", i:true},
+      {s:"IPv4", f:"Internet Protocol version 4", i:true},
+      {s:"IPv6", f:"Internet Protocol version 6", i:true},
+      {s:"WAN", f:"Wide Area Network", i:true},
+      {s:"MAN", f:"Metropolitan Area Network", i:true},
+      {s:"PAN", f:"Personal Area Network", i:false},
+      {s:"WLAN", f:"Wireless Local Area Network", i:true},
+      {s:"OSI", f:"Open Systems Interconnection (model)", i:true},
+      {s:"HTTP", f:"Hyper Text Transfer Protocol", i:true},
+      {s:"HTTPS", f:"Hyper Text Transfer Protocol Secure", i:true},
+      {s:"FTP", f:"File Transfer Protocol", i:true},
+      {s:"SMTP", f:"Simple Mail Transfer Protocol", i:true},
+      {s:"POP3", f:"Post Office Protocol version 3", i:true},
+      {s:"IMAP", f:"Internet Message Access Protocol", i:false},
+      {s:"DNS", f:"Domain Name System", i:true},
+      {s:"DHCP", f:"Dynamic Host Configuration Protocol", i:true},
+      {s:"MAC", f:"Media Access Control (address)", i:true},
+      {s:"NIC", f:"Network Interface Card", i:false},
+      {s:"ISP", f:"Internet Service Provider", i:true},
+      {s:"URL", f:"Uniform Resource Locator", i:true},
+      {s:"VPN", f:"Virtual Private Network", i:true},
+      {s:"SSH", f:"Secure Shell", i:false},
+      {s:"UDP", f:"User Datagram Protocol", i:true},
+      {s:"TCP", f:"Transmission Control Protocol", i:true},
+      {s:"ICMP", f:"Internet Control Message Protocol", i:false},
+      {s:"Email", f:"Electronic Mail", i:true},
+  ]},
+  { title:"Essentials of Network Security", terms:[
+      {s:"DES", f:"Data Encryption Standard", i:false},
+      {s:"AES", f:"Advanced Encryption Standard", i:true},
+      {s:"RSA", f:"Rivest–Shamir–Adleman (algorithm)", i:true},
+      {s:"PKI", f:"Public Key Infrastructure", i:false},
+      {s:"SSL", f:"Secure Sockets Layer", i:true},
+      {s:"TLS", f:"Transport Layer Security", i:true},
+      {s:"IDS", f:"Intrusion Detection System", i:true},
+      {s:"IPS", f:"Intrusion Prevention System", i:false},
+      {s:"OTP", f:"One Time Password", i:true},
+      {s:"MD5", f:"Message Digest 5", i:false},
+      {s:"SHA", f:"Secure Hash Algorithm", i:false},
+  ]},
+  { title:"Web Technology", terms:[
+      {s:"ASP.NET", f:"Active Server Pages .NET", i:false},
+      {s:"IDE", f:"Integrated Development Environment", i:true},
+      {s:"HTML", f:"HyperText Markup Language", i:true},
+      {s:"CSS", f:"Cascading Style Sheets", i:true},
+      {s:"XML", f:"eXtensible Markup Language", i:true},
+      {s:"PHP", f:"Hypertext Preprocessor", i:true},
+      {s:"SQL", f:"Structured Query Language", i:true},
+      {s:"JS", f:"JavaScript", i:true},
+      {s:"API", f:"Application Programming Interface", i:true},
+      {s:"CMS", f:"Content Management System", i:false},
+      {s:"DOM", f:"Document Object Model", i:false},
+      {s:"AJAX", f:"Asynchronous JavaScript and XML", i:false},
+      {s:"W3C", f:"World Wide Web Consortium", i:false},
+      {s:"WWW", f:"World Wide Web", i:true},
+  ]},
+  { title:"Android Application Development", terms:[
+      {s:"OS", f:"Operating System", i:true},
+      {s:"UI", f:"User Interface", i:true},
+      {s:"APK", f:"Android Package Kit", i:true},
+      {s:"SDK", f:"Software Development Kit", i:true},
+      {s:"ADB", f:"Android Debug Bridge", i:false},
+      {s:"JVM", f:"Java Virtual Machine", i:false},
+      {s:"GUI", f:"Graphical User Interface", i:true},
+  ]},
+  { title:"Current Trends", terms:[
+      {s:"4G LTE", f:"4th Generation Long-Term Evolution", i:true},
+      {s:"POLNET", f:"Police Network (Indian Police communication network)", i:true},
+      {s:"5G", f:"5th Generation (mobile network)", i:true},
+      {s:"IoT", f:"Internet of Things", i:true},
+      {s:"AI", f:"Artificial Intelligence", i:true},
+      {s:"ML", f:"Machine Learning", i:false},
+      {s:"GPS", f:"Global Positioning System", i:true},
+      {s:"VHF", f:"Very High Frequency", i:true},
+      {s:"UHF", f:"Ultra High Frequency", i:true},
+      {s:"HF", f:"High Frequency", i:false},
+      {s:"WLL", f:"Wireless Local Loop", i:false},
+      {s:"NDRF", f:"National Disaster Response Force", i:true},
+      {s:"SDRF", f:"State Disaster Response Force", i:false},
+  ]},
+];
+
+const timeline = document.getElementById('timeline');
+const searchInput = document.getElementById('search');
+const impToggle = document.getElementById('impToggle');
+const noResults = document.getElementById('noResults');
+let impOnly = false;
+
+function esc(str){
+  return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function highlight(text, q){
+  if(!q) return esc(text);
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if(idx === -1) return esc(text);
+  return esc(text.slice(0,idx)) + '<mark>' + esc(text.slice(idx, idx+q.length)) + '</mark>' + esc(text.slice(idx+q.length));
+}
+
+function render(){
+  const q = searchInput.value.trim().toLowerCase();
+  timeline.innerHTML = '';
+  let visibleAny = false;
+  let totalTerms = 0, totalImp = 0;
+
+  chapters.forEach((ch, idx) => {
+    ch.terms.forEach(t => { totalTerms++; if(t.i) totalImp++; });
+
+    let terms = ch.terms;
+    if(impOnly) terms = terms.filter(t => t.i);
+    if(q) terms = terms.filter(t => t.s.toLowerCase().includes(q) || t.f.toLowerCase().includes(q));
+
+    const chapterMatches = !q || ch.title.toLowerCase().includes(q) || terms.length > 0;
+    if((q || impOnly) && terms.length === 0 && !(ch.title.toLowerCase().includes(q) && q)) return;
+    if(impOnly && terms.length === 0) return;
+
+    visibleAny = true;
+    const impCount = ch.terms.filter(t=>t.i).length;
+    const num = String(idx+1).padStart(2,'0');
+
+    const el = document.createElement('div');
+    el.className = 'chapter' + (ch.terms.length ? ' has-terms' : '');
+    el.dataset.open = (q || impOnly) ? 'true' : 'false';
+
+    el.innerHTML = `
+      <div class="chapter-node">${num}</div>
+      <div class="chapter-head" role="button" tabindex="0" aria-expanded="${el.dataset.open}">
+        <div>
+          <div class="chapter-title">${esc(ch.title)}</div>
+          <div class="chapter-meta">${ch.terms.length} short form${ch.terms.length===1?'':'s'}${impCount? ` · <span class="imp-count">${impCount} high-yield</span>`:''}</div>
+        </div>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="chapter-body">
+        ${ terms.length === 0
+            ? `<div class="empty-note">No short forms used in this chapter — full terms appear throughout the syllabus.</div>`
+            : `<div class="terms-grid">${terms.map(t => `
+                <div class="term-card${t.i?' imp':''}">
+                  <div class="term-top">
+                    <span class="term-short">${highlight(t.s, q)}</span>
+                    ${t.i ? '<span class="star-ic">★</span>' : ''}
+                  </div>
+                  <div class="term-full">${highlight(t.f, q)}</div>
+                </div>`).join('')}</div>`
+        }
+      </div>
+    `;
+
+    const head = el.querySelector('.chapter-head');
+    head.addEventListener('click', () => {
+      const isOpen = el.dataset.open === 'true';
+      el.dataset.open = isOpen ? 'false' : 'true';
+      head.setAttribute('aria-expanded', el.dataset.open);
+    });
+    head.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); head.click(); }
+    });
+
+    timeline.appendChild(el);
+  });
+
+  document.getElementById('statChapters').textContent = chapters.length;
+  document.getElementById('statTotal').textContent = totalTerms;
+  document.getElementById('statImp').textContent = totalImp;
+
+  noResults.style.display = visibleAny ? 'none' : 'block';
+}
+
+searchInput.addEventListener('input', render);
+impToggle.addEventListener('click', () => {
+  impOnly = !impOnly;
+  impToggle.classList.toggle('active', impOnly);
+  render();
+});
+
+render();
+
+// scroll to top
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+  toTop.classList.toggle('show', window.scrollY > 420);
+});
+toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
