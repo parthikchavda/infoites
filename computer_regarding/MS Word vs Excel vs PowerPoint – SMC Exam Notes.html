@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MS Word vs Excel vs PowerPoint – SMC Exam Notes</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mut:#667085;--bd:#e3e6ee;--w:#2b579a;--e:#217346;--p:#d24726;--ac:#4f46e5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1220;--card:#181c2e;--tx:#e8eaf3;--mut:#9aa3b8;--bd:#2a3050;--ac:#8b86ff}}
+:root[data-theme="dark"]{--bg:#0f1220;--card:#181c2e;--tx:#e8eaf3;--mut:#9aa3b8;--bd:#2a3050;--ac:#8b86ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:22px 16px 10px;max-width:1100px;margin:auto}
+h1{margin:0;font-size:clamp(20px,4vw,28px)}
+.sub{color:var(--mut);margin:4px 0 14px}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 12px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;max-width:1100px;margin:auto}
+.tabs button{white-space:nowrap}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:1100px;margin:auto;padding:0 16px 40px}
+section{margin-bottom:22px}
+h2{font-size:18px;margin:10px 0}
+.note{color:var(--mut);font-size:13px;margin:0 0 8px}
+.wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+th{position:sticky;top:0;color:#fff;font-weight:600}
+th:first-child{background:#475467}
+th.w{background:var(--w)}th.e{background:var(--e)}th.p{background:var(--p)}th.x{background:#475467}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:rgba(127,127,160,.07)}
+.y{color:#16a34a;font-weight:700}.n{color:#dc2626;font-weight:700}
+kbd,code{background:rgba(127,127,160,.16);border-radius:5px;padding:1px 6px;font-size:13px}
+.tip{background:var(--card);border-left:4px solid var(--ac);border-radius:8px;padding:10px 14px;margin-top:10px}
+.empty{color:var(--mut);padding:20px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+<h1>MS Word vs Excel vs PowerPoint</h1>
+<p class="sub">Complete comparison for SMC exam: features, menus, shortcut keys, facts</p>
+<div class="bar"><input id="q" type="search" placeholder="Search anything (e.g. Ctrl + E, .pptx, F12, Formulas)"><button id="th">Theme</button></div>
+</header>
+<nav class="tabs" id="tabs"></nav>
+<main id="out"></main>
+<script>
+var S=[
+{t:"Basic Comparison",h:["Point","MS Word","MS Excel","MS PowerPoint"],r:[
+["Type","Word processor","Spreadsheet","Presentation software"],
+["Used for","Letters, reports, documents","Calculation, data, charts","Slides, presentations"],
+["File extension (new)",".docx",".xlsx",".pptx"],
+["File extension (old)",".doc",".xls",".ppt"],
+["Template",".dotx",".xltx",".potx"],
+["Macro-enabled",".docm",".xlsm",".pptm"],
+["Other formats",".rtf, .pdf",".csv",".ppsx (slide show)"],
+["Default file name","Document1","Book1 (Workbook)","Presentation1"],
+["Work area","Page","Worksheet (rows and columns)","Slide"],
+["Basic unit","Character, word, paragraph","Cell","Slide"],
+["Key feature","Mail Merge, Spell Check","Formulas, Functions, Charts","Animation, Transition"],
+["Special bar","Ruler","Formula bar, Name box","Thumbnail pane, Notes pane"],
+["Default orientation","Portrait","Portrait (print)","Landscape (16:9)"],
+["Default view","Print Layout","Normal","Normal"],
+["Rows / columns","Table only","1,048,576 rows x 16,384 columns (A to XFD)","Table only"],
+["Default sheets","None","1 sheet (Sheet1)","None"],
+["Status bar shows","Page no., word count","Sum, Average, Count","Slide no., theme"]]},
+{t:"Menu (Ribbon Tabs)",h:["Tab","MS Word","MS Excel","MS PowerPoint"],r:[
+["File","Y","Y","Y"],["Home","Y","Y","Y"],["Insert","Y","Y","Y"],["Draw","Y","Y","Y"],
+["Design","Y","N","Y"],["Layout","Y","N","N"],["Page Layout","N","Y","N"],
+["References","Y","N","N"],["Mailings","Y","N","N"],["Formulas","N","Y","N"],["Data","N","Y","N"],
+["Transitions","N","N","Y"],["Animations","N","N","Y"],["Slide Show","N","N","Y"],
+["Review","Y","Y","Y"],["View","Y","Y","Y"],["Help","Y","Y","Y"],
+["Unique tabs","References, Mailings","Formulas, Data","Transitions, Animations, Slide Show"]],
+tip:"Tab present = tick, absent = cross. Remember the unique tabs of each program."},
+{t:"Common Shortcuts",h:["Shortcut","Work"],r:[
+["Ctrl + N","New file"],["Ctrl + O","Open"],["Ctrl + S","Save"],["F12","Save As"],["Ctrl + P","Print"],
+["Ctrl + W","Close file"],["Alt + F4","Exit program"],["Ctrl + C","Copy"],["Ctrl + X","Cut"],["Ctrl + V","Paste"],
+["Ctrl + Z","Undo"],["Ctrl + Y","Redo"],["Ctrl + A","Select all"],["Ctrl + B","Bold"],["Ctrl + I","Italic"],
+["Ctrl + U","Underline"],["Ctrl + F","Find"],["Ctrl + H","Replace (Word, PowerPoint)"],["Ctrl + K","Hyperlink"],
+["Ctrl + Home / End","Start / end of document"],["F1","Help"],["F7","Spelling check"]]},
+{t:"Specific Shortcuts",h:["Work","MS Word","MS Excel","MS PowerPoint"],r:[
+["Center align","Ctrl + E","n/a","Ctrl + E"],["Left align","Ctrl + L","n/a","Ctrl + L"],
+["Right align","Ctrl + R","n/a","Ctrl + R"],["Justify","Ctrl + J","n/a","Ctrl + J"],
+["Font dialog","Ctrl + D","Ctrl + 1 (Format Cells)","Ctrl + T"],
+["Font size up / down","Ctrl + Shift + > / <","Ctrl + Shift + > / <","Ctrl + Shift + > / <"],
+["Page break","Ctrl + Enter","n/a","n/a"],["Line spacing single / 1.5 / double","Ctrl + 1 / 5 / 2","n/a","n/a"],
+["Change case","Shift + F3","n/a","Shift + F3"],["Copy formatting","Ctrl + Shift + C","n/a","Ctrl + Shift + C"],
+["Paste formatting","Ctrl + Shift + V","n/a","Ctrl + Shift + V"],
+["Insert date / time","Alt + Shift + D / T","Ctrl + ; / Ctrl + Shift + ;","n/a"],
+["Go To","Ctrl + G or F5","Ctrl + G or F5","n/a"],["Edit cell","n/a","F2","n/a"],["AutoSum","n/a","Alt + =","n/a"],
+["Absolute reference ($)","n/a","F4","n/a"],["Select column / row","n/a","Ctrl + Space / Shift + Space","n/a"],
+["Insert row / column","n/a","Ctrl + Shift + +","n/a"],["Delete row / column","n/a","Ctrl + -","n/a"],
+["New line in a cell","n/a","Alt + Enter","n/a"],["Fill down / right","n/a","Ctrl + D / Ctrl + R","n/a"],
+["Insert chart","n/a","F11 (new sheet), Alt + F1 (same sheet)","n/a"],["New sheet","n/a","Shift + F11","n/a"],
+["Next / previous sheet","n/a","Ctrl + PgDn / PgUp","n/a"],["Show formulas","n/a","Ctrl + `","n/a"],
+["Filter on/off","n/a","Ctrl + Shift + L","n/a"],["Create table","n/a","Ctrl + T","n/a"],
+["Hide row / column","n/a","Ctrl + 9 / Ctrl + 0","n/a"],["Bullets","Ctrl + Shift + L","n/a","n/a"],
+["Subscript / superscript","Ctrl + = / Ctrl + Shift + =","n/a","Ctrl + = / Ctrl + Shift + ="],
+["Footnote / endnote","Ctrl + Alt + F / Ctrl + Alt + D","n/a","n/a"],
+["Print preview","Ctrl + F2","Ctrl + F2","n/a"],["New slide","n/a","n/a","Ctrl + M"],
+["Duplicate slide","n/a","n/a","Ctrl + D"],["Group / ungroup","n/a","n/a","Ctrl + G / Ctrl + Shift + G"]]},
+{t:"Slide Show Keys",h:["Key","Work"],r:[
+["F5","Start show from the beginning"],["Shift + F5","Start from the current slide"],["Alt + F5","Presenter view"],
+["Esc","End show"],["N / Enter / Space / Right / Down","Next slide"],["P / Backspace / Left / Up","Previous slide"],
+["B or .","Black screen"],["W or ,","White screen"],["Ctrl + P","Pen"],["Ctrl + A","Arrow pointer"],
+["E","Erase drawings"],["Ctrl + H","Hide pointer"],["Number + Enter","Go to that slide"]]},
+{t:"Excel Facts",h:["Item","Detail"],r:[
+["Intersection of row and column","Cell"],["Cell address example","A1 (column A, row 1)"],["Last column","XFD (16,384th)"],
+["Formula starts with","= (equal sign)"],["Name box","Shows the active cell address"],
+["Common functions","SUM, AVERAGE, MAX, MIN, COUNT, IF, VLOOKUP, ROUND"],
+["Cell reference types","Relative (A1), Absolute ($A$1), Mixed (A$1 or $A1)"],
+["Chart types","Column, Bar, Line, Pie, Area, Scatter"],["Default alignment","Text: left, Numbers: right"],
+["Error values","#DIV/0!, #VALUE!, #REF!, #NAME?, #N/A, ##### (column too narrow)"]]},
+{t:"Word and PowerPoint Facts",h:["Item","MS Word","MS PowerPoint"],r:[
+["Mail Merge","Mailings tab","n/a"],["Table of Contents","References tab","n/a"],
+["Header / Footer","Insert tab","Insert tab"],["Page margins","Layout tab","n/a"],
+["Slide Master","n/a","View tab"],["Slide size","n/a","Design tab"],["Slide Sorter","n/a","View tab"],
+["Default alignment","Left","Left"],["Default slide ratio","n/a","16:9 (older: 4:3)"]],
+tip:"Exam tip: most questions come from file extensions, unique tabs and shortcut keys (Ctrl + E/L/R/J, F12, F5, Shift + F5, F4, Alt + =)."}
+];
+var cl=function(i,n){if(n==2)return i?"x":"";if(n==3)return i==0?"":(i==1?"w":"x");return i==0?"":["","w","e","p"][i]};
+var cur=0,tabs=document.getElementById("tabs"),out=document.getElementById("out"),q=document.getElementById("q");
+function cell(v,i){if(i>0&&v==="Y")return'<td class="y">&#10004;</td>';if(i>0&&v==="N")return'<td class="n">&#10008;</td>';return"<td>"+v.replace(/</g,"&lt;")+"</td>"}
+function tbl(s,f){
+var rows=s.r.filter(function(r){return!f||r.join(" ").toLowerCase().indexOf(f)>-1});
+if(!rows.length)return"";
+var n=s.h.length,hd=s.h.map(function(h,i){var c=n==4?["","w","e","p"][i]:(n==3?["","w","p"][i]:"");return'<th class="'+c+'">'+h+"</th>"}).join("");
+return'<section><h2>'+s.t+'</h2><div class="wrap"><table><thead><tr>'+hd+"</tr></thead><tbody>"+
+rows.map(function(r){return"<tr>"+r.map(cell).join("")+"</tr>"}).join("")+"</tbody></table></div>"+
+(s.tip?'<div class="tip">'+s.tip+"</div>":"")+"</section>"}
+function draw(){
+var f=q.value.trim().toLowerCase(),h="";
+tabs.innerHTML=S.map(function(s,i){return'<button class="'+(i==cur&&!f?"on":"")+'" data-i="'+i+'">'+s.t+"</button>"}).join("");
+if(f){S.forEach(function(s){h+=tbl(s,f)});out.innerHTML=h||'<p class="empty">No result found.</p>'}
+else out.innerHTML=tbl(S[cur])}
+tabs.onclick=function(e){var i=e.target.getAttribute("data-i");if(i!==null){cur=+i;q.value="";draw()}};
+q.oninput=draw;
+document.getElementById("th").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d=="dark"?"light":"dark")};
+draw();
+</script>
+</body>
+</html>
