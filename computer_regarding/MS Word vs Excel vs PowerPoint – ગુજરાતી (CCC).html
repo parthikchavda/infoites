@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MS Word vs Excel vs PowerPoint – ગુજરાતી (CCC)</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mut:#667085;--bd:#e3e6ee;--w:#2b579a;--e:#217346;--p:#d24726;--ac:#4f46e5;--g:#eceefd}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1220;--card:#181c2e;--tx:#e8eaf3;--mut:#9aa3b8;--bd:#2a3050;--ac:#8b86ff;--g:#252a4a}}
+:root[data-theme="dark"]{--bg:#0f1220;--card:#181c2e;--tx:#e8eaf3;--mut:#9aa3b8;--bd:#2a3050;--ac:#8b86ff;--g:#252a4a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"Segoe UI","Noto Sans Gujarati",sans-serif}
+header,main,.chips{max-width:1150px;margin:auto;padding-left:14px;padding-right:14px}
+header{padding-top:20px}
+h1{margin:0;font-size:clamp(19px,4vw,27px)}
+.sub{color:var(--mut);margin:4px 0 12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:6px 12px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-top:12px;padding-bottom:12px}
+.chips button{white-space:nowrap}
+.chips button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;background:var(--card);margin-bottom:30px}
+table{border-collapse:collapse;width:100%;min-width:680px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+th{position:sticky;top:0;color:#fff;background:#475467;z-index:1}
+th.w{background:var(--w)}th.e{background:var(--e)}th.p{background:var(--p)}
+td:first-child{font-weight:600;min-width:150px}
+tr.g td{background:var(--g);font-weight:700;color:var(--ac);font-size:16px}
+tr.s td{text-align:left}
+.y{color:#16a34a;font-weight:700}.n{color:#dc2626;font-weight:700}
+.na{color:var(--mut)}
+.tip{margin:0 0 30px;background:var(--card);border-left:4px solid var(--ac);border-radius:8px;padding:10px 14px}
+.empty{color:var(--mut);padding:24px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+<h1>MS Word vs Excel vs PowerPoint (ગુજરાતી – CCC સ્તર)</h1>
+<p class="sub">એક જ સંપૂર્ણ ટેબલ: ફાઇલ, મેનુ, શોર્ટકટ કી, ફોર્મ્યુલા, સ્લાઇડ શો, પરીક્ષા ટિપ્સ</p>
+<div class="bar"><input id="q" type="search" placeholder="શોધો: Ctrl + E, .pptx, F12, Formulas, SUM..."><button id="th">Theme</button></div>
+</header>
+<div class="chips" id="chips"></div>
+<main><div class="wrap"><table><thead><tr><th>મુદ્દો</th><th class="w">MS Word</th><th class="e">MS Excel</th><th class="p">MS PowerPoint</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="tip"><b>પરીક્ષા ટિપ:</b> ફાઇલ એક્સટેન્શન, ખાસ ટેબ અને શોર્ટકટ કી (Ctrl + E/L/R/J, F12, F5, Shift + F5, F4, Alt + =) પરથી સૌથી વધુ પ્રશ્નો પુછાય છે.</div></main>
+<script>
+var R=[
+["#","1. મૂળભૂત માહિતી"],
+["પ્રકાર","વર્ડ પ્રોસેસર","સ્પ્રેડશીટ","પ્રેઝન્ટેશન સોફ્ટવેર"],
+["ઉપયોગ","પત્ર, અહેવાલ, દસ્તાવેજ","ગણતરી, ડેટા, ચાર્ટ","સ્લાઇડ, પ્રેઝન્ટેશન"],
+["નવું એક્સટેન્શન",".docx",".xlsx",".pptx"],
+["જૂનું એક્સટેન્શન",".doc",".xls",".ppt"],
+["ટેમ્પ્લેટ",".dotx",".xltx",".potx"],
+["મેક્રો સાથે",".docm",".xlsm",".pptm"],
+["અન્ય ફોર્મેટ",".rtf, .pdf",".csv",".ppsx (સ્લાઇડ શો)"],
+["ડિફોલ્ટ નામ","Document1","Book1 (વર્કબુક)","Presentation1"],
+["કાર્યક્ષેત્ર","પેજ","વર્કશીટ (પંક્તિ-સ્તંભ)","સ્લાઇડ"],
+["મૂળ એકમ","અક્ષર, શબ્દ, ફકરો","સેલ","સ્લાઇડ"],
+["મુખ્ય સુવિધા","Mail Merge, Spell Check","Formula, Function, Chart","Animation, Transition"],
+["ખાસ બાર / પેન","Ruler","Formula bar, Name box","Thumbnail pane, Notes pane"],
+["ડિફોલ્ટ ઓરિએન્ટેશન","Portrait","Portrait (પ્રિન્ટ)","Landscape (16:9)"],
+["ડિફોલ્ટ વ્યૂ","Print Layout","Normal","Normal"],
+["પંક્તિ × સ્તંભ","ફક્ત ટેબલમાં","1,048,576 × 16,384 (A થી XFD)","ફક્ત ટેબલમાં"],
+["ડિફોલ્ટ શીટ","-","1 (Sheet1)","-"],
+["સ્ટેટસ બાર","પેજ નંબર, શબ્દ સંખ્યા","Sum, Average, Count","સ્લાઇડ નંબર, થીમ"],
+["ડિફોલ્ટ એલાઇનમેન્ટ","ડાબે","ટેક્સ્ટ ડાબે, નંબર જમણે","ડાબે"],
+["#","2. મેનુ (રિબન ટેબ)"],
+["File, Home, Insert, Draw, Review, View, Help","Y","Y","Y"],
+["Design","Y","N","Y"],
+["Layout","Y","N","N"],
+["Page Layout","N","Y","N"],
+["References","Y","N","N"],
+["Mailings","Y","N","N"],
+["Formulas","N","Y","N"],
+["Data","N","Y","N"],
+["Transitions","N","N","Y"],
+["Animations","N","N","Y"],
+["Slide Show","N","N","Y"],
+["ખાસ (યુનિક) ટેબ","References, Mailings","Formulas, Data","Transitions, Animations, Slide Show"],
+["Home ટેબના ગ્રુપ","Clipboard, Font, Paragraph, Styles, Editing","Clipboard, Font, Alignment, Number, Styles, Cells, Editing","Clipboard, Slides, Font, Paragraph, Drawing, Editing"],
+["Insert ટેબમાં","Pages, Table, Pictures, Shapes, Chart, Header & Footer, Symbols","Table, PivotTable, Charts, Sparklines, Illustrations","Slides, Table, Images, Media (Audio/Video)"],
+["#","3. સામાન્ય શોર્ટકટ કી (ત્રણેમાં સમાન)"],
+["=","Ctrl + N","નવી ફાઇલ"],["=","Ctrl + O","ફાઇલ ખોલો"],["=","Ctrl + S","સેવ"],["=","F12","Save As"],
+["=","Ctrl + P","પ્રિન્ટ"],["=","Ctrl + W","ફાઇલ બંધ"],["=","Alt + F4","પ્રોગ્રામ બંધ (Exit)"],
+["=","Ctrl + C / X / V","કોપી / કટ / પેસ્ટ"],["=","Ctrl + Z / Y","Undo / Redo"],["=","Ctrl + A","બધું સિલેક્ટ"],
+["=","Ctrl + B / I / U","Bold / Italic / Underline"],["=","Ctrl + F","શોધ (Find)"],["=","Ctrl + H","Replace"],
+["=","Ctrl + K","હાઇપરલિંક"],["=","Ctrl + Home / End","શરૂઆત / અંત પર જાઓ"],["=","F1","Help"],["=","F7","Spelling Check"],
+["#","4. ખાસ શોર્ટકટ કી"],
+["Center / Left / Right / Justify","Ctrl + E / L / R / J","-","Ctrl + E / L / R / J"],
+["Font dialog","Ctrl + D","Ctrl + 1 (Format Cells)","Ctrl + T"],
+["Font size વધારો / ઘટાડો","Ctrl + Shift + > / <","Ctrl + Shift + > / <","Ctrl + Shift + > / <"],
+["Page break","Ctrl + Enter","-","-"],
+["Line spacing (1 / 1.5 / 2)","Ctrl + 1 / 5 / 2","-","-"],
+["Change case","Shift + F3","-","Shift + F3"],
+["Copy / Paste formatting","Ctrl + Shift + C / V","-","Ctrl + Shift + C / V"],
+["તારીખ / સમય","Alt + Shift + D / T","Ctrl + ; / Ctrl + Shift + ;","-"],
+["Go To","Ctrl + G અથવા F5","Ctrl + G અથવા F5","-"],
+["Bullets / Filter","Ctrl + Shift + L (Bullets)","Ctrl + Shift + L (Filter)","-"],
+["Subscript / Superscript","Ctrl + = / Ctrl + Shift + =","-","Ctrl + = / Ctrl + Shift + ="],
+["Footnote / Endnote","Ctrl + Alt + F / D","-","-"],
+["Print preview","Ctrl + F2","Ctrl + F2","-"],
+["સેલ Edit","-","F2","-"],
+["AutoSum","-","Alt + =","-"],
+["Absolute reference ($)","-","F4","-"],
+["કોલમ / રો સિલેક્ટ","-","Ctrl + Space / Shift + Space","-"],
+["રો / કોલમ ઉમેરો / કાઢો","-","Ctrl + Shift + + / Ctrl + -","-"],
+["સેલમાં નવી લાઇન","-","Alt + Enter","-"],
+["Fill Down / Right","-","Ctrl + D / Ctrl + R","-"],
+["ચાર્ટ બનાવો","-","F11 (નવી શીટ), Alt + F1 (સમાન શીટ)","-"],
+["નવી શીટ","-","Shift + F11","-"],
+["આગલી / પાછલી શીટ","-","Ctrl + PgDn / PgUp","-"],
+["Formulas બતાવો","-","Ctrl + ` (Backtick)","-"],
+["ટેબલ બનાવો","-","Ctrl + T","-"],
+["રો / કોલમ છુપાવો","-","Ctrl + 9 / Ctrl + 0","-"],
+["નવી સ્લાઇડ","-","-","Ctrl + M"],
+["સ્લાઇડ ડુપ્લિકેટ","-","-","Ctrl + D"],
+["Group / Ungroup","-","-","Ctrl + G / Ctrl + Shift + G"],
+["Thesaurus","Shift + F7","Shift + F7","Shift + F7"],
+["#","5. PowerPoint સ્લાઇડ શો કી"],
+["શો શરૂઆતથી","-","-","F5"],
+["વર્તમાન સ્લાઇડથી","-","-","Shift + F5"],
+["Presenter view","-","-","Alt + F5"],
+["શો બંધ","-","-","Esc"],
+["આગલી સ્લાઇડ","-","-","N / Enter / Space / → / ↓"],
+["પાછલી સ્લાઇડ","-","-","P / Backspace / ← / ↑"],
+["બ્લેક / વ્હાઇટ સ્ક્રીન","-","-","B અથવા . / W અથવા ,"],
+["Pen / Arrow / Erase","-","-","Ctrl + P / Ctrl + A / E"],
+["પોઇન્ટર છુપાવો","-","-","Ctrl + H"],
+["સીધી સ્લાઇડ પર","-","-","નંબર + Enter"],
+["#","6. Excel વિશેષ માહિતી (CCC)"],
+["સેલ એડ્રેસ","-","A1 (કોલમ A, રો 1)","-"],
+["રેન્જ","-","A1:B5 (કોલોન સાથે)","-"],
+["છેલ્લો કોલમ","-","XFD (16,384મો)","-"],
+["ફોર્મ્યુલા શરૂ","-","= (સમાન ચિહ્ન)","-"],
+["Name box","-","સક્રિય સેલનું સરનામું બતાવે","-"],
+["મુખ્ય Function","-","SUM, AVERAGE, MAX, MIN, COUNT, COUNTA, IF, ROUND, LEN, TODAY, NOW, VLOOKUP","-"],
+["Reference પ્રકાર","-","Relative (A1), Absolute ($A$1), Mixed (A$1 / $A1)","-"],
+["ચાર્ટ પ્રકાર","-","Column, Bar, Line, Pie, Area, Scatter","-"],
+["Error મૂલ્ય","-","#DIV/0!, #VALUE!, #REF!, #NAME?, #N/A, ##### (કોલમ સાંકડો)","-"],
+["અન્ય સુવિધા","-","Sort, Filter, Freeze Panes, Merge & Center, PivotTable","-"],
+["#","7. Word વિશેષ માહિતી (CCC)"],
+["Mail Merge","Mailings ટેબ","-","-"],
+["Table of Contents","References ટેબ","-","-"],
+["Header / Footer","Insert ટેબ","Insert ટેબ","Insert ટેબ"],
+["Margins / Orientation","Layout ટેબ","Page Layout ટેબ","-"],
+["Watermark / Page Color","Design ટેબ","-","-"],
+["Track Changes / Word Count","Review ટેબ","-","-"],
+["વ્યૂ પ્રકાર","Print Layout, Web Layout, Read Mode, Outline, Draft","Normal, Page Layout, Page Break Preview","-"],
+["માઉસ ક્લિક","ડબલ ક્લિક = શબ્દ, ટ્રિપલ ક્લિક = ફકરો","-","-"],
+["#","8. PowerPoint વિશેષ માહિતી (CCC)"],
+["Slide Master","-","-","View ટેબ"],
+["Slide size","-","-","Design ટેબ"],
+["Slide Sorter","-","-","View ટેબ"],
+["Transition / Animation","-","-","સ્લાઇડ વચ્ચે = Transition, ઓબ્જેક્ટ પર = Animation"],
+["વ્યૂ પ્રકાર","-","-","Normal, Slide Sorter, Notes Page, Reading View, Slide Show"],
+["Slide ratio","-","-","16:9 (જૂનો 4:3)"],
+["Rehearse Timings / Hide Slide","-","-","Slide Show ટેબ"]
+];
+var cur=-1,q=document.getElementById("q"),tb=document.getElementById("tb"),ch=document.getElementById("chips");
+var G=R.filter(function(r){return r[0]=="#"}).map(function(r){return r[1]});
+function esc(v){return String(v).replace(/</g,"&lt;")}
+function cell(v){if(v=="Y")return'<td class="y">&#10004;</td>';if(v=="N")return'<td class="n">&#10008;</td>';if(v=="-")return'<td class="na">-</td>';return"<td>"+esc(v)+"</td>"}
+function draw(){
+var f=q.value.trim().toLowerCase(),gi=-1,html="",pend="",shown=0;
+ch.innerHTML='<button class="'+(cur<0?"on":"")+'" data-i="-1">બધા</button>'+G.map(function(g,i){return'<button class="'+(cur==i?"on":"")+'" data-i="'+i+'">'+esc(g)+"</button>"}).join("");
+R.forEach(function(r){
+if(r[0]=="#"){gi++;pend='<tr class="g"><td colspan="4">'+esc(r[1])+"</td></tr>";return}
+if(cur>=0&&cur!=gi)return;
+if(f&&r.join(" ").toLowerCase().indexOf(f)<0)return;
+if(pend){html+=pend;pend=""}
+html+=r[0]=="="?'<tr class="s"><td>'+esc(r[1])+'</td><td colspan="3">'+esc(r[2])+"</td></tr>":"<tr>"+r.map(cell).join("")+"</tr>";
+shown++});
+tb.innerHTML=shown?html:'<tr><td colspan="4" class="empty">કોઈ પરિણામ મળ્યું નથી.</td></tr>'}
+ch.onclick=function(e){var i=e.target.getAttribute("data-i");if(i!==null){cur=+i;draw()}};
+q.oninput=draw;
+document.getElementById("th").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d=="dark"?"light":"dark")};
+draw();
+</script>
+</body>
+</html>
